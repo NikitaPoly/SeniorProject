@@ -2,7 +2,7 @@
     div#seperator{
         width:100%;
         height:1rem;
-        border:1px solid black;
+        border:1px solid red;
     }
 </style>
 <h1>Student Delivery System</h1>
