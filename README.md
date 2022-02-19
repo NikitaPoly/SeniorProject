@@ -14,4 +14,4 @@
 <li>Allows me to  create html, js and css modules I can resue. Prevents alot of duplicate code in the front end.</li>
 </ul>
 <h3>Tools and scripts</h3>
-<h4>Front-end</h4>
+<h4>Front End</h4>
