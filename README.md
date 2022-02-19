@@ -7,7 +7,6 @@
 <h4>Node.js - </h4><p>Although the back-end of this website is no longer writen in javascript, Node.js is a great tool for front end development.<p>
 <ul>
 <h5>Benifits</h5>
-<ul>
 <li><a href="#NPMInfo">NPM</a> package manager.</li>
 <li>allows scripting operating system events with javascript.</li>
 </ul>
