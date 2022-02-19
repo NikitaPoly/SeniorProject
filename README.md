@@ -11,7 +11,7 @@
 </ul>
 <h4>Webpack - </h4><p>Module bundler that compiles all files needed into one efficient and safe bundle of html, and js.</p>
 <ul>
-<li>Allow me to  create html, js and css modules I can resue. Prevents alot of duplicate code in the front end.</li>
+<li>Allows me to  create html, js and css modules I can resue. Prevents alot of duplicate code in the front end.</li>
 </ul>
 <h3>Tools and scripts</h3>
 <h4>Front-end</h4>
