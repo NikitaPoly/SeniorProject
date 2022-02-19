@@ -4,8 +4,16 @@
 </p>
 <h3>Development Enviroment</h3>
 <h4>Vscode - </h4><p>In my opinion best editor for web development projects.</p>
-<h4>Node.js - </h4><p>Althou the back-end of this website is no longer writen in javascript, Node.js is a great tool for front end development<p>
+<h4>Node.js - </h4><p>Althou the back-end of this website is no longer writen in javascript, Node.js is a great tool for front end development.<p>
 <ul>
 <h5>Benifits</h5>
-<li>NPM package manager</li>
+<ul>
+<li><a href="#NPMInfo">NPM</a>package manager.</li>
+<li>allows scripting operating system events with javascript.</li>
 </ul>
+<h4>Webpack - </h4><p>Module bundler that compiles all files needed into one efficient and safe bundle of html, and js.</p>
+<ul>
+<li>Allow me to  create html, js and css modules I can resue. Prevents alot of duplicate code in the front end.</li>
+</ul>
+<h3>Tools and scripts</h3>
+<h4>Front-end</h4>
