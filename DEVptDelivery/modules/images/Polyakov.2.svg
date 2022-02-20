@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="133" height="80" viewBox="0 0 133 80">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #05386b;
+        font-size: 66px;
+        font-family: Roboto-BoldItalic, Roboto;
+        font-weight: 700;
+        font-style: italic;
+      }
+
+      .cls-2 {
+        letter-spacing: -0.29em;
+      }
+
+      .cls-3 {
+        font-size: 19px;
+      }
+
+      .cls-4 {
+        font-size: 60px;
+        letter-spacing: -0.24em;
+      }
+    </style>
+  </defs>
+  <text id="Polyakov.T" class="cls-1" transform="translate(0 63)"><tspan class="cls-2" x="0" y="0">P</tspan><tspan class="cls-3" y="0">olyakov</tspan><tspan class="cls-4" y="0">.</tspan><tspan y="0">T</tspan></text>
+</svg>

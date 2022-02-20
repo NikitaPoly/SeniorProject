@@ -69,8 +69,19 @@ module.exports = [
                     test: /\.ts?$/,
                     use: 'ts-loader',
                     exclude: /node_modules/,
+                },
+                {
+                    test: /\.(png|jpe?g|gif|jp2|webp)$/,
+                    loader: 'file-loader',
+                },
+                {
+                    test: /\.svg$/,
+                    loader: 'svg-inline-loader'
+                },
+                {
+                    test: /\.svg$/,
+                    use: 'file-loader'
                 }
-
             ]
         },
         plugins: [

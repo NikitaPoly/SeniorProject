@@ -1,3 +1,25 @@
 nav{
     background-color:var(--depauwYellow--);
+    max-height: 10vh;
+}
+nav ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 3vh;
+}
+nav ul a:last-child{
+    display: flex;
+    flex-flow: column;
+    font-size: 2vh;
+}
+img#navLogo{
+    color:var(--ptBlue--);
+    max-height: 8vh;
+}
+img#settingsImg{
+    max-height: 7vh;
+}
+nav a{
+    font-weight: bold;
 }
