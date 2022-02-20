@@ -46,7 +46,7 @@ module.exports = [
         mode: "development",
         name: "login",
         entry: {
-            login : path.resolve(__dirname,"DEVptDelivery/login/index.js")
+            login: path.resolve(__dirname, "DEVptDelivery/login/index.ts")
         },
         output: {
             path: path.resolve(__dirname, "Public/ptDelivery/login"),
@@ -56,16 +56,21 @@ module.exports = [
         },
         devtool: "inline-source-map",
         devServer: {
-            contentBase: path.resolve(__dirname, "DEVptDelivery"),
+            static: path.resolve(__dirname, "Public/ptDelivery/login"),
             port: 8080,
             open: true,
             hot: true,
-            watchContentBase: true,
+            watchFiles: ["DEVptDelivery/modules", "DEVptDelivery/login"]
         },
         module: {
             rules: [
-                { test: /\.css$/, use: ["style-loader", "css-loader"] },
-                { test: /\.(svg)$/, type: "asset/resource" }
+                { test: /\.css$/, use: ["style-loader", "css-modules-typescript-loader", "css-loader"] },
+                {
+                    test: /\.ts?$/,
+                    use: 'ts-loader',
+                    exclude: /node_modules/,
+                }
+
             ]
         },
         plugins: [
