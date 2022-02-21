@@ -7,38 +7,51 @@ example
 */
 module.exports = [
     {
-        mode: "development",// or productions
+        mode: "development",
         name: "earn",
-        entry: {//files that we start with AKA source
-            earn: path.resolve(__dirname, "DEVptDelivery/earn/index.js")//entry point (in this case js file)
+        entry: {
+            earn: path.resolve(__dirname, "DEVptDelivery/earn/index.ts")
         },
-        output: {//where are we gonna put things
-            path: path.resolve(__dirname, "Public/ptDelivery/earn"),//deoploy folder aka final folder
-            filename: "[name].js",// output file name
-            assetModuleFilename: "[name][ext]",//make all images imported original name
-            clean: true//delete all files first then bundle
+        output: {
+            path: path.resolve(__dirname, "Public/ptDelivery/earn"),
+            filename: "[name].js",
+            assetModuleFilename: "[name][ext]",
+            clean: true
         },
-        devtool: "inline-source-map",// keeps track of where the content came from
-        devServer: {//setting for actual server
-            contentBase: path.resolve(__dirname, "DEVptDelivery"),//location for files
-            port: 8080,//default8080
-            open: true,//launch browser when lanuching server
-            hot: true,//hot module reaload
-            watchContentBase: true,//checks if production folder changed
+        devtool: "inline-source-map",
+        devServer: {
+            static: path.resolve(__dirname, "Public/ptDelivery/earn"),
+            port: 8080,
+            open: true,
+            hot: true,
+            watchFiles: ["DEVptDelivery/modules", "DEVptDelivery/earn", "DEvptDelivery/modules/template.html"]
         },
-        //loaders
         module: {
             rules: [
-                { test: /\.css$/, use: ["style-loader", "css-loader"] },//order matters.//convert css to module, then inject into html
-                { test: /\.(svg)$/, type: "asset/resource" }//built in image loader
+                { test: /\.css$/, use: ["style-loader", "css-modules-typescript-loader", "css-loader"] },
+                {
+                    test: /\.ts?$/,
+                    use: 'ts-loader',
+                    exclude: /node_modules/,
+                },
+                {
+                    test: /\.(png|jpe?g|gif|jp2|webp)$/,
+                    loader: 'file-loader',
+                },
+                {
+                    test: /\.svg$/,
+                    loader: "file-loader",
+                    options: {
+                        name: "[name].[ext]"
+                    }
+                }
             ]
         },
-        //plugins
         plugins: [
-            new HtmlWebpackPlugin({//for html modulation
-                title: "PT - Delivery",//html page title
-                filename: "[name].html",// html file title
-                template: path.resolve(__dirname, "DEVptDelivery/modules/template.html")//template for html
+            new HtmlWebpackPlugin({
+                title: "Earn",
+                filename: "[name].html",
+                template: path.resolve(__dirname, "DEVptDelivery/modules/template.html")
             })
         ]
     },
@@ -57,10 +70,10 @@ module.exports = [
         devtool: "inline-source-map",
         devServer: {
             static: path.resolve(__dirname, "Public/ptDelivery/login"),
-            port: 8080,
+            port: 8081,
             open: true,
             hot: true,
-            watchFiles: ["DEVptDelivery/modules", "DEVptDelivery/login","DEvptDelivery/modules/template.html"]
+            watchFiles: ["DEVptDelivery/modules", "DEVptDelivery/login", "DEvptDelivery/modules/template.html"]
         },
         module: {
             rules: [
@@ -95,7 +108,7 @@ module.exports = [
         mode: "development",
         name: "order",
         entry: {
-            order: path.resolve(__dirname, "DEVptDelivery/order/index.js"),
+            order: path.resolve(__dirname, "DEVptDelivery/order/index.ts")
         },
         output: {
             path: path.resolve(__dirname, "Public/ptDelivery/order"),
@@ -105,16 +118,31 @@ module.exports = [
         },
         devtool: "inline-source-map",
         devServer: {
-            contentBase: path.resolve(__dirname, "DEVptDelivery"),
-            port: 8080,
+            static: path.resolve(__dirname, "Public/ptDelivery/order"),
+            port: 8082,
             open: true,
             hot: true,
-            watchContentBase: true,
+            watchFiles: ["DEVptDelivery/modules", "DEVptDelivery/order", "DEvptDelivery/modules/template.html"]
         },
         module: {
             rules: [
-                { test: /\.css$/, use: ["style-loader", "css-loader"] },
-                { test: /\.(svg)$/, type: "asset/resource" }
+                { test: /\.css$/, use: ["style-loader", "css-modules-typescript-loader", "css-loader"] },
+                {
+                    test: /\.ts?$/,
+                    use: 'ts-loader',
+                    exclude: /node_modules/,
+                },
+                {
+                    test: /\.(png|jpe?g|gif|jp2|webp)$/,
+                    loader: 'file-loader',
+                },
+                {
+                    test: /\.svg$/,
+                    loader: "file-loader",
+                    options: {
+                        name: "[name].[ext]"
+                    }
+                }
             ]
         },
         plugins: [
@@ -129,7 +157,7 @@ module.exports = [
         mode: "development",
         name: "settings",
         entry: {
-            settings: path.resolve(__dirname, "DEVptDelivery/settings/index.js")
+            settings: path.resolve(__dirname, "DEVptDelivery/settings/index.ts")
         },
         output: {
             path: path.resolve(__dirname, "Public/ptDelivery/settings"),
@@ -139,16 +167,31 @@ module.exports = [
         },
         devtool: "inline-source-map",
         devServer: {
-            contentBase: path.resolve(__dirname, "DEVptDelivery"),
-            port: 8080,
+            static: path.resolve(__dirname, "Public/ptDelivery/settings"),
+            port: 8083,
             open: true,
             hot: true,
-            watchContentBase: true,
+            watchFiles: ["DEVptDelivery/modules", "DEVptDelivery/settings", "DEvptDelivery/modules/template.html"]
         },
         module: {
             rules: [
-                { test: /\.css$/, use: ["style-loader", "css-loader"] },
-                { test: /\.(svg)$/, type: "asset/resource" }
+                { test: /\.css$/, use: ["style-loader", "css-modules-typescript-loader", "css-loader"] },
+                {
+                    test: /\.ts?$/,
+                    use: 'ts-loader',
+                    exclude: /node_modules/,
+                },
+                {
+                    test: /\.(png|jpe?g|gif|jp2|webp)$/,
+                    loader: 'file-loader',
+                },
+                {
+                    test: /\.svg$/,
+                    loader: "file-loader",
+                    options: {
+                        name: "[name].[ext]"
+                    }
+                }
             ]
         },
         plugins: [

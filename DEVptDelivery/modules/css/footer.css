@@ -6,9 +6,22 @@ footer {
 footer ul{
     display: flex;
     justify-content: space-around;
-    align-items: center;
     font-size: 1.25vh;
 }
 footer ul a:nth-child(2){
     text-align: center;
 }
+footer ul a:nth-child(n+3){
+    background-color: white;
+    flex-basis: 19vw;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+img#footerLogo {
+    height: 4vh;
+}
+footer a img{
+    height: 2vh;
+} 

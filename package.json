@@ -9,11 +9,11 @@
     "build-order": "webpack --config-name order",
     "build-settings": "webpack --config-name settings",
     "build": "npx webpack",
-    "run-earn": "webpack --config-name earn",
+    "run-earn": "webpack serve --config-name earn",
     "run-login": "webpack serve --config-name login",
-    "run-order": "webpack --config-name order",
-    "run-settings": "webpack --config-name settings",
-    "run": "npx webpack"
+    "run-order": "webpack serve --config-name order",
+    "run-settings": "webpack serve --config-name settings",
+    "run": "npx webpack serve"
   },
   "repository": {
     "type": "git",
