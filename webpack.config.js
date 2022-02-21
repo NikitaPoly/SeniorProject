@@ -76,11 +76,10 @@ module.exports = [
                 },
                 {
                     test: /\.svg$/,
-                    loader: 'svg-inline-loader'
-                },
-                {
-                    test: /\.svg$/,
-                    use: 'file-loader'
+                    loader: "file-loader",
+                    options:{
+                        name:"[name].[ext]"
+                    }
                 }
             ]
         },
