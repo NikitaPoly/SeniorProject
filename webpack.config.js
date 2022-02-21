@@ -60,7 +60,7 @@ module.exports = [
             port: 8080,
             open: true,
             hot: true,
-            watchFiles: ["DEVptDelivery/modules", "DEVptDelivery/login"]
+            watchFiles: ["DEVptDelivery/modules", "DEVptDelivery/login","DEvptDelivery/modules/template.html"]
         },
         module: {
             rules: [
@@ -77,8 +77,8 @@ module.exports = [
                 {
                     test: /\.svg$/,
                     loader: "file-loader",
-                    options:{
-                        name:"[name].[ext]"
+                    options: {
+                        name: "[name].[ext]"
                     }
                 }
             ]
