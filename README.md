@@ -6,7 +6,7 @@
 <h4>Vscode - </h4><p>Standar editor for Web Projects.</p>
 <h4>Node.js - </h4><p>Although the back-end of this website is no longer writen in javascript, Node.js is a great tool for front end development. It allows the use of typescript, webpack and custom environment scripting.<p>
 <ul>
-<li><a href="#NPMInfo">NPM</a> package manager.</li>
+<li>Node package manager. (NPM)</li>
 <li>allows scripting operating system events with javascript.</li>
 <li>has additional tools to aid in development.</li>
 </ul>
@@ -15,4 +15,12 @@
 <li>Allows me to  create html, js and css modules I can resue. Prevents alot of duplicate code in the front end.</li>
 <li>Compatable with typescript with minimun configuration.</li>
 <li>Provides security by minifying files.</li>
+<li>Much easier to debug front end project.</li>
 </ul>
+<h4>TypeScript - </h4><p>An additoin to the basic javascript lanuage, typescript helps make javascript a safer and easier lanuage to develop in by adding typed variables and decliration files.
+</p>
+<ul>
+<li>added types for variables.</li>
+<li>faster to develop with compared to javascript.</li>
+</ul>
+
