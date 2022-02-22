@@ -35,15 +35,16 @@ module.exports = [
                     exclude: /node_modules/,
                 },
                 {
-                    test: /\.(png|jpe?g|gif|jp2|webp)$/,
-                    loader: 'file-loader',
+                    test: /\.(png|jpe?g|gif)$/i,
+                    type: 'asset/resource',
+                    generator: {
+                        // adding a hash to the file
+                        filename: 'images/static/[name].[hash][ext]',
+                    },
                 },
                 {
                     test: /\.svg$/,
-                    loader: "file-loader",
-                    options: {
-                        name: "[name].[ext]"
-                    }
+                    use: [{ loader: "file-loader", options: { name: "[name].[ext]" } },]
                 }
             ]
         },
@@ -87,11 +88,15 @@ module.exports = [
                     exclude: /node_modules/,
                 },
                 {
-                    test: /\.(png|jpe?g|gif|jp2|webp)$/,
-                    loader: 'file-loader',
+                    test: /\.(png|jpe?g|gif)$/i,
+                    type: 'asset/resource',
+                    generator: {
+                        // adding a hash to the file
+                        filename: 'images/static/[name].[hash][ext]',
+                    },
                 },
                 {
-                    test: /\.svg$/,
+                    test: /\.(svg)$/,
                     loader: "file-loader",
                     options: {
                         name: "[name].[ext]"
@@ -136,8 +141,12 @@ module.exports = [
                     exclude: /node_modules/,
                 },
                 {
-                    test: /\.(png|jpe?g|gif|jp2|webp)$/,
-                    loader: 'file-loader',
+                    test: /\.(png|jpe?g|gif)$/i,
+                    type: 'asset/resource',
+                    generator: {
+                        // adding a hash to the file
+                        filename: 'images/static/[name].[hash][ext]',
+                    },
                 },
                 {
                     test: /\.svg$/,
@@ -185,8 +194,12 @@ module.exports = [
                     exclude: /node_modules/,
                 },
                 {
-                    test: /\.(png|jpe?g|gif|jp2|webp)$/,
-                    loader: 'file-loader',
+                    test: /\.(png|jpe?g|gif)$/i,
+                    type: 'asset/resource',
+                    generator: {
+                        // adding a hash to the file
+                        filename: 'images/static/[name].[hash][ext]',
+                    },
                 },
                 {
                     test: /\.svg$/,
