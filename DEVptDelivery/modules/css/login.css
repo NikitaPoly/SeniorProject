@@ -56,7 +56,7 @@ main canvas{
 main div#animatioOverlay{
     position: absolute;
     border: 1px solid black;
-    width: 75vw;
+    width: 60vw;
     text-align: center;
 }
 main div#animatioOverlay p{
