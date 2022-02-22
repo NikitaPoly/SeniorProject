@@ -4,15 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-earn": "webpack --config-name earn",
-    "build-login": "webpack --config-name login",
-    "build-order": "webpack --config-name order",
-    "build-settings": "webpack --config-name settings",
+    "earn-b": "webpack --config-name earn",
+    "login-b": "webpack --config-name login",
+    "order-b": "webpack --config-name order",
+    "settings-b": "webpack --config-name settings",
     "build": "npx webpack",
-    "run-earn": "webpack serve --config-name earn",
-    "run-login": "webpack serve --config-name login",
-    "run-order": "webpack serve --config-name order",
-    "run-settings": "webpack serve --config-name settings",
+    "earn-r": "webpack serve --config-name earn",
+    "login-r": "webpack serve --config-name login",
+    "order-r": "webpack serve --config-name order",
+    "settings-r": "webpack serve --config-name settings",
     "run": "npx webpack serve"
   },
   "repository": {

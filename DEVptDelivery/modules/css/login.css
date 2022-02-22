@@ -1,0 +1,13 @@
+main{
+    background-color:var(--mainBlue--);
+    color:white;
+    display:grid;
+}
+main div.add{
+    background-color: white;
+    color:black;
+}
+main canvas{
+    background-color: red;
+    height: 1rem;
+}

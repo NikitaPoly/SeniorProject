@@ -1,8 +1,8 @@
 :root {
     --depauwYellow--: #FFE152;
     --ptBlue--: #05386B;
+    --mainBlue--: #0B4F6C;
 }
-
 * {
     padding: 0;
     margin: 0;

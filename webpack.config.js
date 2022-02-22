@@ -53,7 +53,10 @@ module.exports = [
                 filename: "[name].html",
                 template: path.resolve(__dirname, "DEVptDelivery/modules/template.html")
             })
-        ]
+        ],
+        resolve: {
+            extensions: ['.ts', '.js', '.json']
+        }
     },
     {
         mode: "development",
