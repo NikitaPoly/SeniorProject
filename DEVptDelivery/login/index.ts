@@ -1,5 +1,5 @@
 import * as defaults from "../modules/js/defaults.ts";
-
+import * as googleAdd from "../modules/js/googleAdd.ts";
 
 import defaultStyle from "../modules/css/defaults.css";
 import navStyle from "../modules/css/nav.css";
@@ -10,20 +10,14 @@ console.log(defaultStyle, navStyle, footerStyle, mainStyle);//activate styles fo
 defaults.defaults();
 let main: HTMLElement = document.getElementById("main");
 //left add
-let googleAddL: HTMLElement = document.createElement("div");
-googleAddL.innerHTML = "Google Add";
-googleAddL.classList.add("add");
-googleAddL.id = "leftAdd";
+let googleAddL: HTMLElement = googleAdd.createAdd("leftAdd")
 main.appendChild(googleAddL);
 //main h1
 let h1: HTMLElement = document.createElement("h1");
 h1.innerHTML = "Student Only Delivery System";
 main.appendChild(h1);
 //right google add
-let googleAddR: HTMLElement = document.createElement("div");
-googleAddR.innerHTML = "Google Add";
-googleAddR.classList.add("add");
-googleAddR.id = "rightAdd";
+let googleAddR: HTMLElement = googleAdd.createAdd("rightAdd");
 main.appendChild(googleAddR);
 //span with the tag lines
 let span: HTMLElement = document.createElement("span");
