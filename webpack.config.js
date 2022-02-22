@@ -1,5 +1,5 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin")// 
+const HtmlWebpackPlugin = require("html-webpack-plugin")//for html proccessing
 /*
 use <%= %> in html template to include properties form the config
 example
