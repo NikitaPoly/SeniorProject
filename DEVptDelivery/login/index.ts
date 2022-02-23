@@ -1,5 +1,6 @@
 import * as defaults from "../modules/js/defaults.ts";
 import * as googleAdd from "../modules/js/googleAdd.ts";
+import * as navfuncs from "../modules/js/nav.ts";
 
 import defaultStyle from "../modules/css/defaults.css";
 import navStyle from "../modules/css/nav.css";
@@ -8,6 +9,7 @@ import mainStyle from "../modules/css/login.css"
 
 console.log(defaultStyle, navStyle, footerStyle, mainStyle);//activate styles for page
 defaults.defaults();
+navfuncs.setActive("login");
 let main: HTMLElement = document.getElementById("main");
 //left add
 let googleAddL: HTMLElement = googleAdd.createAdd("leftAdd")

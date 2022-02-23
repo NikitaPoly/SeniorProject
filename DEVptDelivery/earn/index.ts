@@ -1,5 +1,6 @@
 import * as defaults from "../modules/js/defaults.ts";
 import * as googleAdd from "../modules/js/googleAdd.ts";
+import * as navfuncs from "../modules/js/nav.ts";
 
 import defaultStyle from "../modules/css/defaults.css";
 import navStyle from "../modules/css/nav.css";
@@ -8,6 +9,7 @@ import earnStyle from "../modules/css/earn.css";
 
 console.log(defaultStyle,navStyle,footerStyle,earnStyle);//acivate the styles
 defaults.defaults();//load defaults
+navfuncs.setActive("earn");
 let main: HTMLElement = document.getElementById("main");
 //create overall div that will hold threejs and html
 let animationScreen:HTMLElement = document.createElement("div")
