@@ -22,7 +22,7 @@
     development. It allows the use of typescript, webpack and custom environment scripting. The main goal of node is to
     proide a runtime eniroment outside the browser.
 
-<p>
+</p>
 <ul>
     <li>Node package manager. (NPM)</li>
     <li>allows scripting operating system events with javascript.</li>
