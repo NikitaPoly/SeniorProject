@@ -62,11 +62,20 @@
 <p>
     Webpack is responsible for running most of the fron-end development enviroment. It creates severs for testing apps with hot-reload aswell as builds and 
     packagase code. The serving and building script used in npm:
+    <ul>
+    <li></li>
+</ul>
     In addition to scripts running webpack I also had to utilize plugins and modules for webpack:
+    <ul>
+    <li></li>
+</ul>
 </p>
 <h4>Typescript</h4>
 <p>
     This is an addon to javascript that makes the development of javascript aplication simpler and more powerfull. With the additon of 
     types and code transpiling, javascript becomes much less runtime error prone and predictable. Few scripts are used for typescript:
     But the config files bring more imporants to dictating how typescrit runs:
+    <ul>
+    <li></li>
+</ul>
 </p>
