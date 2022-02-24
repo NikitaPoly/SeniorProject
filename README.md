@@ -52,7 +52,6 @@
     is the default install for nodes package manager.
     With the help of npm supporting libraries can be installed like webpack and typescript. Additionally NPM can run
     custom os scriptis using node and javascript:
-
     With the help of the json config file all information about the development and its dependesies is saved. Making the development recreatable
     on any capable device.
 </p>
@@ -69,6 +68,5 @@
 <p>
     This is an addon to javascript that makes the development of javascript aplication simpler and more powerfull. With the additon of 
     types and code transpiling, javascript becomes much less runtime error prone and predictable. Few scripts are used for typescript:
-
     But the config files bring more imporants to dictating how typescrit runs:
 </p>
