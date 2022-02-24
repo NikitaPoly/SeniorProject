@@ -32,7 +32,7 @@ button{
     margin-top: 4rem;
 }
 div#animationScreen{
-    border:2px solid black;
+    border:2px solid var(--depauwYellow--);
     grid-area: ani;
     height: 70vh;
     border-radius:3%;

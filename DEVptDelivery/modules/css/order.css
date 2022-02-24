@@ -1,4 +1,61 @@
 main{
-    background-color: var(--mainBlue--);
+    background-image: linear-gradient(rgba(6,57,78,.8), rgba(6,57,78,1)),url("../images/speed.jpg");
     display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 20vh 1fr 1fr;
+    grid-template-areas: 
+    "stores add add"
+    "ani ani ani"
+    "drop stat but"
+    ;
+}
+span#storeSelectMenu{
+    grid-area: stores;
+}
+div.add{
+    grid-area:add;
+}
+span#storeSelectMenu,span#paymentOptionSpan,span#deliveryOptionSpan{
+    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:1rem;
+}
+span#paymentOptionSpan select,span#storeSelectMenu select,span#deliveryOptionSpan select{
+    color:white;
+    background-color: var(--mainBlue--);
+    border-color: var(--depauwYellow--);
+    font-size: 2vw;
+}
+span#paymentOptionSpan p,span#storeSelectMenu p,span#deliveryOptionSpan{
+    font-size: 2vw;
+}
+div#onlyAdd{
+    margin:1rem;
+}
+div#animationDiv{
+    color:white;
+    grid-area: ani;
+    display: flex;
+    flex-flow: column;
+}
+div#animationDiv canvas{
+    border:2px solid var(--depauwYellow--);
+    border-radius:3%;
+}
+ul{
+    color:white;
+    list-style: none;
+}
+ul li{
+    display: flex;
+    justify-content: space-between;
+}
+button{
+    background-color: var(--depauwYellow--);
+    border: none;
+    font-weight: 900;
+    border-radius: 2rem;
+    height:3vw;
 }

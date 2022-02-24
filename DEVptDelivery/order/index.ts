@@ -17,6 +17,18 @@ const dropdownLabel: HTMLElement = document.createElement("p");
 dropdownLabel.innerHTML = "Avaliable Stores";
 //drop down select
 const inputBox: HTMLElement = document.createElement("select");
+//create all options for the menu and add then to the select tag
+const storeOptions:string[] = [
+    "store 1",
+    "store 2",
+    "store 3"
+];
+for (let i = 0; i < storeOptions.length; i++){
+    const temp:HTMLElement = document.createElement("option");
+    temp.innerHTML = storeOptions[i];
+    (temp as any).value = storeOptions[i];
+    inputBox.appendChild(temp); 
+}
 //span to hold all of it
 const span: HTMLElement = document.createElement("span")
 span.id = "storeSelectMenu";
@@ -27,16 +39,21 @@ main.appendChild(span);
 const onlyadd: HTMLElement = googleadfunc.createAdd("onlyAdd");
 main.appendChild(onlyadd);
 //animation box
+const animationDiv:HTMLDivElement = document.createElement("div");
+animationDiv.id = "animationDiv";
+//animation lable
 const menuLabel :HTMLElement = document.createElement("p");
 menuLabel.innerHTML = "Menu";
-main.appendChild(menuLabel);
 //three.js canvas
 const canvas:HTMLElement = document.createElement("canvas");
-main.appendChild(canvas);
+//add canvas ane lable to the overall div and append to main
+animationDiv.appendChild(menuLabel);
+animationDiv.appendChild(canvas);
+main.appendChild(animationDiv);
 //payemnt optin select
 //span for it
 const paymentSpan:HTMLElement = document.createElement("span")
-span.id = "paymentOptionSpan";
+paymentSpan.id = "paymentOptionSpan";
 //label for it
 const paymentLabel :HTMLElement = document.createElement("p")
 paymentLabel.innerHTML = "Payment option";
@@ -45,7 +62,23 @@ paymentSpan.appendChild(paymentLabel);
 const dropdownOptions: HTMLElement = document.createElement("select");
 dropdownOptions.id = "paymentOptions";
 paymentSpan.appendChild(dropdownOptions);
-main.appendChild(paymentSpan);
+//payemnt optin select
+//span for it
+const deliverySpan:HTMLElement = document.createElement("span")
+deliverySpan.id = "deliveryOptionSpan";
+//label for it
+const deliveryLabel :HTMLElement = document.createElement("p")
+deliveryLabel.innerHTML = "deliver too";
+deliverySpan.appendChild(deliveryLabel);
+//input
+const deliveryOptions: HTMLElement = document.createElement("select");
+deliveryOptions.id = "paymentOptions";
+deliverySpan.appendChild(deliveryOptions);
+const deliveryDetDiv:HTMLDivElement = document.createElement("div")
+deliveryDetDiv.id="deliveryDetDiv";
+deliveryDetDiv.appendChild(deliverySpan);
+deliveryDetDiv.appendChild(paymentSpan);
+main.appendChild(deliveryDetDiv);
 //ul list of the order info
 //overall ul
 const orderInfoUl:HTMLElement = document.createElement("ul");
