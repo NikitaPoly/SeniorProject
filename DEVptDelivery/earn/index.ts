@@ -7,6 +7,8 @@ import navStyle from "../modules/css/nav.css";
 import footerStyle from "../modules/css/footer.css";
 import earnStyle from "../modules/css/earn.css";
 
+import * as THREE from "three";
+
 console.log(defaultStyle,navStyle,footerStyle,earnStyle);//acivate the styles
 defaults.defaults();//load defaults
 navfuncs.setActive("earn");
@@ -19,7 +21,6 @@ let animationOverlay:HTMLElement = document.createElement("div")
 animationOverlay.id = "animationOverlay";
 //three js canvas element
 let canvas:HTMLElement = document.createElement("canvas");
-canvas.id= "three.js";
 //h1 inside the animation
 let h1:HTMLElement = document.createElement("h1");
 h1.innerHTML = "How to complete deliveries and earn";
@@ -71,3 +72,45 @@ main.appendChild(statsTable);
 //google add
 let googleAdd1:HTMLElement = googleAdd.createAdd("onlyAdd");
 main.appendChild(googleAdd1);
+function learnAnimatio() {// responsible to run the user thru how to make deliveries
+    //basic three.js setup
+    const scene: THREE.Scene = new THREE.Scene();
+    const fov: number = 75;
+    const aspect: number = 2;  // the canvas default
+    const near: number = 0.1;
+    const far: number = 5;
+    const camera: THREE.PerspectiveCamera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+    //move camera back
+    camera.position.z = 2;
+    //connect our canvs to the three.js engine
+    const renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer({ canvas });
+    renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+    //make the menu and description disappear
+    animationOverlay.style.display = "none";
+    const boxWidth = 1;
+    const boxHeight = 1;
+    const boxDepth = 1;
+    const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+    const material = new THREE.MeshBasicMaterial({ color: 0x44aa88 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+    function myRender(time: number) {//custome render function for animations
+        time *= 0.001;
+        let widthAnimationDiv: string = animationScreen.style.width;
+        let heightAnimationDiv: string = animationScreen.style.height;
+        //get the three.js representation of the canvas and
+        const test = renderer.domElement;
+        camera.aspect = test.clientWidth / test.clientHeight;
+        camera.updateProjectionMatrix();
+        canvas.style.width = widthAnimationDiv;
+        canvas.style.height = heightAnimationDiv;
+
+        //update the aspect ratio
+        cube.rotation.x = -time;
+        cube.rotation.y = time;
+        renderer.render(scene, camera);
+        requestAnimationFrame(myRender);
+    }
+    requestAnimationFrame(myRender);
+}
+button.addEventListener("click",learnAnimatio);
