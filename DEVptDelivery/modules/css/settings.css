@@ -1,0 +1,54 @@
+main{
+    background-color: var(--mainBlue--);
+    display: grid;
+    grid-template-rows: 15vh 0fr 40vh;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+    "addl addr"
+    "info none"
+    "screena screena"
+    ;
+    gap:2rem;
+}
+div#leftAdd{
+    grid-area: addl;
+    margin: 1rem;
+    border:2px solid black;
+}
+div#rightAdd{
+    grid-area: addr;
+    margin: 1rem;
+    border:2px solid black;
+}
+div#nameInfoDiv{
+    grid-area: info;
+    display: flex;
+    align-items: baseline;
+}
+div#nameInfoDiv h1{
+    font-size: 5vw;
+}
+div#nameInfoDiv p{
+    font-size: 3vw;
+}
+div#settingsScreen{
+    grid-area: screena;
+}
+div#nameInfoDiv{
+    color:white;
+}
+div#settingsScreen{
+    color:white;
+}
+div#settingsDiv{
+    display: flex;
+    justify-content: space-around;
+    font-size: 2vw;
+}
+div#selectedOptionScreen{
+    border: 2px solid var(--depauwYellow--);
+    height: 40vh;
+    margin: 0 3rem;
+    border-radius: 2rem;
+    padding: 1rem;
+}
