@@ -2,7 +2,7 @@ main{
     background-image: linear-gradient(rgba(6,57,78,.8), rgba(6,57,78,1)),url("../images/speed.jpg");
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 20vh 1fr 1fr;
+    grid-template-rows: 20vh 1fr 40vh;
     grid-template-areas: 
     "stores add add"
     "ani ani ani"
@@ -40,13 +40,19 @@ div#animationDiv{
     display: flex;
     flex-flow: column;
 }
+div#animationDiv p{
+    font-size: 3vw;
+    margin: 0 2rem;
+}
 div#animationDiv canvas{
     border:2px solid var(--depauwYellow--);
     border-radius:3%;
+    margin: 0 2rem;
 }
-ul{
+main ul{
     color:white;
     list-style: none;
+    font-size: 2vw;
 }
 ul li{
     display: flex;
@@ -57,5 +63,10 @@ button{
     border: none;
     font-weight: 900;
     border-radius: 2rem;
-    height:3vw;
+    margin: 0 2rem;
+    font-weight: 900;
+    font-size: 3vw;
+}
+div#deliveryDetDiv,main ul, button{
+    align-self: center;
 }
