@@ -42,12 +42,14 @@ main div#animationDiv{
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid black;
+    border: 1px solid var(--depauwYellow--);
     border-radius: 1.3rem;
 }
 main canvas{
     width: 100%;
     height: 100%;
+    display: block;
+    border-radius: 2rem;
 }
 main div#animatioOverlay{
     position: absolute;
