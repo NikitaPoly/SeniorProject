@@ -15,7 +15,7 @@
     C-store, Café Allegro, Eli’s bookstore, Starbucks ,Fluttering Duck).
 </p>
 <h2>Tools - front-end</h2>
-<h4>Vscode - </h4>
+<h4>Vscode </h4>
 <p>Standar editor for Web Projects.</p>
 <h4>Node.js - </h4>
 <p>Although the back-end of this website is no longer writen in javascript, Node.js is a great tool for front-end
@@ -28,7 +28,7 @@
     <li>allows scripting operating system events with javascript.</li>
     <li>has additional tools to aid in development.</li>
 </ul>
-<h4>Webpack - </h4>
+<h4>Webpack </h4>
 <p>Module bundler that compiles all files needed into one efficient and safe bundle of html, and js. This tools can
     create dev servers for development debugging while also providing a context for typscript.</p>
 <ul>
@@ -37,7 +37,7 @@
     <li>Provides security by minifying files.</li>
     <li>Much easier to debug front-end project.</li>
 </ul>
-<h4>TypeScript - </h4>
+<h4>TypeScript </h4>
 <p>An additoin to the basic javascript lanuage, typescript helps make javascript a safer and easier lanuage to develop
     in by adding typed variables and decliration files.
 </p>
