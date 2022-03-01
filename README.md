@@ -14,11 +14,11 @@
     Finally, to keep all users safe only campus sponsored stores are available on CDS (Hoover Dinning Hall, Union
     C-store, Café Allegro, Eli’s bookstore, Starbucks ,Fluttering Duck).
 </p>
-<h2>Tools - Front end</h2>
+<h2>Tools - front-end</h2>
 <h4>Vscode - </h4>
 <p>Standar editor for Web Projects.</p>
 <h4>Node.js - </h4>
-<p>Although the back-end of this website is no longer writen in javascript, Node.js is a great tool for front end
+<p>Although the back-end of this website is no longer writen in javascript, Node.js is a great tool for front-end
     development. It allows the use of typescript, webpack and custom environment scripting. The main goal of node is to
     proide a runtime eniroment outside the browser.
 
@@ -32,10 +32,10 @@
 <p>Module bundler that compiles all files needed into one efficient and safe bundle of html, and js. This tools can
     create dev servers for development debugging while also providing a context for typscript.</p>
 <ul>
-    <li>Allows me to create html, js and css modules I can resue. Prevents alot of duplicate code in the front end.</li>
+    <li>Allows me to create html, js and css modules I can resue. Prevents alot of duplicate code in the front-end.</li>
     <li>Compatable with typescript with minimun configuration.</li>
     <li>Provides security by minifying files.</li>
-    <li>Much easier to debug front end project.</li>
+    <li>Much easier to debug front-end project.</li>
 </ul>
 <h4>TypeScript - </h4>
 <p>An additoin to the basic javascript lanuage, typescript helps make javascript a safer and easier lanuage to develop
@@ -52,7 +52,8 @@
     is the default install for nodes package manager.
     With the help of npm supporting libraries can be installed like webpack and typescript. Additionally NPM can run
     custom os scriptis using node and javascript:
-    With the help of the json config file all information about the development and its dependesies is saved. Making the development recreatable
+    With the help of the json config file all information about the development and its dependesies is saved. Making the
+    development recreatable
     on any capable device.
 </p>
 <ul>
@@ -60,22 +61,34 @@
 </ul>
 <h4>Webpack</h4>
 <p>
-    Webpack is responsible for running most of the fron-end development enviroment. It creates severs for testing apps with hot-reload aswell as builds and 
+    Webpack is responsible for running most of the fron-end development enviroment. It creates severs for testing apps
+    with hot-reload aswell as builds and
     packagase code. The serving and building script used in npm:
-    <ul>
+<ul>
     <li></li>
 </ul>
-    In addition to scripts running webpack I also had to utilize plugins and modules for webpack:
-    <ul>
+In addition to scripts running webpack I also had to utilize plugins and modules for webpack:
+<ul>
     <li></li>
 </ul>
 </p>
 <h4>Typescript</h4>
 <p>
-    This is an addon to javascript that makes the development of javascript aplication simpler and more powerfull. With the additon of 
-    types and code transpiling, javascript becomes much less runtime error prone and predictable. Few scripts are used for typescript:
+    This is an addon to javascript that makes the development of javascript aplication simpler and more powerfull. With
+    the additon of
+    types and code transpiling, javascript becomes much less runtime error prone and predictable. Few scripts are used
+    for typescript:
     But the config files bring more imporants to dictating how typescrit runs:
-    <ul>
+<ul>
     <li></li>
 </ul>
+</p>
+<h4>Three.js</h4>
+<p>
+    This front-end library is used for 3D animations. I used Three.js to build the walkthru for how to make an order and 
+    for the sign up page as well. This library proides many tools to model 3d enviroments with code and render with-in the browser.
+    A simple scene just needs a camera, light, and subject. After the 3d models have been added to the scene object the camera and 
+    scene are sent to a WEBGL renderer. With the addition of custom render functions, object in the scene can be moved.
+    
+    Docs for Three.js can be found <a href="https://threejs.org/docs/#manual/en/introduction/Creating-text">here</a>
 </p>
