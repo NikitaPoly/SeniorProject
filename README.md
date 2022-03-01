@@ -89,6 +89,5 @@ In addition to scripts running webpack I also had to utilize plugins and modules
     for the sign up page as well. This library proides many tools to model 3d enviroments with code and render with-in the browser.
     A simple scene just needs a camera, light, and subject. After the 3d models have been added to the scene object the camera and 
     scene are sent to a WEBGL renderer. With the addition of custom render functions, object in the scene can be moved.
-    
-    Docs for Three.js can be found <a href="https://threejs.org/docs/#manual/en/introduction/Creating-text">here</a>
-</p>
+  </p>  
+    <p>Docs for Three.js can be found <a href="https://threejs.org/docs/#manual/en/introduction/Creating-text">here</a></p>
