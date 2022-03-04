@@ -45,6 +45,17 @@ module.exports = [
                 {
                     test: /\.svg$/,
                     use: [{ loader: "file-loader", options: { name: "[name].[ext]" } },]
+                },
+                {
+                    test: /\.html$/,
+                    use: [
+                        {
+                            loader: 'html-loader',
+                            options: {
+                                minimize: true
+                            }
+                        }
+                    ]
                 }
             ]
         },
@@ -101,6 +112,17 @@ module.exports = [
                     options: {
                         name: "[name].[ext]"
                     }
+                },
+                {
+                    test: /\.html$/,
+                    use: [
+                        {
+                            loader: 'html-loader',
+                            options: {
+                                minimize: true
+                            }
+                        }
+                    ]
                 }
             ]
         },
@@ -154,6 +176,17 @@ module.exports = [
                     options: {
                         name: "[name].[ext]"
                     }
+                },
+                {
+                    test: /\.html$/,
+                    use: [
+                        {
+                            loader: 'html-loader',
+                            options: {
+                                minimize: true
+                            }
+                        }
+                    ]
                 }
             ]
         },
@@ -207,6 +240,17 @@ module.exports = [
                     options: {
                         name: "[name].[ext]"
                     }
+                },
+                {
+                    test: /\.html$/,
+                    use: [
+                        {
+                            loader: 'html-loader',
+                            options: {
+                                minimize: true
+                            }
+                        }
+                    ]
                 }
             ]
         },
