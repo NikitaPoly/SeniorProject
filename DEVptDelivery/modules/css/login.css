@@ -34,7 +34,7 @@ main span{
     align-items: center;
     text-align: center;
     font-size: 1.25vw;
-}
+}/*
 main div#animationDiv{
     grid-area: animation;
     margin-bottom: 1rem;
@@ -51,16 +51,16 @@ main canvas{
     display: block;
     border-radius: 2rem;
 }
-main div#animatioOverlay{
+main div#animationOverlay{
     position: absolute;
     width: 60vw;
     text-align: center;
 }
-main div#animatioOverlay p{
+main div#animationOverlay p{
     margin-bottom: 2rem;
     font-size: 1.5vw;
 }
-main div#animatioOverlay button{ 
+main div#animationOverlay button{ 
     margin: 1rem;
     background-color: var(--depauwYellow--);
     border:2px solid black;
@@ -68,4 +68,4 @@ main div#animatioOverlay button{
     width:10vw;
     height: 5vh;
     border-radius: 2rem;
-}
+}*/
