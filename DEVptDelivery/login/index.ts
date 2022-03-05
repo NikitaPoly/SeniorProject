@@ -6,7 +6,6 @@ import navStyle from "../modules/css/nav.css";
 import footerStyle from "../modules/css/footer.css";
 import mainStyle from "../modules/css/login.css"
 
-import login from "../modules/html/login.html";
 import animationDivC from "../modules/html/animationScreen.html"
 
 import * as THREE from "three";
@@ -19,7 +18,18 @@ navfuncs.setActive("login");
 const main:HTMLElement = document.getElementById("main");
 //customize templates for spesific page
 //add all templates to the page
-main.innerHTML = login + animationDivC;
+main.innerHTML  = `
+<div class="add" id="leftAdd">Google Add</div>
+<h1>Student Only Delivery System</h1>
+<div class="add" id="rightAdd">Google Add</div>
+<span>
+    <h2>Order campus favorites<br>to any campus location</h2>
+    <h2>Affordable<br>Safe<br>Fast</h2>
+    <h2>Earn straight to venmo<br>by completing orders</h2>
+</span>
+
+</div>
+` + animationDivC;
 //cutomize animation overlay
 const animationOvelay:HTMLDivElement = (document.getElementById("animationOverlay")as HTMLDivElement);
 animationOvelay.innerHTML = `
