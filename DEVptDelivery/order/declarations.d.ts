@@ -1,6 +1,6 @@
 declare module "../modules/css/*.css"
 declare module "../modules/images/*.svg"
-declare module "../modules/js/*.ts"
+declare module "../modules/ts/*.ts"
 declare module "../images/*.svg"
 declare module "../modules/html/*.html"
 declare module "../html/*.html"

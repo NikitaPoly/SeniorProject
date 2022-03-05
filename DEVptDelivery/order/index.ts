@@ -1,6 +1,5 @@
-import * as defaults from "../modules/js/defaults.ts";
-import * as googleadfunc from "../modules/js/googleAdd.ts";
-import * as navfuncs from "../modules/js/nav.ts";
+import * as defaults from "../modules/ts/defaults.ts";
+import * as navfuncs from "../modules/ts/nav.ts";
 
 import defaultStyle from "../modules/css/defaults.css";
 import navStyle from "../modules/css/nav.css";
