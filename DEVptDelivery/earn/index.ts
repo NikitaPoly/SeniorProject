@@ -5,14 +5,16 @@ import defaultStyle from "../modules/css/defaults.css";
 import navStyle from "../modules/css/nav.css";
 import footerStyle from "../modules/css/footer.css";
 import earnStyle from "../modules/css/earn.css";
+import cardStyle from "../modules/css/card.css";
 
 import animationDivC from "../modules/html/animationScreen.html";
 import statsTableC from "../modules/html/statsTable.html";
+import card from "../modules/html/e-card.html";
 
 import * as THREE from "three";
 
 ///activate styles for the page
-console.log(defaultStyle, navStyle, footerStyle, earnStyle);
+console.log(defaultStyle, navStyle, footerStyle, earnStyle,cardStyle);
 //load default images + logos
 defaultsImage.defaults();
 navfuncs.default.attachMobNav();
@@ -20,6 +22,7 @@ navfuncs.default.setActive("earn");
 const main:HTMLElement = document.getElementById("main");
 //customize templates for spesific page
 //add all templates to the page
+main.innerHTML += card;
 main.innerHTML += `
 <div class="add" id="onlyAdd">Google Add</div>
 ` + animationDivC + statsTableC;

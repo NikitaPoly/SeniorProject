@@ -5,10 +5,12 @@ import defaultStyle from "../modules/css/defaults.css";
 import navStyle from "../modules/css/nav.css";
 import footerStyle from "../modules/css/footer.css";
 import mainstyle from "../modules/css/order.css";
+import cardStyle from "../modules/css/card.css";
 
 import animationScreen from "../modules/html/animationScreen.html";
+import card from "../modules/html/e-card.html";
 
-console.log(defaultStyle, navStyle, footerStyle,mainstyle);
+console.log(defaultStyle, navStyle, footerStyle,mainstyle,cardStyle);
 defaults.defaults();
 navfuncs.default.attachMobNav();
 navfuncs.default.setActive("order");
@@ -19,6 +21,7 @@ let final: string = "";
                 final += `<option>Store ${i}</option>`;
             }
 //add the simple tags
+main.innerHTML += card;
 main.innerHTML += `
 <span id="storeSelectMenu">
     <p>Avaliable Stores</p>

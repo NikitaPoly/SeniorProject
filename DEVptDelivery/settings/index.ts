@@ -5,15 +5,18 @@ import defaultStyle from "../modules/css/defaults.css";
 import navStyle from "../modules/css/nav.css";
 import footerStyle from "../modules/css/footer.css";
 import mainStyle from "../modules/css/settings.css";
+import cardStyle from "../modules/css/card.css";
 
 import settings from "../modules/html/settings.html";
 import userDataDisplayC from "../modules/html/userDataDisplay.html";
+import card from "../modules/html/e-card.html";
 
-console.log(defaultStyle, navStyle, footerStyle, mainStyle);
+console.log(defaultStyle, navStyle, footerStyle, mainStyle,cardStyle);
 defaults.defaults();
 navfuncs.default.setActive("settings");
 navfuncs.default.attachMobNav();
 const main: HTMLElement = document.getElementById("main");
+main.innerHTML += card;
 main.innerHTML += settings + userDataDisplayC;
 //customize the user display component
 const settingsScreen: HTMLDivElement = (document.getElementById("settingsScreen") as HTMLDivElement);

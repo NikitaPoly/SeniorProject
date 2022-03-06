@@ -1,0 +1,23 @@
+#buisnessCard {
+    height: 100vh;
+    width: 100%;
+    background-color: var(--ptBlue--);
+    color:white;
+    display: none;
+    padding: 2rem;
+}
+#buisnessCard > *{
+    margin: 2rem;
+}
+#buisnessCard h1{
+    text-align: start;
+}
+
+@media only screen and (hover:none) and (pointer:coarse) and (orientation:landscape) {
+    #buisnessCard {
+        display: inline;
+    }
+    #main{
+        height: 0rem;
+    }
+}

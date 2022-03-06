@@ -4,14 +4,16 @@ import * as navfuncs from "../modules/ts/nav.ts";
 import defaultStyle from "../modules/css/defaults.css";
 import navStyle from "../modules/css/nav.css";
 import footerStyle from "../modules/css/footer.css";
-import mainStyle from "../modules/css/login.css"
+import mainStyle from "../modules/css/login.css";
+import cardStyle from "../modules/css/card.css";
 
 import animationDivC from "../modules/html/animationScreen.html"
+import card from "../modules/html/e-card.html";
 
 import * as THREE from "three";
 
 //activate styles for the page
-console.log(defaultStyle, navStyle, footerStyle, mainStyle);
+console.log(defaultStyle, navStyle, footerStyle, mainStyle,cardStyle);
 //load default images + logos
 defaultsImage.defaults();
 navfuncs.default.attachMobNav();
@@ -19,6 +21,7 @@ navfuncs.default.setActive("login");
 const main:HTMLElement = document.getElementById("main");
 //customize templates for spesific page
 //add all templates to the page
+main.innerHTML += card;
 main.innerHTML  += `
 <div class="add" id="leftAdd">Google Add</div>
 <h1>Student Only Delivery System</h1>
