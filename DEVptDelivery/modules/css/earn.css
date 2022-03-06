@@ -75,7 +75,7 @@ main div#animationOverlay p{
     font-size: 1.5vw;
 }
 /*media query for phones and tablets*/
-@media only screen and (hover:none) and (pointer:coarse) {
+@media only screen and (hover:none) {
     main{
         padding: 0;
     }

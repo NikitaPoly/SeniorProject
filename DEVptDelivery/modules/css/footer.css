@@ -26,7 +26,7 @@ footer a img{
     height: 2vh;
 } 
 /*media query for phones and tablets*/
-@media only screen and (hover:none) and (pointer:coarse) {
+@media only screen and (hover:none) {
     footer ul  a {
         font-size: 0rem;
     }

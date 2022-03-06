@@ -45,7 +45,7 @@ div#mobileNav{
     z-index: 0;
 }
 /*media query for phones and tablets*/
-@media only screen and (hover:none) and (pointer:coarse) {
+@media only screen and (hover:none) {
     img.hamberger{
         display: block;
     } 

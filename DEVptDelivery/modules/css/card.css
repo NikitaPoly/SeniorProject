@@ -13,7 +13,7 @@
     text-align: start;
 }
 
-@media only screen and (hover:none) and (pointer:coarse) and (orientation:landscape) {
+@media only screen and (hover:none) and (orientation:landscape) {
     #buisnessCard {
         display: inline;
     }
