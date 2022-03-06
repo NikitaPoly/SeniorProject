@@ -1,64 +1,76 @@
-main{
-    background-image: linear-gradient(rgba(6,57,78,.8), rgba(6,57,78,1)),url("../images/speed.jpg");
+main {
+    background-image: linear-gradient(rgba(6, 57, 78, .8), rgba(6, 57, 78, 1)), url("../images/speed.jpg");
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 20vh 1fr 40vh;
-    grid-template-areas: 
-    "stores add add"
-    "ani ani ani"
-    "drop stat but"
+    grid-template-areas:
+        "stores add add"
+        "ani ani ani"
+        "drop stat but"
     ;
 }
-span#storeSelectMenu{
+
+span#storeSelectMenu {
     grid-area: stores;
 }
-div.add{
-    grid-area:add;
+
+div.add {
+    grid-area: add;
 }
-span#storeSelectMenu,span#paymentOptionSpan,span#deliveryOptionSpan{
-    color:white;
+
+span#storeSelectMenu, span#paymentOptionSpan, span#deliveryOptionSpan {
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap:1rem;
+    gap: 1rem;
 }
-span#paymentOptionSpan select,span#storeSelectMenu select,span#deliveryOptionSpan select{
-    color:white;
+
+span#paymentOptionSpan select, span#storeSelectMenu select, span#deliveryOptionSpan select {
+    color: white;
     background-color: var(--mainBlue--);
     border-color: var(--depauwYellow--);
     font-size: 2vw;
 }
-span#paymentOptionSpan p,span#storeSelectMenu p,span#deliveryOptionSpan{
+
+span#paymentOptionSpan p, span#storeSelectMenu p, span#deliveryOptionSpan {
     font-size: 2vw;
 }
-div#onlyAdd{
-    margin:1rem;
+
+div#onlyAdd {
+    margin: 1rem;
 }
-div#animationDiv{
-    color:white;
+
+div#animationDiv {
+    color: white;
     grid-area: ani;
     display: flex;
     flex-flow: column;
 }
-div#animationDiv p{
+
+div#animationDiv p {
     font-size: 3vw;
     margin: 0 2rem;
 }
-div#animationDiv canvas{
-    border:2px solid var(--depauwYellow--);
-    border-radius:3%;
+
+div#animationDiv canvas {
+    border: 2px solid var(--depauwYellow--);
+    border-radius: 3%;
     margin: 0 2rem;
 }
-main ul{
-    color:white;
+
+main ul {
+    color: white;
     list-style: none;
     font-size: 2vw;
 }
-ul li{
+
+ul li {
     display: flex;
     justify-content: space-between;
 }
-button{
+
+button {
     background-color: var(--depauwYellow--);
     border: none;
     font-weight: 900;
@@ -67,7 +79,51 @@ button{
     font-weight: 900;
     font-size: 3vw;
 }
-div#deliveryDetDiv,main ul, button{
+
+div#deliveryDetDiv, main ul, button {
     align-self: center;
 }
 
+@media only screen and (hover:none) {
+    main {
+        grid-template-areas:
+            "add "
+            "stores"
+            "ani "
+            "drop " 
+            "stat "
+            "but "
+        ;
+        grid-template-columns: 1fr;
+        grid-template-rows: 20vh 1fr 50vh ;
+
+    }
+    div#deliveryDetDiv{
+        grid-area: drop;
+    }
+    span#storeSelectMenu{
+        margin: 1rem;
+        text-align: center;
+    }
+    span#storeSelectMenu p,span#storeSelectMenu select{
+        grid-area: stores;
+        font-size: 7vw;
+
+    }
+    canvas{
+        height: 100%;
+        width: 80%;
+    }
+    div#deliveryDetDiv span,div#deliveryDetDiv p{
+        font-size: 7vw;
+        margin: 1rem;
+    }
+    main ul{
+        font-size: 7vw;
+        margin: 1.5rem 0;
+    }
+    main button{
+        font-size: 7vw;
+        margin: 3rem 0;
+    }
+}
