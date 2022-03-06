@@ -15,11 +15,12 @@ import * as THREE from "three";
 console.log(defaultStyle, navStyle, footerStyle, earnStyle);
 //load default images + logos
 defaultsImage.defaults();
-navfuncs.setActive("earn");
+navfuncs.default.setActive("earn");
+navfuncs.default.attachMobNav();
 const main:HTMLElement = document.getElementById("main");
 //customize templates for spesific page
 //add all templates to the page
-main.innerHTML = `
+main.innerHTML += `
 <div class="add" id="onlyAdd">Google Add</div>
 ` + animationDivC + statsTableC;
 //customize animation overlay

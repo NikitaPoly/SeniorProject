@@ -11,9 +11,10 @@ import userDataDisplayC from "../modules/html/userDataDisplay.html";
 
 console.log(defaultStyle, navStyle, footerStyle, mainStyle);
 defaults.defaults();
-navfuncs.setActive("settings");
+navfuncs.default.setActive("settings");
+navfuncs.default.attachMobNav();
 const main: HTMLElement = document.getElementById("main");
-main.innerHTML = settings + userDataDisplayC;
+main.innerHTML += settings + userDataDisplayC;
 //customize the user display component
 const settingsScreen: HTMLDivElement = (document.getElementById("settingsScreen") as HTMLDivElement);
 let options: string[] = [

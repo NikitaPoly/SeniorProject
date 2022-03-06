@@ -25,3 +25,12 @@ img#footerLogo {
 footer a img{
     height: 2vh;
 } 
+/*media query for phones and tablets*/
+@media only screen and (hover:none) and (pointer:coarse) {
+    footer ul  a {
+        font-size: 0rem;
+    }
+    img#footerLogo {
+        height: 4vh;
+    }
+}

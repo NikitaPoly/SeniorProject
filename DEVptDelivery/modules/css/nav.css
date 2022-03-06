@@ -37,3 +37,39 @@ a.active{
     color:var(--depauwYellow--);
 
 }
+img.hamberger{
+    display: none;
+}
+div#mobileNav{
+    display: none;
+    z-index: 0;
+}
+/*media query for phones and tablets*/
+@media only screen and (hover:none) and (pointer:coarse) {
+    img.hamberger{
+        display: block;
+    } 
+    nav ul a:nth-of-type(n+2):nth-of-type(-n+4){
+        display: none;
+    }
+    nav ul{
+        justify-content: space-around;
+    }
+    div#mobileNav{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--depauwYellow--);
+        position: absolute;
+        align-items: center;
+        justify-content: space-around;
+        z-index: 10;
+    }
+    div#mobileNav a{
+        text-decoration: none;
+        font-size: 20vw;
+        color: black;
+        font-weight: 900;
+    }
+}

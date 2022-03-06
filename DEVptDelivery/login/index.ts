@@ -14,11 +14,12 @@ import * as THREE from "three";
 console.log(defaultStyle, navStyle, footerStyle, mainStyle);
 //load default images + logos
 defaultsImage.defaults();
-navfuncs.setActive("login");
+navfuncs.default.setActive("login");
+navfuncs.default.attachMobNav();
 const main:HTMLElement = document.getElementById("main");
 //customize templates for spesific page
 //add all templates to the page
-main.innerHTML  = `
+main.innerHTML  += `
 <div class="add" id="leftAdd">Google Add</div>
 <h1>Student Only Delivery System</h1>
 <div class="add" id="rightAdd">Google Add</div>
