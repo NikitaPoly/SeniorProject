@@ -33,19 +33,17 @@ div#nameInfoDiv p{
 }
 div#settingsScreen{
     grid-area: screena;
+    color:white;
 }
 div#nameInfoDiv{
     color:white;
 }
-div#settingsScreen{
-    color:white;
-}
-div#settingsDiv{
+div#settingsLables{
     display: flex;
     justify-content: space-around;
     font-size: 2vw;
 }
-div#selectedOptionScreen{
+div#selectedOptionDisplay{
     border: 2px solid var(--depauwYellow--);
     height: 40vh;
     margin: 0 3rem;

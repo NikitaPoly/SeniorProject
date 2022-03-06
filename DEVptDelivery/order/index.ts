@@ -30,7 +30,6 @@ main.innerHTML = `
 //add the animation div
 main.innerHTML += animationScreen;
 const animationDiv: HTMLDivElement = (document.getElementById("animationDiv") as HTMLDivElement);
-animationDiv.querySelector("#animationOverlay").innerHTML = "<h1>Menu</h1>"
 main.innerHTML +=`
 <div id="deliveryDetDiv">
     <span id="deliveryOptionSpan">

@@ -6,7 +6,6 @@ import navStyle from "../modules/css/nav.css";
 import footerStyle from "../modules/css/footer.css";
 import earnStyle from "../modules/css/earn.css";
 
-import earn from "../modules/html/earn.html";
 import animationDivC from "../modules/html/animationScreen.html";
 import statsTableC from "../modules/html/statsTable.html";
 
@@ -20,7 +19,9 @@ navfuncs.setActive("earn");
 const main:HTMLElement = document.getElementById("main");
 //customize templates for spesific page
 //add all templates to the page
-main.innerHTML = earn + animationDivC + statsTableC;
+main.innerHTML = `
+<div class="add" id="onlyAdd">Google Add</div>
+` + animationDivC + statsTableC;
 //customize animation overlay
 const animationOverlay:HTMLDivElement = (document.getElementById("animationOverlay")as HTMLDivElement);
 animationOverlay.innerHTML = `
