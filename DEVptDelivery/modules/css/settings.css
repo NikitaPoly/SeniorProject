@@ -1,52 +1,116 @@
-main{
+main {
     background-color: var(--mainBlue--);
     display: grid;
     grid-template-rows: 15vh 0fr 40vh;
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: 
-    "addl addr"
-    "info none"
-    "screena screena"
+    grid-template-areas:
+        "addl addr"
+        "info none"
+        "screena screena"
     ;
-    gap:2rem;
+    gap: 2rem;
 }
-div#leftAdd{
+
+div#leftAdd {
     grid-area: addl;
     margin: 1rem;
-    border:2px solid black;
+    border: 2px solid black;
 }
-div#rightAdd{
+
+div#rightAdd {
     grid-area: addr;
     margin: 1rem;
-    border:2px solid black;
+    border: 2px solid black;
 }
-div#nameInfoDiv{
+
+div#nameInfoDiv {
     grid-area: info;
     display: flex;
     align-items: baseline;
 }
-div#nameInfoDiv h1{
+
+div#nameInfoDiv h1 {
     font-size: 5vw;
 }
-div#nameInfoDiv p{
+
+div#nameInfoDiv p {
     font-size: 3vw;
 }
-div#settingsScreen{
+
+div#settingsScreen {
     grid-area: screena;
-    color:white;
+    color: white;
 }
-div#nameInfoDiv{
-    color:white;
+
+div#nameInfoDiv {
+    color: white;
 }
-div#settingsLables{
+
+div#settingsLables {
     display: flex;
     justify-content: space-around;
     font-size: 2vw;
 }
-div#selectedOptionDisplay{
+
+div#selectedOptionDisplay {
     border: 2px solid var(--depauwYellow--);
     height: 40vh;
     margin: 0 3rem;
     border-radius: 2rem;
     padding: 1rem;
+    display: flex;
+    justify-content: space-around;
 }
+
+div#left {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+div#right {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+div#statsDiv, div#valueDiv {
+    padding: 2rem 0;
+}
+
+div#statsDiv p, div#valueDiv p {
+    font-size: 1.8vw;
+    margin: 1rem 0;
+}
+
+div#left p#countdownP {
+    font-size: 1vw;
+    margin-top: 2rem;
+}
+
+textarea {
+    height: 100%;
+    width: 100%;
+    margin: 1rem 0;
+}
+
+button {
+    background-color: var(--depauwYellow--);
+    border: 2px solid black;
+    color: black;
+    padding: 1rem;
+    border-radius: 2rem;
+    font-size: 1vw;
+}
+
+select, input {
+    color: white;
+    background-color: var(--mainBlue--);
+    border-color: var(--depauwYellow--);
+    font-size: 2vw;
+}
+input{
+    color:white;
+}
+/*media query for phones and tablets*/

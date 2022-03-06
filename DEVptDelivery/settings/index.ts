@@ -37,6 +37,7 @@ function displayCorrectUserData(event: MouseEvent) {
     const right: HTMLDivElement = settingsScreen.querySelector("#right");
     left.innerHTML = "";
     right.innerHTML = "";
+    left.style.flexDirection = "row";
     //update the stats in the left div
     function populateStatLables() {
         const statsDiv: HTMLDivElement = document.createElement("div");
@@ -105,15 +106,18 @@ function displayCorrectUserData(event: MouseEvent) {
                 "Due to you graduating and no longer being a student at DePauw account scheduled for deletion on : AUG 0000"
             ]
             populateStatLables();
+            
             results = [
                 "NikitaPolyakov_2022@depauw.edu",
                 "Example Username",
                 "***********"
             ]
             populateStatValues();
+            //add custom css to accoutn deletion p
+            left.querySelector("#statsDiv p:last-child").id = "countdownP";
             //finish building the result of the option clicked with the right div
             right.innerHTML = `
-            <button>Change Password></button>
+            <button>Change Password</button>
             <input type="text" placeholder="NewPassword">
             `
             break
@@ -125,6 +129,7 @@ function displayCorrectUserData(event: MouseEvent) {
             settingsScreen.querySelector("#right").innerHTML = `
             <button>Delete Account</button>
             `;
+            left.style.flexDirection = "column";
             break
         case options[3]:
             settingsScreen.querySelector("#left").innerHTML = `
