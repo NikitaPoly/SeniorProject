@@ -10,8 +10,8 @@ import animationScreen from "../modules/html/animationScreen.html";
 
 console.log(defaultStyle, navStyle, footerStyle,mainstyle);
 defaults.defaults();
-navfuncs.default.setActive("order");
 navfuncs.default.attachMobNav();
+navfuncs.default.setActive("order");
 const main: HTMLElement = document.getElementById("main");
 //add the store drop down menu options
 let final: string = "";

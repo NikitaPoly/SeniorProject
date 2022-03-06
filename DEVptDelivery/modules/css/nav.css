@@ -72,4 +72,10 @@ div#mobileNav{
         color: black;
         font-weight: 900;
     }
+    a.active{
+        background-color: var(--mainBlue--);
+        color:var(--depauwYellow--);
+        text-align: center;
+    
+    }
 }

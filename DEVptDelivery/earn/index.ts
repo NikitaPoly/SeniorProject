@@ -15,8 +15,8 @@ import * as THREE from "three";
 console.log(defaultStyle, navStyle, footerStyle, earnStyle);
 //load default images + logos
 defaultsImage.defaults();
-navfuncs.default.setActive("earn");
 navfuncs.default.attachMobNav();
+navfuncs.default.setActive("earn");
 const main:HTMLElement = document.getElementById("main");
 //customize templates for spesific page
 //add all templates to the page
