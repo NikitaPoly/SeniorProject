@@ -112,7 +112,7 @@ function displayCorrectUserData(event: MouseEvent) {
             populateStatLables();
             
             results = [
-                "NikitaPolyakov_2022@depauw.edu",
+                "NikitaPolyakov_2022",
                 "Example Username",
                 "***********"
             ]
