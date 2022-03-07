@@ -69,3 +69,58 @@ main div#animationOverlay button{
     height: 5vh;
     border-radius: 2rem;
 }
+@media only screen and (hover:none){
+    main{
+        grid-template-columns: 1fr;
+        grid-template-rows: 18vh 10vh 20vh 70vh 20vh;
+        grid-template-areas: 
+            "head"
+            "span"
+            "LA"
+            "animation"
+            "RA"
+        ;
+    }
+    main div#animationDiv{
+        width: 80%;
+        height: 100%;
+        place-self: center;
+    }
+    main canvas{
+        height: 100%;
+        width: 80%;
+        
+    }
+    main div#animationOverlay p{
+        font-size: 4vw;
+
+        text-align:left;
+    }
+    main div#animationOverlay{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    main div#animationOverlay button{ 
+        background-color: var(--depauwYellow--);
+        border:2px solid black;
+        font-weight: 900;
+        width: 100%;
+        height: auto;
+        border-radius: 2rem;
+        font-size: 7vw;
+    }
+    main h1{
+        font-size: 9vw;
+        text-align: center;
+        padding-top: 1rem;
+
+    }
+    main span{
+        font-size: 1.7vw;
+        justify-content: space-between;
+        padding: 1rem;
+        max-width: 100%;
+    }
+}
