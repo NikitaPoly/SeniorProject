@@ -1,5 +1,6 @@
 import * as defaultsImage from "../modules/ts/defaults.ts";
 import * as navfuncs from "../modules/ts/nav.ts";
+import * as myThree from "../modules/ts/animation.ts";
 
 import defaultStyle from "../modules/css/defaults.css";
 import navStyle from "../modules/css/nav.css";
@@ -11,9 +12,8 @@ import animationDivC from "../modules/html/animationScreen.html";
 import statsTableC from "../modules/html/statsTable.html";
 import card from "../modules/html/e-card.html";
 
-import { Scene, WebGLRenderer, PerspectiveCamera, BoxGeometry, MeshBasicMaterial, Mesh } from "three";
+import {WebGLRenderer} from "three";
 
-import * as THREE from "three";
 //respinsible for the html css
 {
     ///activate styles for the page
@@ -79,28 +79,17 @@ import * as THREE from "three";
         renderer.render(scene, camera);
         requestAnimationFrame(doRender);
     }
-    //get the canvas for three.js
-    const canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
-    const scene = new Scene();
-    const renderer: WebGLRenderer = new WebGLRenderer({ canvas });
-    //camera settings
-    const fov: number = 75;
-    const aspect: number = 2;
-    const near: number = .01;
-    const far: number = 5;
-    const camera: PerspectiveCamera = new PerspectiveCamera(fov, aspect, near, far)
-    camera.position.z = 2;
-    //box settings
-    const boxWidth = 1;
-    const boxHeight = 1;
-    const boxDepth = 1;
-    const geometry = new BoxGeometry(boxWidth, boxHeight, boxDepth);
-    //material for box
-    const material = new MeshBasicMaterial({ color: 0x44aa88 });
-    //make the box
-    const cube = new Mesh(geometry, material);
-    //add box to scene
-    scene.add(cube);
+    //get the canvas for three.js and attach its appearance to the correct button
+    document.getElementById("animationStartButton").addEventListener("click",()=>{
+        requestAnimationFrame(doRender);
+        document.getElementById("animationOverlay").style.display = "none";
+    });
+    const {
+        canvas,
+        scene,
+        renderer,
+        camera,
+        cube
+    } = myThree.default.setupScene();
     //render the picture
-    requestAnimationFrame(doRender);
 }
