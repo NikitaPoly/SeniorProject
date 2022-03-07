@@ -1,10 +1,5 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin")//for html proccessing
-/*
-use <%= %> in html template to include properties form the config
-example
-<title><%= htmlWebpackPlugin.options.title %></title>
-*/
 module.exports = [
     {
         mode: "development",
