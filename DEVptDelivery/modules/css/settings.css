@@ -113,6 +113,12 @@ select, input {
 input{
     color:white;
 }
+footer{
+    margin-top: 3rem;
+}
+body{
+    background-color: var(--mainBlue--);
+}
 /*media query for phones and tablets*/
 @media only screen and (hover:none){
     main {
