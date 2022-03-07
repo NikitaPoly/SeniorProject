@@ -22,7 +22,7 @@ footer,nav, main > *{
     visibility: visible;
 }
 
-@media only screen and (hover:none) and (orientation:landscape) {
+@media only screen and (hover:none) and (pointer:coarse) and (orientation:landscape) {
     footer,nav, main > *{
         visibility: hidden;
         display: none;
