@@ -15,8 +15,8 @@
     "settings-r": "webpack serve --config-name settings",
     "build-p": "webpack --config ./webpack.build.js",
     "run-f": "npx webpack serve",
-    "run-b" : "go run ./ZDEVServer/src/main.go",
-    "build-b" :"go build -o ./ZDEVServer/bin ./ZDEVServer/src/main.go "
+    "run-b" : "go run main.go",
+    "build-b" :"go build -o ./bin ./main.go "
   },
   "repository": {
     "type": "git",
