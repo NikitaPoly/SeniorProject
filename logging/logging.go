@@ -19,3 +19,16 @@ func Port(port string) {
 		fmt.Println(err)
 	}
 }
+func ServerStartErr(err error) {
+	errorLogFile, err := os.OpenFile("./logs/serverStart.log", os.O_APPEND, 0644)
+	if err != nil {
+		fmt.Println(err)
+	}
+	//close the file after use
+	defer errorLogFile.Close()
+	//now write the file
+	_, err = errorLogFile.Write([]byte(err.Error()))
+	if err != nil {
+		fmt.Println(err)
+	}
+}

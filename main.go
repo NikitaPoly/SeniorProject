@@ -1,7 +1,8 @@
 package main
 
 import (
-	"Server/logging"
+	"Server/logging" //custom package for logging stuff
+	"net/http"
 	"os"
 )
 
@@ -15,4 +16,8 @@ func main() {
 	}
 	//log the port #
 	logging.Port(port)
+	//start the server
+	if err := http.ListenAndServe(port, nil); err != nil {
+		logging.ServerStartErr(err)
+	}
 }
