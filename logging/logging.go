@@ -1,34 +1,31 @@
 package logging
 
 import (
-	"fmt"
 	"os"
 	"time"
 )
 
+//logs all requests made
+func Request(path string) {
+	requestLogFile, _ := os.OpenFile("./logs/requests.log", os.O_APPEND, 0644)
+	defer requestLogFile.Close()
+	requestLogFile.Write([]byte(time.Now().String() + "at : " + path + "\n"))
+}
+
+//logs the port eveyrtime the server is started
 func Port(port string) {
-	portsLogFile, err := os.OpenFile("./logs/ports.log", os.O_APPEND, 0644)
-	if err != nil {
-		fmt.Println(err)
-	}
+	portsLogFile, _ := os.OpenFile("./logs/ports.log", os.O_APPEND, 0644)
 	//close the file after use
 	defer portsLogFile.Close()
 	//now write the file
-	_, err = portsLogFile.Write([]byte(time.Now().String() + port + "\n"))
-	if err != nil {
-		fmt.Println(err)
-	}
+	portsLogFile.Write([]byte(time.Now().String() + port + "\n"))
 }
-func ServerStartErr(err error) {
-	errorLogFile, err := os.OpenFile("./logs/serverStart.log", os.O_APPEND, 0644)
-	if err != nil {
-		fmt.Println(err)
-	}
+
+//logs if the server failed to start
+func ServerStartErr(serverFailError error) {
+	errorLogFile, _ := os.OpenFile("./logs/serverStart.log", os.O_APPEND, 0644)
 	//close the file after use
 	defer errorLogFile.Close()
 	//now write the file
-	_, err = errorLogFile.Write([]byte(err.Error()))
-	if err != nil {
-		fmt.Println(err)
-	}
+	errorLogFile.Write([]byte(serverFailError.Error()))
 }
