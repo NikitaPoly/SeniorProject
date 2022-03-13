@@ -23,8 +23,16 @@ func main() {
 		http.HandleFunc(baseWebsitePaths[i], routers.PT)
 	}
 	//handle the delivery website routes
-	http.HandleFunc("/delivery", routers.Delivery)
-	http.HandleFunc("/Delivery", routers.Delivery)
+	http.HandleFunc("/delivery/", routers.Login)
+	http.HandleFunc("/Delivery/", routers.Login)
+	http.HandleFunc("/delivery/login", routers.Login)
+	http.HandleFunc("/Delivery/login", routers.Login)
+	http.HandleFunc("/delivery/earn", routers.Earn)
+	http.HandleFunc("/Delivery/earn", routers.Earn)
+	http.HandleFunc("/delivery/order", routers.Order)
+	http.HandleFunc("/Delivery/order", routers.Order)
+	http.HandleFunc("/delivery/settings", routers.Settings)
+	http.HandleFunc("/Delivery/settings", routers.Settings)
 	//handlke the public folder requests
 	http.HandleFunc("/Public/", routers.Public)
 	//handle the request on base / url

@@ -8,6 +8,7 @@ import (
 	"net/http"
 )
 
+//help set the mime type of extensions
 var mimeTypes = map[string]string{
 	"css": "text/css",
 	"jpg": "image/jpeg",
@@ -31,6 +32,7 @@ func Public(res http.ResponseWriter, req *http.Request) {
 	res.Write(resToSend)
 }
 
+//respinsible for / html
 func Default(res http.ResponseWriter, req *http.Request) {
 	//log the request
 	logging.Request(req.RequestURI)
@@ -45,9 +47,22 @@ func Default(res http.ResponseWriter, req *http.Request) {
 	//send the page
 	res.Write(htmlPage)
 }
-func Delivery(res http.ResponseWriter, req *http.Request) {
-	fmt.Println("Delivery entered")
+
+//this is responsible for the handling of /delivery and /delivery/login
+func Login(res http.ResponseWriter, req *http.Request) {
+	fmt.Println("login")
 }
+func Earn(res http.ResponseWriter, req *http.Request) {
+	fmt.Println("earn")
+}
+func Order(res http.ResponseWriter, req *http.Request) {
+	fmt.Println("order")
+}
+func Settings(res http.ResponseWriter, req *http.Request) {
+	fmt.Println("settings")
+}
+
+//this is responsible for handling pt html requests
 func PT(res http.ResponseWriter, req *http.Request) {
 	logging.Request(req.RequestURI)
 	HTMLPage := getResource.HTMLPT(req.URL.Path, res)

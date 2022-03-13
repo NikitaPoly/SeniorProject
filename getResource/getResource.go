@@ -1,6 +1,7 @@
 package getResource
 
 import (
+	"Server/logging"
 	"Server/send"
 	"io/ioutil"
 	"net/http"
@@ -18,9 +19,20 @@ func HTMLPT(pageName string, res http.ResponseWriter) []byte {
 	}
 	return htmlPage
 }
-func HTMLDelivery() {
 
+//returns html for delivery
+func HTMLDelivery(requestedPath string, res http.ResponseWriter) []byte {
+	logging.Request(requestedPath)
+	actualPageName := strings.Split(requestedPath, "/")
+	htmlPage, err := ioutil.ReadFile("./Public/production/ptDelivery/" + actualPageName[2] + "/" + actualPageName[2] + ".html")
+	if err != nil {
+		send.NotFound(res)
+		return nil
+	}
+	return htmlPage
 }
+
+//returns all none html resourse for basic pt resume website
 func ResourcePT(resourcePath string) ([]byte, string, error) {
 	//break the path by the / into a slice
 	resourcePathArray := strings.Split(resourcePath, "/")
@@ -36,6 +48,8 @@ func ResourcePT(resourcePath string) ([]byte, string, error) {
 	}
 	return resourceToSend, extension[1], err
 }
+
+//returns none html for /delivery
 func ResourceDelivery() {
 
 }
