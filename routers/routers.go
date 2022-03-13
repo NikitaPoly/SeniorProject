@@ -49,5 +49,8 @@ func Delivery(res http.ResponseWriter, req *http.Request) {
 	fmt.Println("Delivery entered")
 }
 func PT(res http.ResponseWriter, req *http.Request) {
-	fmt.Println("Base PT entered")
+	logging.Request(req.RequestURI)
+	HTMLPage := getResource.HTMLPT(req.URL.Path, res)
+	res.WriteHeader(http.StatusOK)
+	res.Write(HTMLPage)
 }
