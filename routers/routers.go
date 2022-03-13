@@ -56,12 +56,18 @@ func Default(res http.ResponseWriter, req *http.Request) {
 func Login(res http.ResponseWriter, req *http.Request) {
 	fmt.Println("login")
 }
+
+//this is responsible for the handling of /delivery/earn
 func Earn(res http.ResponseWriter, req *http.Request) {
 	fmt.Println("earn")
 }
+
+//this is responsible for the handling of /delivery/order
 func Order(res http.ResponseWriter, req *http.Request) {
 	fmt.Println("order")
 }
+
+//this is responsible for the handling of  /delivery/settings
 func Settings(res http.ResponseWriter, req *http.Request) {
 	fmt.Println("settings")
 }
