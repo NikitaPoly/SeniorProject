@@ -19,6 +19,11 @@ var mimeTypes = map[string]string{
 	"pdf": "application/pdf",
 }
 
+//respomsible for routing all requests to do with database and othere manipulations on backend
+func Logic(res http.ResponseWriter, req *http.Request) {
+	fmt.Println("in the logic path")
+}
+
 //goes inside the public folder and returens any resource of type not html
 func Public(res http.ResponseWriter, req *http.Request) {
 	if req.Method == "GET" {

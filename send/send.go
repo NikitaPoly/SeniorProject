@@ -1,6 +1,7 @@
 package send
 
 import (
+	"Server/logging"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -22,7 +23,9 @@ func SendNoneHMTLDelivery(res http.ResponseWriter, req *http.Request) {
 	file, err := ioutil.ReadFile("./Public/production/ptDelivery/" + strings.Join(splitPath, "/"))
 	if err != nil {
 		fmt.Println(err)
+		logging.Request(req.URL.Path)
 		NotFound(res)
+		return
 	}
 	res.Header().Set("content-type", mimeTypes[extension])
 	res.WriteHeader(http.StatusOK)
@@ -31,7 +34,8 @@ func SendNoneHMTLDelivery(res http.ResponseWriter, req *http.Request) {
 
 //send the 404 not found page from base pt website
 func NotFound(res http.ResponseWriter) {
-	htmlPage, _ := ioutil.ReadFile("./Public.production/pt/HTML/404.html")
+	htmlPage, _ := ioutil.ReadFile("./Public/production/ptDelivery/lost.html")
+	fmt.Println("here")
 	res.WriteHeader(http.StatusNotFound)
 	res.Write(htmlPage)
 }

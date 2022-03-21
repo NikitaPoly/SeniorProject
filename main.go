@@ -22,6 +22,8 @@ func main() {
 	for i := 0; i < len(baseWebsitePaths); i++ {
 		http.HandleFunc(baseWebsitePaths[i], routers.PT)
 	}
+	//handle the routes for logic on the delivery app
+	http.HandleFunc("/logic/", routers.Logic)
 	//handle the delivery website routes
 	http.HandleFunc("/delivery/", routers.DeliveryHandle)
 	//handlke the public folder requests
