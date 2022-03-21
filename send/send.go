@@ -22,6 +22,7 @@ func SendNoneHMTLDelivery(res http.ResponseWriter, req *http.Request) {
 	file, err := ioutil.ReadFile("./Public/production/ptDelivery/" + strings.Join(splitPath, "/"))
 	if err != nil {
 		fmt.Println(err)
+		NotFound(res)
 	}
 	res.Header().Set("content-type", mimeTypes[extension])
 	res.WriteHeader(http.StatusOK)

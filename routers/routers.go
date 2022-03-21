@@ -57,7 +57,6 @@ func Default(res http.ResponseWriter, req *http.Request) {
 //Delivery handler
 func DeliveryHandle(res http.ResponseWriter, req *http.Request) {
 	path := req.URL.Path
-	fmt.Println(path)
 	if path == "/delivery/" {
 		req.URL.Path = "/delivery/login"
 		Login(res, req)
@@ -93,7 +92,6 @@ func Login(res http.ResponseWriter, req *http.Request) {
 			res.Write(HTML)
 			return
 		case "/delivery/login.js":
-			fmt.Println("in the login js")
 			jsFile := getResource.DeliveyrJS("login", res)
 			res.WriteHeader(http.StatusOK)
 			res.Write(jsFile)

@@ -8,6 +8,10 @@ footer ul{
     justify-content: space-around;
     font-size: 1.25vh;
 }
+footer ul a{
+    color:var(--ptBlue--);
+    text-decoration: none;
+}
 footer ul a:nth-child(2){
     text-align: center;
 }
