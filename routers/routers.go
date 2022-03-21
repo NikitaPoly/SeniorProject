@@ -5,7 +5,9 @@ import (
 	"Server/logging"
 	"Server/send"
 	"fmt"
+	"io/ioutil"
 	"net/http"
+	"strings"
 )
 
 //help set the mime type of extensions
@@ -52,24 +54,117 @@ func Default(res http.ResponseWriter, req *http.Request) {
 	}
 }
 
+//Delivery handler
+func DeliveryHandle(res http.ResponseWriter, req *http.Request) {
+	path := req.URL.Path
+	fmt.Println(path)
+	if path == "/delivery/" {
+		req.URL.Path = "/delivery/login"
+		Login(res, req)
+		return
+	}
+	pageName := strings.Split(path, "/")
+	pageName[2] = strings.Split(pageName[2], ".")[0]
+	logging.Request(req.URL.Path)
+	switch pageName[2] {
+	case "/":
+		Login(res, req)
+	case "login":
+		Login(res, req)
+	case "earn":
+		Earn(res, req)
+	case "order":
+		Order(res, req)
+	case "settings":
+		Settings(res, req)
+	default:
+		send.SendNoneHMTLDelivery(res, req)
+	}
+}
+
 //this is responsible for the handling of /delivery and /delivery/login
 func Login(res http.ResponseWriter, req *http.Request) {
-	fmt.Println("login")
+	if req.Method == "GET" {
+		logging.Request(req.RequestURI)
+		switch req.URL.Path {
+		case "/delivery/login":
+			HTML := getResource.HTMLDilvery("login")
+			res.WriteHeader(http.StatusOK)
+			res.Write(HTML)
+			return
+		case "/delivery/login.js":
+			fmt.Println("in the login js")
+			jsFile := getResource.DeliveyrJS("login", res)
+			res.WriteHeader(http.StatusOK)
+			res.Write(jsFile)
+			return
+		default:
+			send.NotFound(res)
+		}
+	}
 }
 
 //this is responsible for the handling of /delivery/earn
 func Earn(res http.ResponseWriter, req *http.Request) {
-	fmt.Println("earn")
+	if req.Method == "GET" {
+		logging.Request(req.RequestURI)
+		switch req.URL.Path {
+		case "/delivery/earn":
+			HTML := getResource.HTMLDilvery("earn")
+			res.WriteHeader(http.StatusOK)
+			res.Write(HTML)
+			return
+		case "/delivery/earn.js":
+			jsFile := getResource.DeliveyrJS("earn", res)
+			res.WriteHeader(http.StatusOK)
+			res.Write(jsFile)
+			return
+		default:
+			send.NotFound(res)
+		}
+	}
 }
 
 //this is responsible for the handling of /delivery/order
 func Order(res http.ResponseWriter, req *http.Request) {
-	fmt.Println("order")
+	if req.Method == "GET" {
+		logging.Request(req.RequestURI)
+		switch req.URL.Path {
+		case "/delivery/order":
+			HTML := getResource.HTMLDilvery("order")
+			res.WriteHeader(http.StatusOK)
+			res.Write(HTML)
+			return
+		case "/delivery/order.js":
+			jsFile := getResource.DeliveyrJS("order", res)
+			res.WriteHeader(http.StatusOK)
+			res.Write(jsFile)
+			return
+		default:
+			send.NotFound(res)
+		}
+	}
 }
 
 //this is responsible for the handling of  /delivery/settings
 func Settings(res http.ResponseWriter, req *http.Request) {
-	fmt.Println("settings")
+	if req.Method == "GET" {
+		logging.Request(req.RequestURI)
+		switch req.URL.Path {
+		case "/delivery/settings":
+			HTML := getResource.HTMLDilvery("settings")
+			res.WriteHeader(http.StatusOK)
+			res.Write(HTML)
+			return
+		case "/delivery/settings.js":
+			jsFile := getResource.DeliveyrJS("settings", res)
+			res.WriteHeader(http.StatusOK)
+			res.Write(jsFile)
+			return
+		default:
+			send.NotFound(res)
+		}
+	}
 }
 
 //this is responsible for handling pt html requests
@@ -80,4 +175,16 @@ func PT(res http.ResponseWriter, req *http.Request) {
 		res.WriteHeader(http.StatusOK)
 		res.Write(HTMLPage)
 	}
+}
+
+//sends the favicon
+func Favicon(res http.ResponseWriter, req *http.Request) {
+	icon, err := ioutil.ReadFile("./Public/production/pt/favicon.ico")
+	if err != nil {
+		fmt.Println(err)
+		send.NotFound(res)
+	}
+	logging.Request(req.RequestURI)
+	res.WriteHeader(http.StatusOK)
+	res.Write(icon)
 }

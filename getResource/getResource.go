@@ -3,10 +3,21 @@ package getResource
 import (
 	"Server/logging"
 	"Server/send"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strings"
 )
+
+//get resource for the ptdelivery that is js
+func DeliveyrJS(page string, res http.ResponseWriter) []byte {
+	jsFile, err := ioutil.ReadFile("./Public/ptDelivery/" + page + "/" + page + ".js")
+	if err != nil {
+		fmt.Println(err)
+		send.NotFound(res)
+	}
+	return jsFile
+}
 
 //return the html page for the base website
 func HTMLPT(pageName string, res http.ResponseWriter) []byte {
@@ -50,6 +61,10 @@ func ResourcePT(resourcePath string) ([]byte, string, error) {
 }
 
 //returns none html for /delivery
-func ResourceDelivery() {
-
+func HTMLDilvery(name string) []byte {
+	loginHTML, err := ioutil.ReadFile("./Public/production/ptDelivery/" + name + "/" + name + ".html")
+	if err != nil {
+		fmt.Println(err)
+	}
+	return loginHTML
 }
