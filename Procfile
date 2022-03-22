@@ -1,1 +1,1 @@
-web: ./bin/Server
+web: ./bin/main.exe
