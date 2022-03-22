@@ -28,7 +28,6 @@ import {WebGLRenderer} from "three";
     main.innerHTML += `
 <div class="add" id="leftAdd">Google Add</div>
 <h1>Student Only Delivery System</h1>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 <div class="add" id="rightAdd">Google Add</div>
 <span>
     <h2>Order campus favorites<br>to any campus location</h2>
