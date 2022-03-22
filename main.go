@@ -1,8 +1,9 @@
 package main
 
 import (
-	"Server/logging" //custom package for logging stuff
 	"Server/routers" //custome package for directing requests to correct functions for proccesing and responses
+	"Server/send"
+	"fmt"
 	"net/http"
 	"os"
 )
@@ -15,25 +16,22 @@ func main() {
 	} else {
 		port = ":" + port
 	}
-	//log the port #
-	logging.Port(port)
 	//handle the base profile website routes
 	baseWebsitePaths := [8]string{"/contact", "/home", "/projects", "/resume", "/Contact", "/Home", "/Projects", "/Resume"}
 	for i := 0; i < len(baseWebsitePaths); i++ {
-		http.HandleFunc(baseWebsitePaths[i], routers.PT)
+		http.HandleFunc(baseWebsitePaths[i], routers.PTRouter)
 	}
-	//handle the routes for logic on the delivery app
-	http.HandleFunc("/logic/", routers.Logic)
 	//handle the delivery website routes
-	http.HandleFunc("/delivery/", routers.DeliveryHandle)
+	http.HandleFunc("/delivery", routers.DeliveryRouter)
+	http.HandleFunc("/delivery/", routers.DeliveryRouter)
 	//handlke the public folder requests
-	http.HandleFunc("/Public/", routers.Public)
+	http.HandleFunc("/Public/", routers.PublicRouter)
 	//favicon
-	http.HandleFunc("/favicon.ico", routers.Favicon)
+	http.HandleFunc("/favicon.ico", send.SendIcon)
 	//handle the request on base / url
-	http.HandleFunc("/", routers.Default)
+	http.HandleFunc("/", routers.PTRouter)
 	//start the server
 	if err := http.ListenAndServe(port, nil); err != nil {
-		logging.ServerStartErr(err)
+		fmt.Println(err)
 	}
 }

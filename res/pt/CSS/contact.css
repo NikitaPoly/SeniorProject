@@ -1,0 +1,65 @@
+main{
+    color:var(--lightColor--);
+    font-size:2rem;
+    text-align: center;
+}
+    main input, main textarea{
+        color: black;
+    }
+    main p{
+        margin-top: 4rem;
+    }
+    main h1{
+        color:var(--lightColor--);
+    }
+        main div#bannerDiv{
+            text-align: center;
+            background-color: var(--darkGreen--);
+        }
+            main div#bannerDiv h1{
+                font-size: 3rem;
+                font-weight: 600;
+            }
+                main div#bannerDiv ul li{
+                    display: inline-block;
+                    margin: 1rem 4rem;
+                }
+                    main div#bannerDiv ul li button{
+                        color:var(--lightColor--);
+                        background-color: var(--darkGreen--);
+                        border-color: var(--lightColor--);
+                        padding: 1rem;
+                        font-size: 1rem;
+                        font-weight: bold;
+                    }
+ main div#formDiv form fieldset{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    border: none;
+ }     
+fieldset textarea{
+     resize: none;
+     width: 50vw;
+     height: 20vh;
+ }
+ fieldset input[type="submit"]{
+    margin: 2rem 0;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    background-color: var(--darkGreen--);
+    color:var(--lightColor--);
+    border-color: var(--lightColor--);
+}
+/*over write previus settings*/
+body{
+    background-color: var(--mainGreen--);
+}
+@media only screen and (max-width: 1000px){
+    div#formDiv p{
+        margin: 1rem 0;
+    }
+    div#formDiv{
+        min-height: 50vh;
+    }
+}
