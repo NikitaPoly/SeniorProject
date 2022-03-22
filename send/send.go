@@ -20,22 +20,30 @@ func SendIcon(res http.ResponseWriter, req *http.Request) {
 
 //send the html page for home
 func SendHome(res http.ResponseWriter) {
-
+	file := getResource.GetHTMLPT("home")
+	res.WriteHeader(http.StatusOK)
+	res.Write(file)
 }
 
 //send html page for resume
 func SendResume(res http.ResponseWriter) {
-
+	file := getResource.GetHTMLPT("resume")
+	res.WriteHeader(http.StatusOK)
+	res.Write(file)
 }
 
 //send html page for projects
 func SendProjects(res http.ResponseWriter) {
-
+	file := getResource.GetHTMLPT("projects")
+	res.WriteHeader(http.StatusOK)
+	res.Write(file)
 }
 
 //send html page for contact
 func SendContact(res http.ResponseWriter) {
-
+	file := getResource.GetHTMLPT("contact")
+	res.WriteHeader(http.StatusOK)
+	res.Write(file)
 }
 
 //responsible for sending the not found page
