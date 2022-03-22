@@ -3,6 +3,7 @@ package routers
 import (
 	"Server/getResource"
 	"Server/logging"
+	"Server/savedb"
 	"Server/send"
 	"fmt"
 	"net/http"
@@ -26,6 +27,14 @@ func PTRouter(res http.ResponseWriter, req *http.Request) {
 			send.SendContact(res)
 		default:
 			send.NotFound(res)
+			return
+		}
+	} else if req.Method == "POST" {
+		switch req.URL.Path {
+		case "/contact":
+			savedb.SaveContact(res, req)
+		default:
+			send.SendPostNotFound(res)
 			return
 		}
 	} else { //for not supported methods

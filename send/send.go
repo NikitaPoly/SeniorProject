@@ -3,6 +3,7 @@ package send
 import (
 	"Server/getResource"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"strings"
 )
@@ -16,7 +17,13 @@ var mimeTypeConverter = map[string]string{
 
 //send the icon resource
 func SendIcon(res http.ResponseWriter, req *http.Request) {
-	fmt.Println("sending icon")
+	file, err := ioutil.ReadFile("./res/pt/favicon.ico")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	res.WriteHeader(http.StatusOK)
+	res.Write(file)
 }
 
 //send the html page for home
@@ -96,4 +103,18 @@ func SendDResource(res http.ResponseWriter, req *http.Request) {
 		res.WriteHeader(http.StatusOK)
 		res.Write(file)
 	}
+}
+func SendPostNotFound(res http.ResponseWriter) {
+	notFoundHTML := getResource.GetNotFoundPage()
+	res.WriteHeader(http.StatusNotAcceptable)
+	res.Write(notFoundHTML)
+}
+func SendThankyouforPost(res http.ResponseWriter) {
+	file, err := ioutil.ReadFile("./res/pt/HTML/thankyou.html")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	res.WriteHeader(http.StatusAccepted)
+	res.Write(file)
 }
