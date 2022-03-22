@@ -1,1 +1,1 @@
-web: ./bin/Polyakov.tech
+web: ./bin/Server
