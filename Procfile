@@ -1,1 +1,1 @@
-web: ./bin/lmain.exe
+web: ./lmain.exe

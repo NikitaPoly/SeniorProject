@@ -63,7 +63,7 @@ func ResourcePT(resourcePath string) ([]byte, string, error) {
 //returns none html for /delivery
 func HTMLDilvery(name string) []byte {
 	fmt.Println("hjere")
-	loginHTML, err := ioutil.ReadFile("../Public/production/ptDelivery/" + name + "/" + name + ".html")
+	loginHTML, err := ioutil.ReadFile("./Public/production/ptDelivery/" + name + "/" + name + ".html")
 	if err != nil {
 		fmt.Println(err)
 	}
