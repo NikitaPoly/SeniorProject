@@ -34,8 +34,8 @@ func SendNoneHMTLDelivery(res http.ResponseWriter, req *http.Request) {
 
 //send the 404 not found page from base pt website
 func NotFound(res http.ResponseWriter) {
-	htmlPage, _ := ioutil.ReadFile("./Public/production/ptDelivery/lost.html")
-	fmt.Println("here")
+	htmlPage, _ := ioutil.ReadFile("../Public/production/ptDelivery/lost.html")
+	fmt.Println("not found")
 	res.WriteHeader(http.StatusNotFound)
 	res.Write(htmlPage)
 }

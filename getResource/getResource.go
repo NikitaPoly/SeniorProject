@@ -35,7 +35,7 @@ func HTMLPT(pageName string, res http.ResponseWriter) []byte {
 func HTMLDelivery(requestedPath string, res http.ResponseWriter) []byte {
 	logging.Request(requestedPath)
 	actualPageName := strings.Split(requestedPath, "/")
-	htmlPage, err := ioutil.ReadFile("../Publi/production/ptDelivery/" + actualPageName[2] + "/" + actualPageName[2] + ".html")
+	htmlPage, err := ioutil.ReadFile("../Public/production/ptDelivery/" + actualPageName[2] + "/" + actualPageName[2] + ".html")
 	if err != nil {
 		send.NotFound(res)
 		return nil
