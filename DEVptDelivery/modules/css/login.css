@@ -69,6 +69,10 @@ main div#animationOverlay button{
     height: 5vh;
     border-radius: 2rem;
 }
+div.g-signin2{
+    display: inline-block;
+    color:var(--mainBlue--)
+}
 @media only screen and (hover:none){
     main{
         grid-template-columns: 1fr;

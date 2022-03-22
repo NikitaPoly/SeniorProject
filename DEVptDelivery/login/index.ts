@@ -20,6 +20,7 @@ import {WebGLRenderer} from "three";
     defaultsImage.defaults();
     navfuncs.default.attachMobNav();
     navfuncs.default.setActive("login");
+    //get the google button for credentials
     const main: HTMLElement = document.getElementById("main");
     //customize templates for spesific page
     //add all templates to the page
@@ -45,7 +46,7 @@ import {WebGLRenderer} from "three";
                 campus delivery system gives busy students an opportunity to gain flexible employment while also
                 providing cheap and easy delivery for on campus stores. 
     </p>
-    <button id="signupButton">SignUp</button>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
     <button id="LoginButton">Login</button>
 `
 }
@@ -75,9 +76,12 @@ import {WebGLRenderer} from "three";
     }
     //get the canvas for three.js and attach its appearance to the correct button
     //signup animation
-    document.getElementById("signupButton").addEventListener("click",()=>{
+    document.getElementsByClassName("g-signin2")[0].addEventListener("click",()=>{
         requestAnimationFrame(doRender);
-        document.getElementById("animationOverlay").style.display = "none";
+        //restet the screen
+        let animationOverLay :HTMLElement = document.getElementById("animationOverlay")
+        animationOverLay.innerHTML = ` `
+
     });
     //login animation
     document.getElementById("LoginButton").addEventListener("click",()=>{
