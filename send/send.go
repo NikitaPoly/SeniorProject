@@ -4,6 +4,7 @@ import (
 	"Server/getResource"
 	"fmt"
 	"net/http"
+	"strings"
 )
 
 var mimeTypeConverter = map[string]string{
@@ -58,4 +59,41 @@ func SendPublicResource(res http.ResponseWriter, ext string, file []byte) {
 	res.Header().Set("Content-Type", mimeTypeConverter[ext])
 	res.WriteHeader(http.StatusOK)
 	res.Write(file)
+}
+
+//send the delivery/ login
+func SendDLogin(res http.ResponseWriter) {
+	file := getResource.GetDeliveryHTML("login")
+	res.WriteHeader(http.StatusOK)
+	res.Write(file)
+}
+func SendDEarn(res http.ResponseWriter) {
+	file := getResource.GetDeliveryHTML("earn")
+	res.WriteHeader(http.StatusOK)
+	res.Write(file)
+}
+func SendDOrder(res http.ResponseWriter) {
+	file := getResource.GetDeliveryHTML("order")
+	res.WriteHeader(http.StatusOK)
+	res.Write(file)
+}
+func SendDSettings(res http.ResponseWriter) {
+	file := getResource.GetDeliveryHTML("settings")
+	res.WriteHeader(http.StatusOK)
+	res.Write(file)
+}
+func SendDResource(res http.ResponseWriter, req *http.Request) {
+	extension := strings.Split(req.URL.Path, ".")[len(strings.Split(req.URL.Path, "."))-1]
+	pageName := strings.Split(req.URL.Path, "/")[2]
+	pageName = strings.Split(pageName, ".")[0]
+	if extension == "js" {
+		file := getResource.GetDeliveryJS(pageName)
+		res.WriteHeader(http.StatusOK)
+		res.Write(file)
+	} else {
+		file := getResource.GetDeliveryResource(req.URL.Path)
+		res.Header().Set("Content-Type", mimeTypeConverter[extension])
+		res.WriteHeader(http.StatusOK)
+		res.Write(file)
+	}
 }

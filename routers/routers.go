@@ -33,7 +33,25 @@ func PTRouter(res http.ResponseWriter, req *http.Request) {
 	}
 }
 func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
-	fmt.Println("inside Delivery router")
+	logging.LogRequest(req.URL.Path)
+	if req.Method == "GET" {
+		switch req.URL.Path {
+		case "/delivery":
+			send.SendDLogin(res)
+		case "/delivery/":
+			send.SendDLogin(res)
+		case "/delivery/login":
+			send.SendDLogin(res)
+		case "/delivery/earn":
+			send.SendDEarn(res)
+		case "/delivery/order":
+			send.SendDOrder(res)
+		case "/delivery/settings":
+			send.SendDSettings(res)
+		default:
+			send.SendDResource(res, req)
+		}
+	}
 }
 func PublicRouter(res http.ResponseWriter, req *http.Request) {
 	logging.LogRequest(req.URL.Path)
