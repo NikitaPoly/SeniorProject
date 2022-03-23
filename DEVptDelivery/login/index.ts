@@ -46,8 +46,8 @@ import {WebGLRenderer} from "three";
                 campus delivery system gives busy students an opportunity to gain flexible employment while also
                 providing cheap and easy delivery for on campus stores. 
     </p>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
     <button id="LoginButton">Login</button>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
 `
 }
 //this part of the code is reponsible for doing the three.js animation
