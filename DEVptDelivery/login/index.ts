@@ -44,9 +44,8 @@ import {WebGLRenderer} from "three";
     Often students on college campuses seek out employment opportunities that do not interfere with a busy
                 class schedule. Some students appreciate the convenience of ordering food and having it delivered. The
                 campus delivery system gives busy students an opportunity to gain flexible employment while also
-                providing cheap and easy delivery for on campus stores. 
+                providing cheap and easy delivery for on campus stores.(if sign in button is not visible, refresh page once)
     </p>
-    <button id="LoginButton">Login</button>
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
 `
 }
@@ -82,11 +81,6 @@ import {WebGLRenderer} from "three";
         let animationOverLay :HTMLElement = document.getElementById("animationOverlay")
         animationOverLay.innerHTML = ` `
 
-    });
-    //login animation
-    document.getElementById("LoginButton").addEventListener("click",()=>{
-        requestAnimationFrame(doRender);
-        document.getElementById("animationOverlay").style.display = "none";
     });
     //get the canvas for three.js
     const {
