@@ -26,9 +26,9 @@ import {WebGLRenderer} from "three";
     //add all templates to the page
     main.innerHTML += card;
     main.innerHTML += `
-<div class="add" id="leftAdd">Google Add</div>
+<div class="add" id="leftAdd"></div>
 <h1>Student Only Delivery System</h1>
-<div class="add" id="rightAdd">Google Add</div>
+<div class="add" id="rightAdd"></div>
 <span>
     <h2>Order campus favorites<br>to any campus location</h2>
     <h2>Affordable<br>Safe<br>Fast</h2>
