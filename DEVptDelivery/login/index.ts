@@ -65,6 +65,7 @@ import { WebGLRenderer } from "three";
         console.log('Family Name: ' + responsePayload.family_name);
         console.log("Image URL: " + responsePayload.picture);
         console.log("Email: " + responsePayload.email);
+     }
      </script>
      <div class="g_id_signin"
         data-type="standard"
