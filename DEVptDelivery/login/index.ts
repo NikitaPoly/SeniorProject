@@ -46,6 +46,7 @@ import { WebGLRenderer } from "three";
                 campus delivery system gives busy students an opportunity to gain flexible employment while also
                 providing cheap and easy delivery for on campus stores.(if sign in button is not visible, refresh page once)
     </p>
+    <script>
     function onSignIn(googleUser) {
         // get user profile information
         console.log(googleUser.getBasicProfile())
