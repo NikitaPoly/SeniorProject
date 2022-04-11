@@ -32,7 +32,7 @@ func GetUserInfo(GUserID string) []bson.M {
 	PolyakovTechDB := client.Database("PolyakovTechDB")
 	DB := PolyakovTechDB.Collection("DeliveryUsers")
 
-	cursor, err := DB.Find(ctx, bson.M{"DeliveryID": GUserID[:15]})
+	cursor, err := DB.Find(ctx, bson.M{"DeliveryID": GUserID})
 	if err != nil {
 		fmt.Println(err)
 		return nil

@@ -11,7 +11,40 @@ import cardStyle from "../modules/css/card.css";
 import animationDivC from "../modules/html/animationScreen.html"
 import card from "../modules/html/e-card.html";
 
+
 import { WebGLRenderer } from "three";
+const CLIENT_ID = "1092722868151-47c132ejhktbrk8n40mp01gq4o9re9uo.apps.googleusercontent.com"
+//delcare global functions 
+function decodeJwtResponse(credentials){
+    const {OAuth2Client} = require('google-auth-library');
+    const client = new OAuth2Client(CLIENT_ID);
+    async function verify() {
+      const ticket = await client.verifyIdToken({
+          idToken: credentials,
+          audience: CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
+          // Or, if multiple clients access the backend:
+          //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+      });
+      const payload = ticket.getPayload();
+      const userid = payload['sub'];
+      // If request specified a G Suite domain:
+      const domain = payload['Depauw.edu'];
+    }
+    verify().catch(console.error);
+}
+
+function decodeGoogleAccount(response){
+ // decodeJwtResponse() is a custom function defined by you
+     // to decode the credential response.
+     const responsePayload:any = decodeJwtResponse(response.credential);
+
+     console.log("ID: " + responsePayload.sub);
+     console.log('Full Name: ' + responsePayload.name);
+     console.log('Given Name: ' + responsePayload.given_name);
+     console.log('Family Name: ' + responsePayload.family_name);
+     console.log("Image URL: " + responsePayload.picture);
+     console.log("Email: " + responsePayload.email);
+}
 //this part of the code is responsible for creating the html and css of the page
 {
     //activate styles for the page
@@ -56,7 +89,8 @@ import { WebGLRenderer } from "three";
     <div id="g_id_onload"
         data-client_id="1092722868151-47c132ejhktbrk8n40mp01gq4o9re9uo.apps.googleusercontent.com"
         data-login_uri="https://www.polyakov.tech/delivery/login"
-        data-auto_prompt="false">
+        data-auto_prompt="false"
+        data-callback="decodeGoogleAccount">
      </div>
      <div class="g_id_signin"
         data-type="standard"
@@ -110,7 +144,7 @@ import { WebGLRenderer } from "three";
             if ((e.target as HTMLButtonElement).id == "login") {
                 requestAnimationFrame(doRenderLogin)
             } else {
-                requestAnimationFrame(doRenderLogin)
+                requestAnimationFrame(doRenderSign)
             }
             requestAnimationFrame(doRenderSign);
         })

@@ -15,8 +15,8 @@
     "settings-r": "webpack serve --config-name settings",
     "build-p": "webpack --config ./webpack.build.js",
     "run-f": "npx webpack serve",
-    "run-b" : "go run main.go",
-    "build-b" :"go build -o ./bin ./main.go "
+    "run-b": "go run main.go",
+    "build-b": "go build -o ./bin ./main.go "
   },
   "repository": {
     "type": "git",
@@ -45,6 +45,7 @@
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
+    "google-auth-library": "^7.14.1",
     "three": "^0.138.0"
   }
 }
