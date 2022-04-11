@@ -4,12 +4,14 @@ import (
 	"Server/getdb"
 	"Server/savedb"
 	"Server/send"
+	"fmt"
 	"net/http"
 )
 
 //return true if user id is already saved, otherwise false
 func checkIfUserExists(userID string) bool {
 	user := getdb.GetUserInfo(userID)
+	fmt.Println(user)
 	return user != nil
 }
 
