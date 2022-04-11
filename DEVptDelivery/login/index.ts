@@ -50,7 +50,7 @@ import { WebGLRenderer } from "three";
     <div id="g_id_onload"
         data-client_id="1092722868151-47c132ejhktbrk8n40mp01gq4o9re9uo.apps.googleusercontent.com"
         data-login_uri="https://www.polyakov.tech/delivery/login"
-        data-auto_prompt="false">
+        data-auto_prompt="false"
         data-callback="handleCredentialResponse">
      </div>
      <script>
