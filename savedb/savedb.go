@@ -31,7 +31,7 @@ func dbsaveAction(res http.ResponseWriter, data map[string]string, DBNAME string
 	//after function is done running this will will run
 	defer client.Disconnect(ctx)
 	PolyakovTechDB := client.Database("PolyakovTechDB")
-	DB := PolyakovTechDB.Collection("DBNAME")
+	DB := PolyakovTechDB.Collection(DBNAME)
 	result, err := DB.InsertOne(ctx, data)
 	if err != nil {
 		fmt.Println(err)
