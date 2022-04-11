@@ -13,7 +13,7 @@ import (
 
 const mongoURI = "mongodb+srv://PolyakovDOTTech:Secure@polyakovtechdb.n6fvv.mongodb.net/PolyakovTechDB?retryWrites=true&w=majority"
 
-func dbsaveAction(res http.ResponseWriter, data map[string]string) {
+func dbsaveAction(res http.ResponseWriter, data map[string]string, DBNAME string) {
 	//get client for mongodb
 	client, err := mongo.NewClient(options.Client().ApplyURI(mongoURI))
 	if err != nil {
@@ -31,8 +31,8 @@ func dbsaveAction(res http.ResponseWriter, data map[string]string) {
 	//after function is done running this will will run
 	defer client.Disconnect(ctx)
 	PolyakovTechDB := client.Database("PolyakovTechDB")
-	ContactRequest := PolyakovTechDB.Collection("ContactRequest")
-	result, err := ContactRequest.InsertOne(ctx, data)
+	DB := PolyakovTechDB.Collection("DBNAME")
+	result, err := DB.InsertOne(ctx, data)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -45,6 +45,13 @@ func SaveContact(res http.ResponseWriter, req *http.Request) {
 	for key, value := range req.Form {
 		dataToSave[key] = value[0]
 	}
-	dbsaveAction(res, dataToSave)
+	dbsaveAction(res, dataToSave, "ContactRequest")
 	send.SendThankyouforPost(res)
+}
+
+//this function creates and saves new user
+func CreateNewUser(res http.ResponseWriter, newUserID string) {
+	DataToSave := make(map[string]string)
+	DataToSave["DeliveryID"] = newUserID
+	dbsaveAction(res, DataToSave, "DeliveryUsers")
 }
