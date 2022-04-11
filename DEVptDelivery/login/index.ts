@@ -46,6 +46,11 @@ import { WebGLRenderer } from "three";
                 campus delivery system gives busy students an opportunity to gain flexible employment while also
                 providing cheap and easy delivery for on campus stores.(if sign in button is not visible, refresh page once)
     </p>
+    function onSignIn(googleUser) {
+        // get user profile information
+        console.log(googleUser.getBasicProfile())
+      }
+    </script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <div id="g_id_onload"
         data-client_id="1092722868151-47c132ejhktbrk8n40mp01gq4o9re9uo.apps.googleusercontent.com"
@@ -62,11 +67,6 @@ import { WebGLRenderer } from "three";
         data-onsuccess="onSignIn">
      </div>
      <script>
-    function onSignIn(googleUser) {
-      // get user profile information
-      console.log(googleUser.getBasicProfile())
-    }
-  </script>
 `
 }
 //this part of the code is reponsible for doing the three.js animation
