@@ -3,6 +3,7 @@ package routers
 import (
 	"Server/getResource"
 	"Server/logging"
+	"Server/logic"
 	"Server/savedb"
 	"Server/send"
 	"fmt"
@@ -63,7 +64,7 @@ func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
 	} else if req.Method == "POST" {
 		switch req.URL.Path {
 		case "/delivery/login":
-			fmt.Println("Posted account info")
+			logic.LoginOrSignupUser(res, req)
 		}
 	}
 }

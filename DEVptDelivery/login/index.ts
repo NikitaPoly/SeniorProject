@@ -64,10 +64,8 @@ import { WebGLRenderer } from "three";
         data-theme="outline"
         data-text="sign_in_with"
         data-shape="rectangular"
-        data-logo_alignment="left"
-        data-onsuccess="onSignIn">
+        data-logo_alignment="left">
      </div>
-     <script>
 `
 }
 //this part of the code is reponsible for doing the three.js animation
