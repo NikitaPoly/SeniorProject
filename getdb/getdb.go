@@ -13,7 +13,8 @@ import (
 
 const mongoURI = "mongodb+srv://PolyakovDOTTech:Secure@polyakovtechdb.n6fvv.mongodb.net/PolyakovTechDB?retryWrites=true&w=majority"
 
-func GetUserInfo(GUserID string) map[string]string {
+//returns user info
+func GetUserInfo(GUserID string) []bson.M {
 	//get client for mongodb
 	client, err := mongo.NewClient(options.Client().ApplyURI(mongoURI))
 	if err != nil {
@@ -42,5 +43,5 @@ func GetUserInfo(GUserID string) map[string]string {
 		return nil
 	}
 	fmt.Println(userDataFinal)
-	return nil
+	return userDataFinal
 }

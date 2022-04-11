@@ -10,7 +10,7 @@ import (
 //return true if user id is already saved, otherwise false
 func checkIfUserExists(userID string) bool {
 	user := getdb.GetUserInfo(userID)
-	return user == nil
+	return user != nil
 }
 
 //logs in or creates new user for login page
