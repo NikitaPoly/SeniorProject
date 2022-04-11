@@ -51,7 +51,21 @@ import { WebGLRenderer } from "three";
         data-client_id="1092722868151-47c132ejhktbrk8n40mp01gq4o9re9uo.apps.googleusercontent.com"
         data-login_uri="https://www.polyakov.tech/delivery/login"
         data-auto_prompt="false">
+        data-callback="handleCredentialResponse">
      </div>
+     <script>
+     function handleCredentialResponse(response) {
+        // decodeJwtResponse() is a custom function defined by you
+        // to decode the credential response.
+        const responsePayload = decodeJwtResponse(response.credential);
+   
+        console.log("ID: " + responsePayload.sub);
+        console.log('Full Name: ' + responsePayload.name);
+        console.log('Given Name: ' + responsePayload.given_name);
+        console.log('Family Name: ' + responsePayload.family_name);
+        console.log("Image URL: " + responsePayload.picture);
+        console.log("Email: " + responsePayload.email);
+     </script>
      <div class="g_id_signin"
         data-type="standard"
         data-size="large"
