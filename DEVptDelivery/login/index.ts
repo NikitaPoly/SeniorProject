@@ -50,24 +50,23 @@ import { WebGLRenderer } from "three";
     <div id="g_id_onload"
         data-client_id="1092722868151-47c132ejhktbrk8n40mp01gq4o9re9uo.apps.googleusercontent.com"
         data-login_uri="https://www.polyakov.tech/delivery/login"
-        data-auto_prompt="false"
-        data-callback="handleCredentialResponse">
+        data-auto_prompt="false">
      </div>
-     <script>
-     function handleCredentialResponse(response) {
-        // decodeJwtResponse() is a custom function defined by you
-        // to decode the credential response.
-        consolse.log(response.credential);
-     }
-     </script>
      <div class="g_id_signin"
         data-type="standard"
         data-size="large"
         data-theme="outline"
         data-text="sign_in_with"
         data-shape="rectangular"
-        data-logo_alignment="left">
+        data-logo_alignment="left"
+        data-onsuccess="onSignIn">
      </div>
+     <script>
+    function onSignIn(googleUser) {
+      // get user profile information
+      console.log(googleUser.getBasicProfile())
+    }
+  </script>
 `
 }
 //this part of the code is reponsible for doing the three.js animation
