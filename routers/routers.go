@@ -60,6 +60,11 @@ func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
 		default:
 			send.SendDResource(res, req)
 		}
+	} else if req.Method == "POST" {
+		switch req.URL.Path {
+		case "/delivery/login":
+			fmt.Println("Posted account info")
+		}
 	}
 }
 func PublicRouter(res http.ResponseWriter, req *http.Request) {
