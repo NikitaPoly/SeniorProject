@@ -52,7 +52,7 @@ func SaveContact(res http.ResponseWriter, req *http.Request) {
 //this function creates and saves new user
 func CreateNewUser(res http.ResponseWriter, newUserID string) {
 	DataToSave := make(map[string]string)
-	DataToSave["DeliveryID"] = newUserID
+	DataToSave["DeliveryID"] = newUserID["DeliveryID"]
 	DataToSave["Balance"] = "0"
 	DataToSave["TotalBalance"] = "0"
 	DataToSave["OrdersStarted"] = "0"
