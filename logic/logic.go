@@ -24,7 +24,7 @@ func LoginOrSignupUser(res http.ResponseWriter, req *http.Request) {
 	}
 	userData := string(body)
 
-	userExistAlready := checkIfUserExists(userData)
+	userExistAlready := checkIfUserExists(userData[15 : len(userData)-2])
 	//if user does not exist save the id to db
 	if !userExistAlready {
 		savedb.CreateNewUser(res, userData)
