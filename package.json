@@ -45,6 +45,7 @@
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
+    "@types/axios": "^0.14.0",
     "axios": "^0.26.1",
     "google-auth-library": "^7.14.1",
     "three": "^0.138.0"

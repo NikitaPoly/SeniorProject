@@ -11,6 +11,7 @@ import cardStyle from "../modules/css/card.css";
 import animationDivC from "../modules/html/animationScreen.html"
 import card from "../modules/html/e-card.html";
 
+import axios from "axios";
 
 import { WebGLRenderer } from "three";
 //delcare global functions 
@@ -111,6 +112,8 @@ import { WebGLRenderer } from "three";
                     if (input.value.includes("@depauw.edu")){
                         let val: string = input.value
                         localStorage.setItem("DeliveryLogIn",val)
+                        const response = axios.post("/delivery/login",{DeliveryID : input.value})
+                        console.log("Sent Username");
                     }else{
                         alert("Not a Depauw Account");
                     }
