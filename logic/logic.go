@@ -22,16 +22,12 @@ func LoginOrSignupUser(res http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	userData := make(map[string]string)
-	for key, value := range req.Form {
-		userData[key] = value[0]
-	}
-	fmt.Println("userDataonw")
-	fmt.Println(body)
-	userExistAlready := checkIfUserExists(userData["DeliveryID"])
+	userData := string(body)
+
+	userExistAlready := checkIfUserExists(userData)
 	//if user does not exist save the id to db
 	if !userExistAlready {
-		savedb.CreateNewUser(res, userData["DeliveryID"])
+		savedb.CreateNewUser(res, userData)
 	}
 	send.SendDLogin(res)
 }
