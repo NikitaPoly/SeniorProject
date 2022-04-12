@@ -113,9 +113,10 @@ import { WebGLRenderer } from "three";
                         let val: string = input.value
                         localStorage.setItem("DeliveryLogIn",val)
                         let username:any = localStorage.getItem("DeliveryLogIn")
-                        console.log(username)
-                        const response = axios.post("/delivery/login",{DeliveryID : username})
-                        console.log("Sent Username");
+                        const response = axios.post("https://www.polyakov.tech/delivery/login",{DeliveryID : username}).then(res =>{
+                            console.log(res)
+                        })
+
                     }else{
                         alert("Not a Depauw Account");
                     }
