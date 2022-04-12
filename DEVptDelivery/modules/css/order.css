@@ -58,7 +58,11 @@ div#animationDiv canvas {
     border-radius: 3%;
     margin: 0 2rem;
 }
-
+main div#animationOverlay{
+    position: absolute;
+    width: 60vw;
+    text-align: center;
+}
 main ul {
     color: white;
     list-style: none;
