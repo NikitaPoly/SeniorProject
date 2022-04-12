@@ -13,38 +13,8 @@ import card from "../modules/html/e-card.html";
 
 
 import { WebGLRenderer } from "three";
-const CLIENT_ID = "1092722868151-47c132ejhktbrk8n40mp01gq4o9re9uo.apps.googleusercontent.com"
 //delcare global functions 
-function decodeJwtResponse(credentials){
-    const {OAuth2Client} = require('google-auth-library');
-    const client = new OAuth2Client(CLIENT_ID);
-    async function verify() {
-      const ticket = await client.verifyIdToken({
-          idToken: credentials,
-          audience: CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
-          // Or, if multiple clients access the backend:
-          //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
-      });
-      const payload = ticket.getPayload();
-      const userid = payload['sub'];
-      // If request specified a G Suite domain:
-      const domain = payload['Depauw.edu'];
-    }
-    verify().catch(console.error);
-}
 
-function decodeGoogleAccount(response){
- // decodeJwtResponse() is a custom function defined by you
-     // to decode the credential response.
-     const responsePayload:any = decodeJwtResponse(response.credential);
-
-     console.log("ID: " + responsePayload.sub);
-     console.log('Full Name: ' + responsePayload.name);
-     console.log('Given Name: ' + responsePayload.given_name);
-     console.log('Family Name: ' + responsePayload.family_name);
-     console.log("Image URL: " + responsePayload.picture);
-     console.log("Email: " + responsePayload.email);
-}
 //this part of the code is responsible for creating the html and css of the page
 {
     //activate styles for the page
@@ -79,27 +49,8 @@ function decodeGoogleAccount(response){
                 campus delivery system gives busy students an opportunity to gain flexible employment while also
                 providing cheap and easy delivery for on campus stores.(if sign in button is not visible, refresh page once)
     </p>
-    <script>
-    function onSignIn(googleUser) {
-        // get user profile information
-        console.log(googleUser.getBasicProfile())
-      }
-    </script>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <div id="g_id_onload"
-        data-client_id="1092722868151-47c132ejhktbrk8n40mp01gq4o9re9uo.apps.googleusercontent.com"
-        data-login_uri="https://www.polyakov.tech/delivery/login"
-        data-auto_prompt="false"
-        data-callback="decodeGoogleAccount">
-     </div>
-     <div class="g_id_signin"
-        data-type="standard"
-        data-size="large"
-        data-theme="outline"
-        data-text="sign_in_with"
-        data-shape="rectangular"
-        data-logo_alignment="left">
-     </div>
+   <button id="login"class="btn">Login</button>
+   <button id="signup"class="btn">Signup</button>
 `
 }
 //this part of the code is reponsible for doing the three.js animation
@@ -141,12 +92,31 @@ function decodeGoogleAccount(response){
             //restet the screen
             let animationOverLay: HTMLElement = document.getElementById("animationOverlay")
             animationOverLay.innerHTML = ``
+            console.log((e.target as HTMLButtonElement).id)
             if ((e.target as HTMLButtonElement).id == "login") {
+                const loginUsername : string = localStorage.getItem("DeliveryLogIn");
+                animationOverLay.innerHTML = `
+                <button>You have been logged in as ${loginUsername}</button>
+                `
                 requestAnimationFrame(doRenderLogin)
-            } else {
+            } else {//sign up
+                animationOverLay.innerHTML = `
+                <input id="inputE" type="email" placeholder="DePauw Email">
+                <button id="sendsignup"class="btn">Signup</button>
+                `
+
+                let sendBTN : HTMLElement = document.getElementById("sendsignup")
+                let input : HTMLInputElement = (document.getElementById("inputE") as HTMLInputElement)
+                sendBTN.addEventListener("click",()=>{
+                    if (input.value.includes("@depauw.edu")){
+                        let val: string = input.value
+                        localStorage.setItem("DeliveryLogIn",val)
+                    }else{
+                        alert("Not a Depauw Account");
+                    }
+                });
                 requestAnimationFrame(doRenderSign)
             }
-            requestAnimationFrame(doRenderSign);
         })
     }
     //get the canvas for three.js
