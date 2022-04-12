@@ -112,7 +112,8 @@ import { WebGLRenderer } from "three";
                     if (input.value.includes("@depauw.edu")){
                         let val: string = input.value
                         localStorage.setItem("DeliveryLogIn",val)
-                        const response = axios.post("/delivery/login",{DeliveryID : input.value})
+                        let username:any = localStorage.getItem("DeliveryLogIn")
+                        const response = axios.post("/delivery/login",{DeliveryID : username})
                         console.log("Sent Username");
                     }else{
                         alert("Not a Depauw Account");
