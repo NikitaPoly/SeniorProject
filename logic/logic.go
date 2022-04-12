@@ -21,6 +21,7 @@ func LoginOrSignupUser(res http.ResponseWriter, req *http.Request) {
 	userData := make(map[string]string)
 	for key, value := range req.Form {
 		userData[key] = value[0]
+		fmt.Println(value)
 	}
 	fmt.Println("userDataonw")
 	fmt.Println(userData)
