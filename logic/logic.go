@@ -5,6 +5,7 @@ import (
 	"Server/savedb"
 	"Server/send"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 )
 
@@ -17,14 +18,16 @@ func checkIfUserExists(userID string) bool {
 
 //logs in or creates new user for login page
 func LoginOrSignupUser(res http.ResponseWriter, req *http.Request) {
-	req.ParseForm()
+	body, err := ioutil.ReadAll(req.Body)
+	if err != nil {
+		fmt.Println(err)
+	}
 	userData := make(map[string]string)
 	for key, value := range req.Form {
 		userData[key] = value[0]
-		fmt.Println(value)
 	}
 	fmt.Println("userDataonw")
-	fmt.Println(userData)
+	fmt.Println(body)
 	userExistAlready := checkIfUserExists(userData["DeliveryID"])
 	//if user does not exist save the id to db
 	if !userExistAlready {
