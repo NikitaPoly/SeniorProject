@@ -97,7 +97,7 @@ import { WebGLRenderer } from "three";
             if ((e.target as HTMLButtonElement).id == "login") {
                 const loginUsername : string = localStorage.getItem("DeliveryLogIn");
                 animationOverLay.innerHTML = `
-                <button>You have been logged in as ${loginUsername}</button>
+                <h1>You have been logged in as ${loginUsername}</h1>
                 `
                 requestAnimationFrame(doRenderLogin)
             } else {//sign up
@@ -110,15 +110,18 @@ import { WebGLRenderer } from "three";
                 let input : HTMLInputElement = (document.getElementById("inputE") as HTMLInputElement)
                 sendBTN.addEventListener("click",()=>{
                     if (input.value.includes("@depauw.edu")){
-                        let val: string = input.value
+                        let val: string = input.value;
+                        if (localStorage.getItem("DeliveryLogIn") == val){
+                            alert("Account already exists. Please Log in.")
+                            location.reload();
+                        }
                         localStorage.setItem("DeliveryLogIn",val)
                         let username:any = localStorage.getItem("DeliveryLogIn")
                         let sendUsername :any = {
                             DeliveryID : username
                         }
-                        console.log(sendUsername)
-                        const response = axios.post("https://www.polyakov.tech/delivery/login",sendUsername).then(res =>{
-                            console.log(res)
+                        const response = axios.post("https://www.polyakov.tech/delivery/login",sendUsername).then(res =>{    
+                        console.log(res)
                         })
 
                     }else{
