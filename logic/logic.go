@@ -22,7 +22,7 @@ func LoginOrSignupUser(res http.ResponseWriter, req *http.Request) {
 	for key, value := range req.Form {
 		userData[key] = value[0]
 	}
-	fmt.Println(userData)
+	fmt.Println(userData["DeliveryID"])
 	userExistAlready := checkIfUserExists(userData["DeliveryID"])
 	//if user does not exist save the id to db
 	if !userExistAlready {
