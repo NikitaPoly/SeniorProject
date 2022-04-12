@@ -53,5 +53,6 @@ func SaveContact(res http.ResponseWriter, req *http.Request) {
 func CreateNewUser(res http.ResponseWriter, newUserID string) {
 	DataToSave := make(map[string]string)
 	DataToSave["DeliveryID"] = newUserID
+	fmt.Println(DataToSave)
 	dbsaveAction(res, DataToSave, "DeliveryUsers")
 }
