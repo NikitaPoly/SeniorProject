@@ -157,7 +157,7 @@ function GetFinalDetails(order:order){
     order["payment"] = "Venmo"
     order["MYid"] = '_' + Math.random().toString(36).substr(2, 9)
     console.log(order)
-    //SendOrder(order)
+    SendOrder(order)
 }
 function CreateOrder(e:Event){
     let form :HTMLElement  = document.getElementById("orderForm")
