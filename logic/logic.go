@@ -31,3 +31,14 @@ func LoginOrSignupUser(res http.ResponseWriter, req *http.Request) {
 	}
 	send.SendDLogin(res)
 }
+
+//this function is responsible for venting and sending order to the db
+func SaveOrder(res http.ResponseWriter, req *http.Request) {
+	body, err := ioutil.ReadAll(req.Body)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	orderData := string(body)
+	savedb.SaveOrder(res, orderData)
+}

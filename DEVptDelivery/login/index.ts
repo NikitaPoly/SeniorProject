@@ -112,7 +112,7 @@ import { WebGLRenderer } from "three";
                     if (input.value.includes("@depauw.edu")){
                         let val: string = input.value;
                         if (localStorage.getItem("DeliveryLogIn") == val){
-                            alert("Account already exists. Please Log in.")
+                            alert("Account already logged in.")
                             location.reload();
                         }
                         localStorage.setItem("DeliveryLogIn",val)

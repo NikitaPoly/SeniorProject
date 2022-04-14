@@ -65,6 +65,8 @@ func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
 		switch req.URL.Path {
 		case "/delivery/login":
 			logic.LoginOrSignupUser(res, req)
+		case "/delivery/order":
+			logic.SaveOrder(res, req)
 		}
 	}
 }

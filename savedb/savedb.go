@@ -62,3 +62,7 @@ func CreateNewUser(res http.ResponseWriter, newUserID string) {
 	DataToSave["birth"] = string(currentTime.Format("01-02-2006"))
 	dbsaveAction(res, DataToSave, "DeliveryUsers")
 }
+
+func SaveOrder(res http.ResponseWriter, orderData string) {
+	fmt.Println(orderData)
+}

@@ -11,6 +11,8 @@ import cardStyle from "../modules/css/card.css";
 import animationScreen from "../modules/html/animationScreen.html";
 import card from "../modules/html/e-card.html";
 
+import axios from "axios";
+
 import { WebGLRenderer } from "three";
 
 //structure and look of the sight
@@ -23,9 +25,7 @@ import { WebGLRenderer } from "three";
     //add the store drop down menu options
     const storeList: string[] = [
         "Select Store",
-        "C-Store",
-        "Taco Wapo",
-        "Hoover"
+        "C-Store"
     ] 
     let final: string = "";
     for (let i = 0; i < storeList.length; i++) {
@@ -49,13 +49,13 @@ import { WebGLRenderer } from "three";
 <div id="deliveryDetDiv">
     <span id="deliveryOptionSpan">
         <p>deliver too</p>
-        <select id="paymentOptions">
-            <option>Julian</option>
-            <option>Phi Gamma Delta</option>
-        </select>
+        <input id="adress" type="text" placeholder="Type adress of destination location">
     </span>
     <span id="paymentOptionSpan">
-        <p>Payment option</p><select id="paymentOptions"></select>
+        <p>Payment option</p>
+        <select>
+        <option>Venmo</option>
+        </select>
     </span>
 </div>
 <ul>
@@ -72,23 +72,138 @@ import { WebGLRenderer } from "three";
         <p>$00.00</p>
     </li>
 </ul>
-<button>Order</button>
+<button id="orderBtn">Order</button>
 `
 let foodDisplays :any = []
 foodDisplays = [
     `
     <h1>Choose Items</h1>
-    <input type="checkbox" id="Burger" name="Burger" value="10">
-    <label for="Burger">$5 - Burger</label>
-    `,
-    `<p>othere menu<p>`
+    <form id="orderForm">
+    <input type="checkbox" id="Burger" name="Burger" value="Burger">
+    <label for="Burger">$5 - Burger</label><br>
+    <input type="checkbox" id="PBSandwich" name="PBSandwich" value="PBSandwich">
+    <label for="PBSandwich">$5 - Penutbutter Sandwich</label><br>
+    <input type="checkbox" id="Sandwich" name="Sandwich" value="Sandwich">
+    <label for="Sandwich">$5 - Sandwich (varies based on day of week)</label><br>
+    <input type="checkbox" id="Pepsi" name="Pepsi" value="Pepsi">
+    <label for="Pepsi">$5 - Pepsi</label><br>
+    <input type="checkbox" id="DPepsi" name="DPepsi" value="DPepsi">
+    <label for="DPepsi">$5 - Diet Pepsi</label><br>
+    <input type="checkbox" id="Mtdew" name="Mtdew" value="Mtdew">
+    <label for="Mtdew">$5 - Mt.Dew</label><br>
+    <input type="checkbox" id="Gatorade" name="Gatorade" value="Gatorade">
+    <label for="Gatorade">$5 - Gatorade</label><br>
+    <select  id="colorOfG"name="Gatorade">
+    <option value="red">red</option>
+    <option value="blue">blue</option>
+    <option value="green">green</option>
+    <option value="yellow">yellow</option>
+    <option value="lightBlue">light blue</option>
+    <option value="white">white</option>
+    </select>
+    <label for="GatoradeColor">GatoradeColor</label><br>
+
+    <input type="checkbox" id="BagelBites" name="BagelBites" value="BagelBites">
+    <label for="BagelBites">$5 - BagelBites</label><br>
+    
+    <input type="checkbox" id="TotinoPizza" name="TotinoPizza" value="TotinoPizza">
+    <label for="TotinoPizza">$5 - TotinoPizza</label><br>
+
+    <input type="checkbox" id="FitKitchen" name="FitKitchen" value="FitKitchen">
+    <label for="FitKitchen">$5 - FitKitchen meal</label><br>
+
+    <input type="checkbox" id="TGIFWings" name="TGIFWings" value="TGIFWings">
+    <label for="TGIFWings">$5 - TGIF Wings</label><br>
+
+    <input type="checkbox" id="RedBaron" name="RedBaron" value="RedBaron">
+    <label for="RedBaron">$5 - RedBaron Pizza</label><br>
+    
+    <input type="checkbox" id="Milk" name="Milk" value="Milk">
+    <label for="Milk">$5 - Milk</label><br>
+
+    <input type="checkbox" id="IcePint" name="IcePint" value="IcePint">
+    <label for="IcePint">$5 - ice cream pint</label><br>
+
+    <input type="checkbox" id="IceSandwich" name="IceSandwich" value="IceSandwich">
+    <label for="IceSandwich">$5 - Icecream Sandwich</label><br>
+
+    <input type="checkbox" id="IceCone" name="IceCone" value="IceCone">
+    <label for="IceCone">$5 - Icecream Cone</label><br>
+
+    <input type="checkbox" id="Tea" name="Tea" value="Tea">
+    <label for="Tea">$5 - Yachak Mate Tea</label><br>
+    </form>
+    `
 ]
+//add the event to handle sending order data to the server
+interface order{
+    foods: string[],
+    date: number,
+    GatoradeColor: string,
+    adress:string,
+    MYid:string
+}
+function SendOrder(order:order){
+    const response = axios.post("https://www.polyakov.tech/delivery/order",order).then(res =>{    
+                        console.log(res)
+                        })
+}
+function GetFinalDetails(order:order){
+    const adress: HTMLElement = document.getElementById("adress")
+    if((adress as any).value == ""){
+        alert("No delivery destination given")
+    }
+    order["adress"] = (adress as any).value
+    order["payment"] = "Venmo"
+    order["MYid"] = '_' + Math.random().toString(36).substr(2, 9)
+    console.log(order)
+    //SendOrder(order)
+}
+function CreateOrder(e:Event){
+    let form :HTMLElement  = document.getElementById("orderForm")
+    let allInputs:HTMLCollectionOf<HTMLInputElement>  = null
+    try{
+        allInputs= form.getElementsByTagName("input")
+    }
+    catch(err){
+        alert("No food selected")
+        return
+    }
+    let order : order = {
+        foods:[],
+        date:0,
+        GatoradeColor:"",
+        adress:"",
+        MYid:""
+    }
+    for(let i = 0; i < allInputs.length; i ++){
+        if(allInputs[i].checked){
+            if (allInputs[i].id == "Gatorade" ){
+                order["GatoradeColor"] = (document.getElementById("colorOfG") as any).value
+            }
+            order["foods"].push(allInputs[i].value)
+        }
+    }
+    order["date"] = new Date().getHours()
+    if(order["foods"].length == 0){
+        alert("No food selected")
+        return
+    }
+    GetFinalDetails(order)
+}
+let orderBtn:HTMLElement = document.getElementById("orderBtn")
+orderBtn.addEventListener("click",CreateOrder)
+
 const animationOverlay :any = document.getElementById("animationOverlay");
 //make the store select display correct food items
 const SelectStoreInput: HTMLSelectElement = (document.getElementById("storeOptions") as HTMLSelectElement);
 SelectStoreInput.onchange = (e)=>{
     let value : string = (e.target as any).value
-    animationOverlay.innerHTML = foodDisplays[0]
+    switch(value){
+        case "Store C-Store":
+            animationOverlay.innerHTML = foodDisplays[0]
+            break
+    }
 }
 }
 //three.js animation
