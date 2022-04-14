@@ -64,5 +64,7 @@ func CreateNewUser(res http.ResponseWriter, newUserID string) {
 }
 
 func SaveOrder(res http.ResponseWriter, orderData string) {
-	fmt.Println(orderData)
+	dataToSave := make(map[string]string)
+	dataToSave["order"] = orderData
+	dbsaveAction(res, dataToSave, "Orders")
 }
