@@ -141,7 +141,8 @@ interface order{
     date: number,
     GatoradeColor: string,
     adress:string,
-    MYid:string
+    MYid:string,
+    userEmail:string
 }
 function SendOrder(order:order){
     const response = axios.post("https://www.polyakov.tech/delivery/order",order).then(res =>{    
@@ -156,6 +157,7 @@ function GetFinalDetails(order:order){
     order["adress"] = (adress as any).value
     order["payment"] = "Venmo"
     order["MYid"] = '_' + Math.random().toString(36).substr(2, 9)
+    order["userEmail"] = localStorage.getItem("DeliveryLogIn")
     console.log(order)
     SendOrder(order)
 }
@@ -174,7 +176,8 @@ function CreateOrder(e:Event){
         date:0,
         GatoradeColor:"",
         adress:"",
-        MYid:""
+        MYid:"",
+        userEmail:""
     }
     for(let i = 0; i < allInputs.length; i ++){
         if(allInputs[i].checked){

@@ -45,3 +45,7 @@ func GetUserInfo(GUserID string) []bson.M {
 	fmt.Println(userDataFinal)
 	return userDataFinal
 }
+
+//func getOrdersForUser(userEmail string) []bson.M {
+
+//}

@@ -3,6 +3,7 @@ package savedb
 import (
 	"Server/send"
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"time"
@@ -64,7 +65,7 @@ func CreateNewUser(res http.ResponseWriter, newUserID string) {
 }
 
 func SaveOrder(res http.ResponseWriter, orderData string) {
-	dataToSave := make(map[string]string)
-	dataToSave["order"] = orderData
+	var dataToSave map[string]string
+	json.Unmarshal(([]byte(orderData)), &dataToSave)
 	dbsaveAction(res, dataToSave, "Orders")
 }
