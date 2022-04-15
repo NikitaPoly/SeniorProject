@@ -83,15 +83,16 @@ import {WebGLRenderer} from "three";
     }
     //get the canvas for three.js and attach its appearance to the correct button
     function checkIfThereAreOrders(res){
+        const overlay:HTMLElement =  document.getElementById("animationOverlay")
         if(res.status == 201){
-            const overlay:HTMLElement =  document.getElementById("animationOverlay")
             overlay.innerHTML = `
             <h2>No Orders at this time, check back soon</h2>
             <p id="tip">(Refresh in 10 mins to check if new orders are submited)</p>
             `
             return
         }
-        console.log(res)
+        console.log(res.data)
+        overlay.innerHTML = res.data
     }
     document.getElementById("animationStartButton").addEventListener("click",()=>{
         requestAnimationFrame(doRender);
