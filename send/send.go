@@ -118,3 +118,8 @@ func SendThankyouforPost(res http.ResponseWriter) {
 	res.WriteHeader(http.StatusAccepted)
 	res.Write(file)
 }
+
+//send a 201 order not found/ order complete
+func OrderNotFound(res http.ResponseWriter) {
+	res.WriteHeader(201)
+}
