@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"time"
 
+	"Server/vendor/go.mongodb.org/mongo-driver/bson/primitive"
+
 	"go.mongodb.org/mongo-driver/bson"
 
 	"go.mongodb.org/mongo-driver/mongo"
@@ -81,7 +83,7 @@ func GetUserOrder(orderID map[string]string) []bson.M {
 }
 
 //returns nil or a list of orders
-func GetAllOrders(res http.ResponseWriter, req *http.Request) interface{} {
+func GetAllOrders(res http.ResponseWriter, req *http.Request) []primitive.M {
 	//get client for mongodb
 	client, err := mongo.NewClient(options.Client().ApplyURI(mongoURI))
 	if err != nil {
