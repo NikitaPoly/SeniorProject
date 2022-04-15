@@ -14,7 +14,7 @@ import (
 
 const mongoURI = "mongodb+srv://PolyakovDOTTech:Secure@polyakovtechdb.n6fvv.mongodb.net/PolyakovTechDB?retryWrites=true&w=majority"
 
-func dbsaveAction(res http.ResponseWriter, data map[string]string, DBNAME string) {
+func dbsaveAction(res http.ResponseWriter, data map[string]interface{}, DBNAME string) {
 	//get client for mongodb
 	client, err := mongo.NewClient(options.Client().ApplyURI(mongoURI))
 	if err != nil {
@@ -42,7 +42,7 @@ func dbsaveAction(res http.ResponseWriter, data map[string]string, DBNAME string
 
 func SaveContact(res http.ResponseWriter, req *http.Request) {
 	req.ParseForm()
-	dataToSave := make(map[string]string)
+	dataToSave := make(map[string]interface{})
 	for key, value := range req.Form {
 		dataToSave[key] = value[0]
 	}
@@ -52,7 +52,7 @@ func SaveContact(res http.ResponseWriter, req *http.Request) {
 
 //this function creates and saves new user
 func CreateNewUser(res http.ResponseWriter, newUserID string) {
-	DataToSave := make(map[string]string)
+	DataToSave := make(map[string]interface{})
 
 	DataToSave["DeliveryID"] = newUserID[15 : len(newUserID)-2]
 	DataToSave["Balance"] = "0"
@@ -67,7 +67,7 @@ func CreateNewUser(res http.ResponseWriter, newUserID string) {
 func SaveOrder(res http.ResponseWriter, orderData string) {
 	fmt.Println("before")
 	fmt.Println(orderData)
-	var dataToSave map[string]string
+	var dataToSave map[string]interface{}
 	json.Unmarshal(([]byte(orderData)), &dataToSave)
 	fmt.Println("dataTosave:")
 	fmt.Println(dataToSave)
