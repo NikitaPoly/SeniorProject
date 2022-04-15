@@ -138,7 +138,6 @@ foodDisplays = [
 //add the event to handle sending order data to the server
 interface order{
     foods: string[],
-    date: number,
     GatoradeColor: string,
     adress:string,
     MYid:string,
@@ -210,7 +209,6 @@ function CreateOrder(e:Event){
     }
     let order : order = {
         foods:[],
-        date:0,
         GatoradeColor:"",
         adress:"",
         MYid:"",
@@ -224,7 +222,6 @@ function CreateOrder(e:Event){
             order["foods"].push(allInputs[i].value)
         }
     }
-    order["date"] = new Date().getHours()
     if(order["foods"].length == 0){
         alert("No food selected")
         return
