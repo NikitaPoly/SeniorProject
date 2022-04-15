@@ -46,6 +46,35 @@ func GetUserInfo(GUserID string) []bson.M {
 	return userDataFinal
 }
 
-//func getOrdersForUser(userEmail string) []bson.M {
+//gets the order of user
+func GetUserOrder(orderID map[string]string) []bson.M {
+	//get client for mongodb
+	client, err := mongo.NewClient(options.Client().ApplyURI(mongoURI))
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	//connext to mongodb using client with 10 second timeout limit
+	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+	if err = client.Connect(ctx); err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	defer client.Disconnect(ctx)
 
-//}
+	PolyakovTechDB := client.Database("PolyakovTechDB")
+	DB := PolyakovTechDB.Collection("Orders")
+
+	cursor, err := DB.Find(ctx, bson.M{"MYid": orderID["orderID"]})
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	var orderData []bson.M
+	if err = cursor.All(ctx, &orderData); err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	fmt.Println(orderData)
+	return orderData
+}

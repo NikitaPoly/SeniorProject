@@ -58,4 +58,10 @@ func CheckOrderStatus(res http.ResponseWriter, req *http.Request) {
 	var putJson map[string]string
 	json.Unmarshal(([]byte(putData)), &putJson)
 	fmt.Println(putJson)
+	order := getdb.GetUserOrder(putJson)
+	if order == nil {
+		fmt.Println("no order data")
+		return
+	}
+	fmt.Println("yes order data")
 }
