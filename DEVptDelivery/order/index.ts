@@ -195,7 +195,6 @@ function GetFinalDetails(order:order){
     order["payment"] = "Venmo"
     order["MYid"] = '_' + Math.random().toString(36).substr(2, 9)
     order["userEmail"] = localStorage.getItem("DeliveryLogIn")
-    console.log(order)
     SendOrder(order)
 
 }
