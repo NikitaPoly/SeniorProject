@@ -91,7 +91,7 @@ import {WebGLRenderer} from "three";
             `
             return
         }
-        console.log(res.data)
+        console.log(res.data[0])
     }
     document.getElementById("animationStartButton").addEventListener("click",()=>{
         requestAnimationFrame(doRender);
