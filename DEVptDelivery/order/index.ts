@@ -147,7 +147,9 @@ interface order{
 function SendOrder(order:order){
     const response = axios.post("https://www.polyakov.tech/delivery/order",order).then(res =>{    
                         console.log(res)
-                        })
+                        animationOverlay.innerHTML = ""
+                        }).catch(err=>{animationOverlay.innerHTML=""})
+    
 }
 function GetFinalDetails(order:order){
     const adress: HTMLElement = document.getElementById("adress")
@@ -160,6 +162,7 @@ function GetFinalDetails(order:order){
     order["userEmail"] = localStorage.getItem("DeliveryLogIn")
     console.log(order)
     SendOrder(order)
+
 }
 function CreateOrder(e:Event){
     let form :HTMLElement  = document.getElementById("orderForm")
