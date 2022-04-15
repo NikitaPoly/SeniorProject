@@ -2,6 +2,7 @@ package routers
 
 import (
 	"Server/getResource"
+	"Server/getdb"
 	"Server/logging"
 	"Server/logic"
 	"Server/savedb"
@@ -72,6 +73,8 @@ func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
 		switch req.URL.Path {
 		case "/delivery/order":
 			logic.CheckOrderStatus(res, req)
+		case "/delivery/earn":
+			getdb.GetAllOrders(res, req)
 		}
 	}
 }

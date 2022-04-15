@@ -193,6 +193,7 @@ function GetFinalDetails(order:order){
     order["adress"] = (adress as any).value
     order["payment"] = "Venmo"
     order["MYid"] = '_' + Math.random().toString(36).substr(2, 9)
+    localStorage.setItem("orderID",order["MYid'"])
     order["userEmail"] = localStorage.getItem("DeliveryLogIn")
     SendOrder(order)
 

@@ -12,6 +12,8 @@ import animationDivC from "../modules/html/animationScreen.html";
 import statsTableC from "../modules/html/statsTable.html";
 import card from "../modules/html/e-card.html";
 
+import axios from "axios";
+
 import {WebGLRenderer} from "three";
 
 //respinsible for the html css
@@ -82,7 +84,16 @@ import {WebGLRenderer} from "three";
     //get the canvas for three.js and attach its appearance to the correct button
     document.getElementById("animationStartButton").addEventListener("click",()=>{
         requestAnimationFrame(doRender);
-        document.getElementById("animationOverlay").style.display = "none";
+        const overlay:HTMLElement =  document.getElementById("animationOverlay")
+        overlay.innerHTML = "<h2>Pick a delivery</h2>";
+        overlay.style.color = "white"
+        const email :any = localStorage.getItem("DeliveryLogIn")
+        const dataTosend : any = {
+            email:email,
+        }
+        const response = axios.put("https://www.polyakov.tech/delivery/earn",dataTosend)
+        .then(res=>console.log(res)).catch(err=>console.log(err))
+        
     });
     const {
         canvas,
