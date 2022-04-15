@@ -41,6 +41,8 @@ func SaveOrder(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 	orderData := string(body)
+	fmt.Println("oder data")
+	fmt.Println(orderData)
 	savedb.SaveOrder(res, orderData)
 }
 
