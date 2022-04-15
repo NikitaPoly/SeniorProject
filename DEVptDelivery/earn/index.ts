@@ -89,7 +89,7 @@ import {WebGLRenderer} from "three";
         overlay.style.color = "white"
         const email :any = localStorage.getItem("DeliveryLogIn")
         const dataTosend : any = {
-            email:email,
+            email:email
         }
         const response = axios.put("https://www.polyakov.tech/delivery/earn",dataTosend)
         .then(res=>console.log(res)).catch(err=>console.log(err))
