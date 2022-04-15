@@ -7,6 +7,7 @@ import (
 	"Server/logic"
 	"Server/savedb"
 	"Server/send"
+	"Server/vendor/go.mongodb.org/mongo-driver/bson"
 	"fmt"
 	"net/http"
 	"strings"
@@ -74,14 +75,15 @@ func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
 		case "/delivery/order":
 			logic.CheckOrderStatus(res, req)
 		case "/delivery/earn":
-			OrdersData := getdb.GetAllOrders(res, req)
+			var OrdersData []bson.M = getdb.GetAllOrders(res, req)
 			if OrdersData == nil {
 				//no orders
 				res.WriteHeader(201)
 				return
 			}
 			res.WriteHeader(http.StatusOK)
-			fmt.Println(OrdersData)
+			bsonStuff, _ := bson.Marshal(OrdersData)
+			res.Write(bsonStuff)
 		}
 	}
 }
