@@ -84,7 +84,7 @@ func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
 			}
 			res.WriteHeader(http.StatusOK)
 			bsonStuff, _ := bson.Marshal(OrdersData)
-			fmt.Println(string(bsonStuff))
+			fmt.Println(bsonStuff)
 			res.Write(bsonStuff)
 		}
 	}
