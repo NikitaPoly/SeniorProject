@@ -16,7 +16,9 @@
     "build-p": "webpack --config ./webpack.build.js",
     "run-f": "npx webpack serve",
     "run-b": "go run main.go",
-    "build-b": "go build -o ./bin ./main.go "
+    "build-b": "go build -o ./bin ./main.go ",
+    "buildAll" : "webpack --config ./webpack.build.js",
+    "postbuildAll":"node ./buildScript.js"
   },
   "repository": {
     "type": "git",
