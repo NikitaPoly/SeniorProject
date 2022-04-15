@@ -91,7 +91,16 @@ import {WebGLRenderer} from "three";
             `
             return
         }
-        console.log(res.data[0]["MYid"])
+        for(let i = 0; i < res.data.length;i++){
+            let thisData = res.data[i]
+            let element = `
+            <div id="${thisData["MYid"]}">
+                    <p>Delivery to : ${thisData["adress"]}</p>
+                    <p>Items requested : ${thisData["foods"]}
+            </div>
+            ` 
+            overlay.innerHTML += element
+        }
     }
     document.getElementById("animationStartButton").addEventListener("click",()=>{
         requestAnimationFrame(doRender);
