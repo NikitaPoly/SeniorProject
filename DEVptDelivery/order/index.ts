@@ -159,6 +159,7 @@ function SendOrder(order:order){
                                     <p id="tip">(Look outside all doors of your building)</p>
                                 </div>
                                     `
+                                    clearInterval(timer)
                                 }
                                 else{
                                     const statusDisplay : HTMLElement = document.getElementById("statush2")

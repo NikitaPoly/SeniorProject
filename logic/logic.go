@@ -4,6 +4,7 @@ import (
 	"Server/getdb"
 	"Server/savedb"
 	"Server/send"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -49,5 +50,8 @@ func CheckOrderStatus(res http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(body)
+	putData := string(body)
+	var putJson map[string]string
+	json.Unmarshal(([]byte(putData)), &putJson)
+	fmt.Println(putJson)
 }
