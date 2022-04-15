@@ -66,7 +66,6 @@ func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
 		case "/delivery/login":
 			logic.LoginOrSignupUser(res, req)
 		case "/delivery/order":
-			fmt.Println("order POST")
 			logic.SaveOrder(res, req)
 		}
 	} else if req.Method == "PUT" {

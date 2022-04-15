@@ -41,6 +41,10 @@ func SaveOrder(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 	orderData := string(body)
+	//write here
+	var dataToSave map[string]string
+	json.Unmarshal(([]byte(orderData)), &dataToSave)
+
 	fmt.Println("oder data")
 	fmt.Println(orderData)
 	savedb.SaveOrder(res, orderData)
@@ -50,7 +54,6 @@ func SaveOrder(res http.ResponseWriter, req *http.Request) {
 func CheckOrderStatus(res http.ResponseWriter, req *http.Request) {
 	body, err := ioutil.ReadAll(req.Body)
 	fmt.Println("body is")
-	fmt.Println(body)
 	if err != nil {
 		fmt.Println(err)
 	}
