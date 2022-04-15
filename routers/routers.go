@@ -75,7 +75,7 @@ func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
 			logic.CheckOrderStatus(res, req)
 		case "/delivery/earn":
 			OrdersData := getdb.GetAllOrders(res, req)
-			fmt.Println(string(OrdersData))
+			fmt.Println(OrdersData == nil)
 			if OrdersData == nil {
 				//no orders
 				res.WriteHeader(201)
