@@ -10,8 +10,6 @@ import (
 	"fmt"
 	"net/http"
 	"strings"
-
-	"go.mongodb.org/mongo-driver/bson"
 )
 
 //handles all routing of the main pt page
@@ -76,7 +74,7 @@ func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
 		case "/delivery/order":
 			logic.CheckOrderStatus(res, req)
 		case "/delivery/earn":
-			var OrdersData []bson.M = getdb.GetAllOrders(res, req)
+			OrdersData := getdb.GetAllOrders(res, req)
 			if OrdersData == nil {
 				//no orders
 				res.WriteHeader(201)
@@ -84,11 +82,7 @@ func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
 			}
 			res.WriteHeader(http.StatusOK)
 			fmt.Println(OrdersData)
-			temp, err := bson.Marshal(OrdersData)
-			if err != nil {
-				fmt.Println(err)
-			}
-			res.Write(temp)
+			res.Write(OrdersData)
 		}
 	}
 }

@@ -2,6 +2,7 @@ package getdb
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"time"
@@ -81,7 +82,7 @@ func GetUserOrder(orderID map[string]string) []bson.M {
 }
 
 //returns nil or a list of orders
-func GetAllOrders(res http.ResponseWriter, req *http.Request) []bson.M {
+func GetAllOrders(res http.ResponseWriter, req *http.Request) []byte {
 	//get client for mongodb
 	client, err := mongo.NewClient(options.Client().ApplyURI(mongoURI))
 	if err != nil {
@@ -109,5 +110,6 @@ func GetAllOrders(res http.ResponseWriter, req *http.Request) []bson.M {
 		fmt.Println(err)
 		return nil
 	}
-	return orderData
+	final, _ := json.Marshal(orderData)
+	return final
 }
