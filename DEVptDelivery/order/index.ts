@@ -145,6 +145,7 @@ interface order{
     userEmail:string
 }
 function SendOrder(order:order){
+    console.log(order)
     const response = axios.post("https://www.polyakov.tech/delivery/order",order).then(res =>{    
                         console.log(res)
                         let timer = setInterval(()=>{
