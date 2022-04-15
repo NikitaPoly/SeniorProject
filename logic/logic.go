@@ -47,6 +47,8 @@ func SaveOrder(res http.ResponseWriter, req *http.Request) {
 //responsible for checking the status of an order and return the correct response 201 for complete and 200 for in progress
 func CheckOrderStatus(res http.ResponseWriter, req *http.Request) {
 	body, err := ioutil.ReadAll(req.Body)
+	fmt.Println("body is")
+	fmt.Println(body)
 	if err != nil {
 		fmt.Println(err)
 	}
