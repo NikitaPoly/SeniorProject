@@ -91,8 +91,10 @@ import {WebGLRenderer} from "three";
             `
             return
         }
-        console.log(res.data)
-        overlay.innerHTML = res.data
+        overlay.innerHTML =``
+        for(let i = 0; i > res.data.length;i++){
+            overlay.innerHTML +=  res.data[i]
+        }
     }
     document.getElementById("animationStartButton").addEventListener("click",()=>{
         requestAnimationFrame(doRender);
