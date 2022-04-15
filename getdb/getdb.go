@@ -109,6 +109,5 @@ func GetAllOrders(res http.ResponseWriter, req *http.Request) interface{} {
 		fmt.Println(err)
 		return nil
 	}
-	fmt.Println(orderData)
 	return orderData
 }

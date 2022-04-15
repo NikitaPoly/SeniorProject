@@ -82,6 +82,17 @@ import {WebGLRenderer} from "three";
         requestAnimationFrame(doRender);
     }
     //get the canvas for three.js and attach its appearance to the correct button
+    function checkIfThereAreOrders(res){
+        if(res.status == 201){
+            const overlay:HTMLElement =  document.getElementById("animationOverlay")
+            overlay.innerHTML = `
+            <h2>No Orders at this time, check back soon</h2>
+            <p id="tip">(Refresh in 10 mins to check if new orders are submited)</p>
+            `
+            return
+        }
+        console.log(res)
+    }
     document.getElementById("animationStartButton").addEventListener("click",()=>{
         requestAnimationFrame(doRender);
         const overlay:HTMLElement =  document.getElementById("animationOverlay")
@@ -92,7 +103,7 @@ import {WebGLRenderer} from "three";
             email:email
         }
         const response = axios.put("https://www.polyakov.tech/delivery/earn",dataTosend)
-        .then(res=>console.log(res)).catch(err=>console.log(err))
+        .then(checkIfThereAreOrders).catch(err=>console.log(err))
         
     });
     const {

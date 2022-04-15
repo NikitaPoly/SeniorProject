@@ -74,8 +74,14 @@ func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
 		case "/delivery/order":
 			logic.CheckOrderStatus(res, req)
 		case "/delivery/earn":
-			fmt.Println("in put")
-			getdb.GetAllOrders(res, req)
+			OrdersData := getdb.GetAllOrders(res, req)
+			if OrdersData == nil {
+				//no orders
+				res.WriteHeader(201)
+				return
+			}
+			res.WriteHeader(http.StatusOK)
+			fmt.Println(OrdersData)
 		}
 	}
 }
