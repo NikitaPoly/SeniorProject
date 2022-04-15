@@ -7,10 +7,11 @@ import (
 	"Server/logic"
 	"Server/savedb"
 	"Server/send"
-	"Server/vendor/go.mongodb.org/mongo-driver/bson"
 	"fmt"
 	"net/http"
 	"strings"
+
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 //handles all routing of the main pt page
