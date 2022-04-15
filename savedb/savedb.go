@@ -65,6 +65,8 @@ func CreateNewUser(res http.ResponseWriter, newUserID string) {
 }
 
 func SaveOrder(res http.ResponseWriter, orderData string) {
+	fmt.Println("before")
+	fmt.Println(orderData)
 	var dataToSave map[string]string
 	json.Unmarshal(([]byte(orderData)), &dataToSave)
 	fmt.Println("dataTosave:")

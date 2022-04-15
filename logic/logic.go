@@ -44,9 +44,6 @@ func SaveOrder(res http.ResponseWriter, req *http.Request) {
 	//write here
 	var dataToSave map[string]string
 	json.Unmarshal(([]byte(orderData)), &dataToSave)
-
-	fmt.Println("oder data")
-	fmt.Println(orderData)
 	savedb.SaveOrder(res, orderData)
 }
 
