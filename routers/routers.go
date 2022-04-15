@@ -69,6 +69,11 @@ func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
 			fmt.Println("order POST")
 			logic.SaveOrder(res, req)
 		}
+	} else if req.Method == "PUT" {
+		switch req.URL.Path {
+		case "/delivery/order":
+			logic.CheckOrderStatus(res, req)
+		}
 	}
 }
 func PublicRouter(res http.ResponseWriter, req *http.Request) {

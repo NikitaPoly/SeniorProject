@@ -147,8 +147,41 @@ interface order{
 function SendOrder(order:order){
     const response = axios.post("https://www.polyakov.tech/delivery/order",order).then(res =>{    
                         console.log(res)
-                        animationOverlay.innerHTML = ""
-                        }).catch(err=>{animationOverlay.innerHTML=""})
+                        let timer = setInterval(()=>{
+                            axios.put("https://www.polyakov.tech/delivery/order",{
+                                orderID : order["MYid"]
+                            }).then((res)=>{
+                                if (res.status == 201){
+                                    const statusDisplay : HTMLElement = document.getElementById("statush2")
+                                    statusDisplay.innerHTML = `
+                                    <div id="DeliveryStatus">
+                                        <h2 id="statush2">Status:Delivery Done</h2>
+                                    <p id="tip">(Look outside all doors of your building)</p>
+                                </div>
+                                    `
+                                }
+                                else{
+                                    const statusDisplay : HTMLElement = document.getElementById("statush2")
+                                    var today = new Date();
+                                    const currentTime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                                    statusDisplay.innerHTML = `
+                                    <div id="DeliveryStatus">
+                                        <h2 id="statush2">Status:Delivery Done</h2>
+                                    <p id="tip">(Last update at ${currentTime})</p>
+                                </div>
+                                `
+                                    
+                                }
+                            })
+                        },60000)
+                        animationOverlay.innerHTML = `
+                            <div id="DeliveryStatus">
+                                <h2 id="statush2">Status: Delivery in progress</h2>
+                                <p id="tip">(Status will be update once your order has been dropped off)</p>
+                            </div>
+                        `
+                        
+                        }).catch(err=>{animationOverlay.innerHTML="<h2>Sorry Erro Occurred,Try Again</h2>"})
     
 }
 function GetFinalDetails(order:order){
