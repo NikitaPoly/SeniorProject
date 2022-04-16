@@ -11,6 +11,8 @@ import settings from "../modules/html/settings.html";
 import userDataDisplayC from "../modules/html/userDataDisplay.html";
 import card from "../modules/html/e-card.html";
 
+import axios from "axios";
+
 console.log(defaultStyle, navStyle, footerStyle, mainStyle,cardStyle);
 defaults.defaults();
 navfuncs.default.setActive("settings");
@@ -75,6 +77,7 @@ function displayCorrectUserData(event: MouseEvent) {
     //depending on what button was pressed populate with spesific 
     switch ((event.target as HTMLParagraphElement).id) {
         case options[0]:
+
             stats = [
                 "Available Ballance",
                 "Total Earned",
@@ -82,6 +85,8 @@ function displayCorrectUserData(event: MouseEvent) {
                 "Orders Made"
             ]
             populateStatLables();
+            const email = localStorage.getItem("DeliveryLogIn")
+            axios.put("https://www.polyakov.tech/delivery/settings")
             results = [
                 "$00.00",
                 "$00.00",
