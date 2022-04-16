@@ -122,6 +122,9 @@ import { WebGLRenderer } from "three";
                         }
                         const response = axios.post("https://www.polyakov.tech/delivery/login",sendUsername).then(res =>{    
                         console.log(res)
+                        animationOverLay.innerHTML = `
+                            <h1>User created/ logged in</h1>
+                        `
                         })
 
                     }else{

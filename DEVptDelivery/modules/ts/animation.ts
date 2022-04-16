@@ -7,7 +7,6 @@ interface sceneReturnValue {
     camera: PerspectiveCamera,
     cube: Mesh
 }
-
 function setupScene() {
     const canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
     const scene = new Scene();
@@ -25,7 +24,7 @@ function setupScene() {
     const boxDepth = 1;
     const geometry = new BoxGeometry(boxWidth, boxHeight, boxDepth);
     //material for box
-    const material = new MeshBasicMaterial({ color: 0x44aa88 });
+    const material = new MeshBasicMaterial({ color: 0x0E48C5 });
     //make the box
     const cube = new Mesh(geometry, material);
     //add box to scene
