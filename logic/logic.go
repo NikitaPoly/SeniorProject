@@ -73,7 +73,7 @@ func CheckLogin(res http.ResponseWriter, req *http.Request) {
 	putData := string(body)
 	var putJson map[string]string
 	json.Unmarshal(([]byte(putData)), &putJson)
-
+	fmt.Println("here")
 	userData := getdb.GetUserInfo(putJson["DelvieryID"])
 	userJson, _ := json.Marshal(userData)
 	fmt.Println(userJson)

@@ -93,7 +93,6 @@ import { WebGLRenderer } from "three";
             //restet the screen
             let animationOverLay: HTMLElement = document.getElementById("animationOverlay")
             animationOverLay.innerHTML = ``
-            console.log((e.target as HTMLButtonElement).id)
             if ((e.target as HTMLButtonElement).id == "login") {
                 animationOverLay.innerHTML = `
                 <input type="text" id="email" placeholder="DePauw Email"><br>
@@ -114,6 +113,7 @@ import { WebGLRenderer } from "three";
                             }
                             localStorage.setItem("DeliveryLogIn",email)
                             alert("you have been logged in")
+                            console.log(res)
                         })
                         return
                     }

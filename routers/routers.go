@@ -75,6 +75,7 @@ func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
 			logic.CheckOrderStatus(res, req)
 		case "/delivery/earn":
 			OrdersData := getdb.GetAllOrders(res, req)
+			fmt.Println(OrdersData)
 			if string(OrdersData) == "null" {
 				//no orders
 				res.WriteHeader(201)
@@ -83,6 +84,7 @@ func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
 			res.WriteHeader(http.StatusOK)
 			res.Write(OrdersData)
 		case "delivery/login":
+			fmt.Println("yes")
 			logic.CheckLogin(res, req)
 		case "/delivery/settings":
 			send.SendUserData(res, req)
