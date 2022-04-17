@@ -14,6 +14,7 @@ import card from "../modules/html/e-card.html";
 import axios from "axios";
 
 import { WebGLRenderer } from "three";
+let MyCube:any = ""
 
 //structure and look of the sight
 {
@@ -145,10 +146,10 @@ interface order{
 }
 function SendOrder(order:order){
     console.log(order)
-    const response = axios.post("https://www.polyakov.tech/delivery/order",order).then(res =>{    
+    const response = axios.post("./delivery/order",order).then(res =>{    
                         console.log(res)
                         let timer = setInterval(()=>{
-                            axios.put("https://www.polyakov.tech/delivery/order",{
+                            axios.put("./delivery/order",{
                                 orderID : order["MYid"]
                             }).then((res)=>{
                                 if (res.status == 201){
@@ -159,6 +160,7 @@ function SendOrder(order:order){
                                     <p id="tip">(Look outside all doors of your building)</p>
                                 </div>
                                     `
+                                    MyCube.material.color.setHex(0x71e307)
                                     clearInterval(timer)
                                 }
                                 else{
@@ -171,7 +173,7 @@ function SendOrder(order:order){
                                     <p id="tip">(Last update at ${currentTime})</p>
                                 </div>
                                 `
-                                    
+                                MyCube.material.color.setHex(0x000000)
                                 }
                             })
                         },60000)
@@ -182,13 +184,14 @@ function SendOrder(order:order){
                             </div>
                         `
                         
-                        }).catch(err=>{animationOverlay.innerHTML="<h2>Sorry Erro Occurred,Try Again</h2>"})
+                        }).catch(err=>{animationOverlay.innerHTML="<h2>Sorry Error Occurred,Try Again</h2>"})
     
 }
 function GetFinalDetails(order:order){
     const adress: HTMLElement = document.getElementById("adress")
     if((adress as any).value == ""){
         alert("No delivery destination given")
+        return
     }
     order["adress"] = (adress as any).value
     order["payment"] = "Venmo"
@@ -240,6 +243,7 @@ SelectStoreInput.onchange = (e)=>{
     switch(value){
         case "Store C-Store":
             animationOverlay.innerHTML = foodDisplays[0]
+            MyCube.material.color.setHex(0xe30909)
             break
     }
 }
@@ -277,6 +281,7 @@ SelectStoreInput.onchange = (e)=>{
             camera,
             cube
         } = myThree.default.setupScene();
+        MyCube = cube
         //render the picture
         requestAnimationFrame(doRender);
     }

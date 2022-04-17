@@ -107,7 +107,7 @@ import { WebGLRenderer } from "three";
                     const email = (document.getElementById("email")as any).value
                     const password = (document.getElementById("password") as any).value
                     if(email && password){
-                        axios.put("https://www.polyakov.tech/delivery/login",{"email":email,"password":password}).then(res=>{
+                        axios.put("./delivery/login",{"email":email,"password":password}).then(res=>{
                             if(res.status == 201){
                                 alert("account can not be found")
                                 return
@@ -146,7 +146,7 @@ import { WebGLRenderer } from "three";
                             DeliveryID : username,
                             Password : password.value
                         }
-                        const response = axios.post("https://www.polyakov.tech/delivery/login",sendUsername).then(res =>{    
+                        const response = axios.post("./delivery/login",sendUsername).then(res =>{    
                         console.log(res)
                         animationOverLay.innerHTML = `
                             <h1>User created/ logged in</h1>

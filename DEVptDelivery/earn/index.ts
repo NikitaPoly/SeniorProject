@@ -111,7 +111,7 @@ import {WebGLRenderer} from "three";
         const dataTosend : any = {
             email:email
         }
-        const response = axios.put("https://www.polyakov.tech/delivery/earn",dataTosend)
+        const response = axios.put("./delivery/earn",dataTosend)
         .then(checkIfThereAreOrders).catch(err=>console.log(err))
         
     });
