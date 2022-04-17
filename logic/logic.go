@@ -63,3 +63,18 @@ func CheckOrderStatus(res http.ResponseWriter, req *http.Request) {
 	}
 	res.WriteHeader(http.StatusOK)
 }
+
+//check if user exists and passwords match
+func CheckLogin(res http.ResponseWriter, req *http.Request) {
+	body, err := ioutil.ReadAll(req.Body)
+	if err != nil {
+		fmt.Println(err)
+	}
+	putData := string(body)
+	var putJson map[string]string
+	json.Unmarshal(([]byte(putData)), &putJson)
+
+	userData := getdb.GetUserInfo(putJson["DelvieryID"])
+	userJson, _ := json.Marshal(userData)
+	fmt.Println(userJson)
+}

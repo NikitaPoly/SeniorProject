@@ -2,6 +2,8 @@ package send
 
 import (
 	"Server/getResource"
+	"Server/getdb"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -122,4 +124,24 @@ func SendThankyouforPost(res http.ResponseWriter) {
 //send a 201 order not found/ order complete
 func OrderNotFound(res http.ResponseWriter) {
 	res.WriteHeader(201)
+}
+
+func SendUserData(res http.ResponseWriter, req *http.Request) {
+	body, err := ioutil.ReadAll(req.Body)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(body)
+	userInfo := getdb.GetUserInfo(string(body))
+	if len(userInfo) == 0 {
+		fmt.Println("no user with id : ")
+		fmt.Println(string(body))
+		res.WriteHeader(201)
+		return
+	}
+
+	finalInfo, _ := json.Marshal(userInfo)
+
+	res.WriteHeader(200)
+	res.Write(finalInfo)
 }

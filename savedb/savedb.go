@@ -72,6 +72,7 @@ func SaveOrder(res http.ResponseWriter, orderData string) {
 	fmt.Println("dataTosave:")
 	currentTime := time.Now()
 	dataToSave["date"] = string(currentTime.Format("01-02-2006"))
+	dataToSave["Deliverer"] = ""
 	fmt.Println(dataToSave)
 	dbsaveAction(res, dataToSave, "Orders")
 }

@@ -86,7 +86,6 @@ function displayCorrectUserData(event: MouseEvent) {
             ]
             populateStatLables();
             const email = localStorage.getItem("DeliveryLogIn")
-            axios.put("https://www.polyakov.tech/delivery/settings")
             results = [
                 "$00.00",
                 "$00.00",
@@ -106,6 +105,10 @@ function displayCorrectUserData(event: MouseEvent) {
                 </select>
                 <button>Whithdraw</button>
             `
+            axios.put("https://www.polyakov.tech/delivery/settings",email).then(res=>{
+                console.log(res)
+                if(res.status == 201){alert(`no user data for ${localStorage.getItem("DeliveryLogIn")}`);return}
+            })
             break
         case options[1]:
             stats = [
@@ -129,6 +132,10 @@ function displayCorrectUserData(event: MouseEvent) {
             <button>Change Password</button>
             <input type="text" placeholder="NewPassword">
             `
+            axios.put("https://www.polyakov.tech/delivery/settings",email).then(res=>{
+                console.log(res)
+                if(res.status == 201){alert(`no user data for ${localStorage.getItem("DeliveryLogIn")}`);return}
+            })
             break
         case options[2]:
             settingsScreen.querySelector("#left").innerHTML = `
@@ -139,6 +146,10 @@ function displayCorrectUserData(event: MouseEvent) {
             <button>Delete Account</button>
             `;
             left.style.flexDirection = "column";
+            axios.put("https://www.polyakov.tech/delivery/settings",email).then(res=>{
+                console.log(res)
+                if(res.status == 201){alert(`no user data for ${localStorage.getItem("DeliveryLogIn")}`);return}
+            })
             break
         case options[3]:
             settingsScreen.querySelector("#left").innerHTML = `
@@ -148,6 +159,10 @@ function displayCorrectUserData(event: MouseEvent) {
             <button>Connect Venmo</button>
             <button>Disconnect Venmo</button>
             `;
+            axios.put("https://www.polyakov.tech/delivery/settings",email).then(res=>{
+                console.log(res)
+                if(res.status == 201){alert(`no user data for ${localStorage.getItem("DeliveryLogIn")}`);return}
+            })
             break
     }
 }

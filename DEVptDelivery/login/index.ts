@@ -48,7 +48,7 @@ import { WebGLRenderer } from "three";
     Often students on college campuses seek out employment opportunities that do not interfere with a busy
                 class schedule. Some students appreciate the convenience of ordering food and having it delivered. The
                 campus delivery system gives busy students an opportunity to gain flexible employment while also
-                providing cheap and easy delivery for on campus stores.(if sign in button is not visible, refresh page once)
+                providing cheap and easy delivery for on campus stores.
     </p>
    <button id="login"class="btn">Login</button>
    <button id="signup"class="btn">Signup</button>
@@ -95,19 +95,43 @@ import { WebGLRenderer } from "three";
             animationOverLay.innerHTML = ``
             console.log((e.target as HTMLButtonElement).id)
             if ((e.target as HTMLButtonElement).id == "login") {
-                const loginUsername : string = localStorage.getItem("DeliveryLogIn");
                 animationOverLay.innerHTML = `
-                <h1>You have been logged in as ${loginUsername}</h1>
+                <input type="text" id="email" placeholder="DePauw Email"><br>
+                <label for="password">password</label>
+                <input type="password" id="password" name="password">
+                <button id="ok">OK</button>
+                <p>(passwords are not secure, do not use passwords that protect other accounts)</p>
                 `
+                const buttonOK :HTMLElement = document.getElementById("ok")
+                buttonOK.addEventListener("click",()=>{
+                    const email = (document.getElementById("email")as any).value
+                    const password = (document.getElementById("password") as any).value
+                    if(email && password){
+                        axios.put("https://www.polyakov.tech/delivery/login",{"email":email,"password":password}).then(res=>{
+                            if(res.status == 201){
+                                alert("account can not be found")
+                                return
+                            }
+                            localStorage.setItem("DeliveryLogIn",email)
+                            alert("you have been logged in")
+                        })
+                        return
+                    }
+                    alert("Enter password an email")
+                })
                 requestAnimationFrame(doRenderLogin)
             } else {//sign up
                 animationOverLay.innerHTML = `
-                <input id="inputE" type="email" placeholder="DePauw Email">
+                <input id="inputE" type="email" placeholder="DePauw Email"><br>
+                <label for="password">password</label>
+                <input type="password" id="password" name="password">
                 <button id="sendsignup"class="btn">Signup</button>
+                <p>(passwords are not secure, do not use passwords that protect other accounts)</p>
                 `
 
                 let sendBTN : HTMLElement = document.getElementById("sendsignup")
                 let input : HTMLInputElement = (document.getElementById("inputE") as HTMLInputElement)
+                let password: HTMLInputElement = (document.getElementById("password")as HTMLInputElement)
                 sendBTN.addEventListener("click",()=>{
                     if (input.value.includes("@depauw.edu")){
                         let val: string = input.value;
@@ -117,8 +141,10 @@ import { WebGLRenderer } from "three";
                         }
                         localStorage.setItem("DeliveryLogIn",val)
                         let username:any = localStorage.getItem("DeliveryLogIn")
+                        console.log(password.value)
                         let sendUsername :any = {
-                            DeliveryID : username
+                            DeliveryID : username,
+                            Password : password.value
                         }
                         const response = axios.post("https://www.polyakov.tech/delivery/login",sendUsername).then(res =>{    
                         console.log(res)
