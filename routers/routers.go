@@ -83,8 +83,7 @@ func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
 			}
 			res.WriteHeader(http.StatusOK)
 			res.Write(OrdersData)
-		case "delivery/login":
-			fmt.Println("yes")
+		case "/delivery/login":
 			logic.CheckLogin(res, req)
 		case "/delivery/settings":
 			send.SendUserData(res, req)

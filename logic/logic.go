@@ -24,11 +24,14 @@ func LoginOrSignupUser(res http.ResponseWriter, req *http.Request) {
 		fmt.Println(err)
 	}
 	userData := string(body)
+	var dataJson map[string]string
+	json.Unmarshal(([]byte(userData)), &dataJson)
+	fmt.Println(dataJson["email"])
 
-	userExistAlready := checkIfUserExists(userData[15 : len(userData)-2])
+	userExistAlready := checkIfUserExists(dataJson["email"])
 	//if user does not exist save the id to db
 	if !userExistAlready {
-		savedb.CreateNewUser(res, userData)
+		savedb.CreateNewUser(res, dataJson)
 	}
 	send.SendDLogin(res)
 }
@@ -73,8 +76,17 @@ func CheckLogin(res http.ResponseWriter, req *http.Request) {
 	putData := string(body)
 	var putJson map[string]string
 	json.Unmarshal(([]byte(putData)), &putJson)
-	fmt.Println("here")
-	userData := getdb.GetUserInfo(putJson["DelvieryID"])
-	userJson, _ := json.Marshal(userData)
-	fmt.Println(userJson)
+	userData := getdb.GetUserInfo(putJson["email"])
+	if len(userData) == 0 {
+		res.WriteHeader(201)
+		return
+	}
+	actualDataUser := userData[0]
+	fmt.Println(putJson)
+	fmt.Println(userData)
+	if putJson["password"] != actualDataUser["Password"] {
+		res.WriteHeader(201)
+		return
+	}
+	res.WriteHeader(http.StatusOK)
 }

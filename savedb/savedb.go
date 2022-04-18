@@ -51,14 +51,15 @@ func SaveContact(res http.ResponseWriter, req *http.Request) {
 }
 
 //this function creates and saves new user
-func CreateNewUser(res http.ResponseWriter, newUserID string) {
+func CreateNewUser(res http.ResponseWriter, newUserID map[string]string) {
 	DataToSave := make(map[string]interface{})
 
-	DataToSave["DeliveryID"] = newUserID[15 : len(newUserID)-2]
+	DataToSave["DeliveryID"] = newUserID["email"]
 	DataToSave["Balance"] = "0"
 	DataToSave["TotalBalance"] = "0"
 	DataToSave["OrdersStarted"] = "0"
 	DataToSave["OrdersCompleted"] = "0"
+	DataToSave["Password"] = newUserID["password"]
 	currentTime := time.Now()
 	DataToSave["birth"] = string(currentTime.Format("01-02-2006"))
 	dbsaveAction(res, DataToSave, "DeliveryUsers")

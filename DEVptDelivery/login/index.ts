@@ -106,7 +106,7 @@ import { WebGLRenderer } from "three";
                     const email = (document.getElementById("email")as any).value
                     const password = (document.getElementById("password") as any).value
                     if(email && password){
-                        axios.put("./delivery/login",{"email":email,"password":password}).then(res=>{
+                        axios.put("./login",{"email":email,"password":password}).then(res=>{
                             if(res.status == 201){
                                 alert("account can not be found")
                                 return
@@ -133,28 +133,27 @@ import { WebGLRenderer } from "three";
                 let input : HTMLInputElement = (document.getElementById("inputE") as HTMLInputElement)
                 let password: HTMLInputElement = (document.getElementById("password")as HTMLInputElement)
                 sendBTN.addEventListener("click",()=>{
-                    if (input.value.includes("@depauw.edu")){
-                        let val: string = input.value;
-                        if (localStorage.getItem("DeliveryLogIn") == val){
-                            alert("Account already logged in.")
-                            location.reload();
+                    const email = input.value
+                    const passwordv = password.value
+                    if((email.includes("@depauw.edu") || email.includes("@DePauw.edu") || email.includes("@Depauw.edu")) && passwordv.length > 0){
+                        localStorage.setItem("DeliveryLogIn",email)
+                        const DataTosend = {
+                            "email" : email,
+                            "password" : passwordv
                         }
-                        localStorage.setItem("DeliveryLogIn",val)
-                        let username:any = localStorage.getItem("DeliveryLogIn")
-                        console.log(password.value)
-                        let sendUsername :any = {
-                            DeliveryID : username,
-                            Password : password.value
-                        }
-                        const response = axios.post("./delivery/login",sendUsername).then(res =>{    
-                        console.log(res)
-                        animationOverLay.innerHTML = `
-                            <h1>User created/ logged in</h1>
+                        let requestTest = axios.post("./login",DataTosend).then(()=>{
+                            animationOverLay.innerHTML = `
+                        <h1>User created/ logged in</h1>
                         `
-                        })
-
-                    }else{
-                        alert("Not a Depauw Account");
+                         }).catch(err=>{
+                            animationOverLay.innerHTML = `
+                            <h1>Error Occured, try again</h1>
+                            `
+                            console.log(err)
+                         })
+                    }
+                    else{
+                        alert("not a DePauw Account  use @depauw.edu format")
                     }
                 });
                 requestAnimationFrame(doRenderSign)

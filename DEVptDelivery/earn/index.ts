@@ -97,9 +97,31 @@ import {WebGLRenderer} from "three";
             <div id="${thisData["MYid"]}">
                     <p>Delivery to : ${thisData["adress"]}</p>
                     <p>Items requested : ${thisData["foods"]}
+                    <p>Order Date : ${thisData["date"]}</p>
+                    <p>${thisData["Deliverer"]?"started by : " + thisData["Deliverer"]:" "}</p>
+                    <button id="b-${thisData["MYid"]}">Claim</button>
             </div>
             ` 
             overlay.innerHTML += element
+            let currentBTN = document.getElementById(`b-${thisData["MYid"]}`).addEventListener("click",()=>{
+                if(thisData["Deliverer"] != ""){
+                    alert("Already started by " + thisData["Deliverer"])
+                    return
+                }
+                const dataToSend = {
+                    "Deliverer":localStorage.getItem("DeliveryLogIn"),
+                    "MYid":thisData["MYid"],
+                    "Done":false
+
+                }
+                axios.post("./earn",dataToSend).then(res=>{
+                    if(res.status == 202){//order claimed while submiting
+                        alert("order was claimed before you, try a different one")
+                    }else if(res.status == 200){
+                        overlay.innerHTML= "You have claimed " + thisData["userEmail"] + "'s Order"
+                    }
+                })
+            })
         }
     }
     document.getElementById("animationStartButton").addEventListener("click",()=>{
@@ -111,7 +133,7 @@ import {WebGLRenderer} from "three";
         const dataTosend : any = {
             email:email
         }
-        const response = axios.put("./delivery/earn",dataTosend)
+        axios.put("./earn")
         .then(checkIfThereAreOrders).catch(err=>console.log(err))
         
     });

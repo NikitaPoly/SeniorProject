@@ -146,10 +146,10 @@ interface order{
 }
 function SendOrder(order:order){
     console.log(order)
-    const response = axios.post("./delivery/order",order).then(res =>{    
+    const response = axios.post("./order",order).then(res =>{    
                         console.log(res)
                         let timer = setInterval(()=>{
-                            axios.put("./delivery/order",{
+                            axios.put("./order",{
                                 orderID : order["MYid"]
                             }).then((res)=>{
                                 if (res.status == 201){

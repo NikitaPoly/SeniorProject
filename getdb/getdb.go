@@ -44,7 +44,6 @@ func GetUserInfo(GUserID string) []bson.M {
 		fmt.Println(err)
 		return nil
 	}
-	fmt.Println(userDataFinal)
 	return userDataFinal
 }
 
