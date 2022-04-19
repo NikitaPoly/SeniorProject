@@ -7,7 +7,7 @@ import footerStyle from "../modules/css/footer.css";
 import mainStyle from "../modules/css/settings.css";
 import cardStyle from "../modules/css/card.css";
 
-import settings from "../modules/html/settings.html";
+//import settings from "../modules/html/settings.html";
 import userDataDisplayC from "../modules/html/userDataDisplay.html";
 import card from "../modules/html/e-card.html";
 
@@ -19,7 +19,7 @@ navfuncs.default.setActive("settings");
 navfuncs.default.attachMobNav();
 const main: HTMLElement = document.getElementById("main");
 main.innerHTML += card;
-main.innerHTML += settings + userDataDisplayC;
+main.innerHTML +=  userDataDisplayC;
 //customize the user display component
 const settingsScreen: HTMLDivElement = (document.getElementById("settingsScreen") as HTMLDivElement);
 let options: string[] = [

@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 )
 
 //return true if user id is already saved, otherwise false
@@ -96,11 +97,22 @@ func OrderDone_or_OrderClaim(res http.ResponseWriter, req *http.Request) {
 	postData := string(body)
 	var postJson map[string]string
 	json.Unmarshal(([]byte(postData)), &postJson)
-	orderIDMAP := make(map[string]string)
-	orderIDMAP["orderID"] = postJson["OrderId"]
-
 	if postJson["Completed"] == "true" { // if order was marked for completion
 		savedb.DeleteOrder(res, postJson["OrderId"])
+		//save the new money
+		userDataList := getdb.GetUserInfo(postJson["Worker"])
+		userData := userDataList[0]
+		var currentMoney string = fmt.Sprintf("%v", userData["Balance"])
+
+		MoneyINT, err := strconv.Atoi(currentMoney)
+		if err != nil {
+			fmt.Println(err)
+		}
+		MoneyINT += 2
+
+		var id string = fmt.Sprintf("%v", userData["DeliveryID"])
+		str := strconv.Itoa(MoneyINT)
+		savedb.SaveNewMondey(res, id, "Balance", str)
 		return
 	}
 	//order is not complete so order is being claimed
@@ -116,6 +128,5 @@ func ChangePassword(res http.ResponseWriter, req *http.Request) {
 	postData := string(body)
 	var postJson map[string]string
 	json.Unmarshal(([]byte(postData)), &postJson)
-	fmt.Println(postJson)
 	savedb.UpdatePassword(res, postJson["newPassword"], postJson["User"])
 }

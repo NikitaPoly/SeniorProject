@@ -40,22 +40,33 @@ import {WebGLRenderer} from "three";
     //customize the stats table
     const statsTable: HTMLUListElement = (document.getElementById("statsTable") as HTMLUListElement);
     const statsArr: string[] = [
-        "Weekly avg orders completed",
-        "Available balance",
         "Total earned",
         "Orders completed",
         "Orders made"
     ]
     //set the first li tage manually
-    statsTable.querySelector("p#stat").innerHTML = "Weekly avg earnings";
+    statsTable.querySelector("p#stat").innerHTML = "Available balance";
     statsTable.querySelector("p#result").innerHTML = "00.00";
     //set the rest with this loop
-    for (let i = 0; i < statsArr.length; i++) {
-        const liContainer: HTMLLIElement = (statsTable.querySelector("li").cloneNode(true) as HTMLLIElement);
-        const stat: HTMLParagraphElement = liContainer.querySelector("p#stat");
-        stat.innerHTML = statsArr[i];
-        statsTable.appendChild(liContainer)
-    }
+    axios.patch("./earn",localStorage.getItem("DeliveryLogIn")).then(res=>{
+        if(res.status == 201){alert(`no user data for ${localStorage.getItem("DeliveryLogIn")}`);return}
+        let data = res.data[0]
+        console.log(data)
+        const actualData = [
+            "Balance",
+            "TotalBalance",
+            "OrdersCompleted",
+            "OrdersStarted"
+        ]
+        for (let i = 0; i < statsArr.length; i++) {
+            const liContainer: HTMLLIElement = (statsTable.querySelector("li").cloneNode(true) as HTMLLIElement);
+            const stat: HTMLParagraphElement = liContainer.querySelector("p#stat");
+            stat.innerHTML = statsArr[i]
+            const value = liContainer.querySelector("p#result")
+            value.innerHTML =  data[actualData[i]]
+            statsTable.appendChild(liContainer)
+        }
+    })
 }
 //responsible for the three.js
 {
@@ -124,7 +135,6 @@ import {WebGLRenderer} from "three";
                         window.location.reload()
                         return
                    }else {//orderclaimed
-                        console.log(res.data)
                         overlay.innerHTML = `
                         <div id="${thisData["MYid"]}">
                         <p>Delivery to : ${thisData["adress"]}</p>
@@ -136,12 +146,14 @@ import {WebGLRenderer} from "three";
                         <button id="deliveryDone">I deliverd the order!</button>
                         `
                         document.getElementById("deliveryDone").addEventListener("click",()=>{
-                            const dataToSend = {
+                            const dataToSend2 = {
                                 "OrderId" : thisData["MYid"],
                                 "Completed" : "true",
-                                "Worker" : localStorage.getItem("DeliveryLogIn")
+                                "Worker" : localStorage.getItem("DeliveryLogIn"),
+                                "Credit":"2"
                             }
-                            axios.post("./earn",dataToSend).then(res=>{
+                            console.log(dataToSend2)
+                            axios.post("./earn",dataToSend2).then(res=>{
                                 overlay.innerHTML = `
                                 <p>You have been credited $2.
                                 </p>

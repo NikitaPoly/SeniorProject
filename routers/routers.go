@@ -95,6 +95,8 @@ func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
 		switch req.URL.Path {
 		case "/delivery/settings":
 			savedb.DeleteAccount(res, req)
+		case "/delivery/earn":
+			send.SendUserData(res, req)
 		}
 	}
 }

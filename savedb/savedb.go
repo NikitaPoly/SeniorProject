@@ -18,6 +18,10 @@ import (
 const mongoURI = "mongodb+srv://PolyakovDOTTech:Secure@polyakovtechdb.n6fvv.mongodb.net/PolyakovTechDB?retryWrites=true&w=majority"
 
 func dbupdateAction(res http.ResponseWriter, collection string, id string, field string, new string) {
+	fmt.Println(collection)
+	fmt.Println(id)
+	fmt.Println(field)
+	fmt.Println(new)
 	//get client for mongodb
 	client, err := mongo.NewClient(options.Client().ApplyURI(mongoURI))
 	if err != nil {
@@ -33,23 +37,24 @@ func dbupdateAction(res http.ResponseWriter, collection string, id string, field
 		return
 	}
 	//after function is done running this will will run
-	fmt.Println(new)
 	defer client.Disconnect(ctx)
 	PolyakovTechDB := client.Database("PolyakovTechDB")
 	DB := PolyakovTechDB.Collection(collection)
 	var filter bson.M
 	var update bson.M
-	filter = bson.M{"MYid": id}
+	if collection == "DeliveryUsers" {
+		filter = bson.M{"DeliveryID": id}
+	} else {
+		filter = bson.M{"MYid": id}
+	}
 	update = bson.M{"$set": bson.M{
 		field: new,
 	}}
-	_, err = DB.UpdateOne(ctx, filter, update)
+	result, err := DB.UpdateOne(ctx, filter, update)
 	if err != nil {
 		fmt.Println(err)
 	}
-	if err != nil {
-		fmt.Println(err)
-	}
+	fmt.Println(result)
 }
 
 func dbdeleteAction(res http.ResponseWriter, collectionName string, ID string, filed string) {
@@ -165,6 +170,7 @@ func DeleteAccount(res http.ResponseWriter, req *http.Request) {
 	updateData := string(body)
 	var updateJson map[string]string
 	json.Unmarshal(([]byte(updateData)), &updateJson)
+
 	email := updateJson["email"]
 	dbdeleteAction(res, "DeliveryUsers", email, "DeliveryID")
 	if len(updateJson["Why"]) > 0 {
@@ -173,4 +179,9 @@ func DeleteAccount(res http.ResponseWriter, req *http.Request) {
 		dataToSave["why"] = updateJson["Why"]
 		dbsaveAction(res, dataToSave, "ContactRequest")
 	}
+}
+
+func SaveNewMondey(res http.ResponseWriter, id string, field string, new string) {
+	dbupdateAction(res, "DeliveryUsers", id, field, new)
+	res.WriteHeader(200)
 }

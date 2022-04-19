@@ -140,7 +140,7 @@ func SendUserData(res http.ResponseWriter, req *http.Request) {
 	}
 
 	finalInfo, _ := json.Marshal(userInfo)
-
+	fmt.Println(finalInfo)
 	res.WriteHeader(200)
 	res.Write(finalInfo)
 }
