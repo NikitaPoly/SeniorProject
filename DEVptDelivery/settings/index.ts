@@ -158,7 +158,7 @@ function displayCorrectUserData(event: MouseEvent) {
             //finish building the result of the option clicked with the right div
             right.innerHTML = `
             <button id="changepassword">Change Password</button>
-            <input type="text" placeholder="NewPassword">
+            <input id="newpassword" type="text" placeholder="NewPassword">
             `
             //make request
             email = localStorage.getItem("DeliveryLogIn")
@@ -181,15 +181,20 @@ function displayCorrectUserData(event: MouseEvent) {
                 })
                 tempP = document.getElementById("changepassword")
                 tempP.addEventListener("click",(e:any)=>{
-                    const newPassword = e.target.value = data["Password"]
+                    const newPassword  = (document.getElementById("newpassword") as any).value
                     const dataTosend = {
                         "newPassword" :newPassword,
-                        "User": localStorage.getItem("DeliveryID")
+                        "User": localStorage.getItem("DeliveryLogIn")
                     }
                     axios.post("./settings",dataTosend).then(res=>{
                         console.log(res)
+                        if(res.status == 200){
                         let temp = document.getElementById(ids[2]);
-                        (temp as any).value = newPassword
+                        (temp as any).innerHTML = newPassword
+                        data["Password"] = newPassword
+                        }else{
+                            alert("password error")
+                        }
                     })
                 })
             })
@@ -197,15 +202,29 @@ function displayCorrectUserData(event: MouseEvent) {
         case options[2]:
             settingsScreen.querySelector("#left").innerHTML = `
             <h1>Why would you like to delete your account?(Optional)</h1>
-            <textarea placeholder="Start typing here."></textarea>
+            <textarea id="mes" placeholder="Start typing here."></textarea>
             `;
             settingsScreen.querySelector("#right").innerHTML = `
-            <button>Delete Account</button>
+            <button id="delete">Delete Account</button>
             `;
             left.style.flexDirection = "column";
-            axios.put("https://www.polyakov.tech/delivery/settings",email).then(res=>{
+            axios.put("./settings",localStorage.getItem("DeliveryLogIn")).then(res=>{
                 console.log(res)
                 if(res.status == 201){alert(`no user data for ${localStorage.getItem("DeliveryLogIn")}`);return}
+            })
+            const btn = document.getElementById("delete")
+            btn.addEventListener("click",()=>{
+                const email : string = localStorage.getItem("DeliveryLogIn")
+                const tewp =(document.getElementById("mes")as any).value
+                const dataToSend = {
+                    "email" : email,
+                    "Why" : tewp
+                }
+                axios.patch("./settings",dataToSend).then(res=>{
+                    console.log(res)
+                    localStorage.setItem("DeliveryLogIn","")
+                    alert("Account Deleted")
+                })
             })
             break
         case options[3]:

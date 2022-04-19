@@ -131,7 +131,6 @@ func SendUserData(res http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(body)
 	userInfo := getdb.GetUserInfo(string(body))
 	if len(userInfo) == 0 {
 		fmt.Println("no user with id : ")

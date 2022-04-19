@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"time"
 
@@ -42,17 +43,16 @@ func dbupdateAction(res http.ResponseWriter, collection string, id string, field
 	update = bson.M{"$set": bson.M{
 		field: new,
 	}}
-	result, err := DB.UpdateOne(ctx, filter, update)
+	_, err = DB.UpdateOne(ctx, filter, update)
 	if err != nil {
 		fmt.Println(err)
 	}
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(result)
 }
 
-func dbdeleteAction(res http.ResponseWriter, collectionName string, ID string) {
+func dbdeleteAction(res http.ResponseWriter, collectionName string, ID string, filed string) {
 	//get client for mongodb
 	client, err := mongo.NewClient(options.Client().ApplyURI(mongoURI))
 	if err != nil {
@@ -71,11 +71,11 @@ func dbdeleteAction(res http.ResponseWriter, collectionName string, ID string) {
 	defer client.Disconnect(ctx)
 	PolyakovTechDB := client.Database("PolyakovTechDB")
 	DB := PolyakovTechDB.Collection(collectionName)
-	result, err := DB.DeleteOne(ctx, bson.M{"MYid": ID})
+	_, err = DB.DeleteOne(ctx, bson.M{filed: ID})
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(result)
+
 }
 
 func dbsaveAction(res http.ResponseWriter, data map[string]interface{}, DBNAME string) {
@@ -97,11 +97,10 @@ func dbsaveAction(res http.ResponseWriter, data map[string]interface{}, DBNAME s
 	defer client.Disconnect(ctx)
 	PolyakovTechDB := client.Database("PolyakovTechDB")
 	DB := PolyakovTechDB.Collection(DBNAME)
-	result, err := DB.InsertOne(ctx, data)
+	_, err = DB.InsertOne(ctx, data)
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(result.InsertedID)
 }
 
 func SaveContact(res http.ResponseWriter, req *http.Request) {
@@ -130,23 +129,17 @@ func CreateNewUser(res http.ResponseWriter, newUserID map[string]string) {
 }
 
 func SaveOrder(res http.ResponseWriter, orderData string) {
-	fmt.Println("before")
-	fmt.Println(orderData)
 	var dataToSave map[string]interface{}
 	json.Unmarshal(([]byte(orderData)), &dataToSave)
-	fmt.Println("dataTosave:")
 	currentTime := time.Now()
 	dataToSave["date"] = string(currentTime.Format("01-02-2006"))
 	dataToSave["Deliverer"] = ""
-	fmt.Println(dataToSave)
 	dbsaveAction(res, dataToSave, "Orders")
 }
 
 //delete desired order
 func DeleteOrder(res http.ResponseWriter, orderID string) {
-	fmt.Print("Deleted order")
-	fmt.Println(orderID)
-	dbdeleteAction(res, "Orders", orderID)
+	dbdeleteAction(res, "Orders", orderID, "MYid")
 }
 
 //claimesOrder
@@ -156,5 +149,28 @@ func ClaimOrder(res http.ResponseWriter, orderID string, worker string) {
 
 //updates the password to new value
 func UpdatePassword(res http.ResponseWriter, newPassword string, email string) {
+	if newPassword == "" {
+		res.WriteHeader(201)
+		return
+	}
 	dbupdateAction(res, "DeliveryUsers", email, "Password", newPassword)
+	res.WriteHeader(200)
+}
+
+func DeleteAccount(res http.ResponseWriter, req *http.Request) {
+	body, err := ioutil.ReadAll(req.Body)
+	if err != nil {
+		fmt.Println(err)
+	}
+	updateData := string(body)
+	var updateJson map[string]string
+	json.Unmarshal(([]byte(updateData)), &updateJson)
+	email := updateJson["email"]
+	dbdeleteAction(res, "DeliveryUsers", email, "DeliveryID")
+	if len(updateJson["Why"]) > 0 {
+		dataToSave := make(map[string]interface{})
+		dataToSave["type"] = "Account Delete"
+		dataToSave["why"] = updateJson["Why"]
+		dbsaveAction(res, dataToSave, "ContactRequest")
+	}
 }

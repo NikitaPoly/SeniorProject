@@ -79,7 +79,6 @@ func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
 			logic.CheckOrderStatus(res, req)
 		case "/delivery/earn":
 			OrdersData := getdb.GetAllOrders(res, req)
-			fmt.Println(OrdersData)
 			if string(OrdersData) == "null" {
 				//no orders
 				res.WriteHeader(201)
@@ -91,6 +90,11 @@ func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
 			logic.CheckLogin(res, req)
 		case "/delivery/settings":
 			send.SendUserData(res, req)
+		}
+	} else if req.Method == "PATCH" {
+		switch req.URL.Path {
+		case "/delivery/settings":
+			savedb.DeleteAccount(res, req)
 		}
 	}
 }

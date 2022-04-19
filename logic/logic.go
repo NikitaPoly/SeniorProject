@@ -13,7 +13,6 @@ import (
 //return true if user id is already saved, otherwise false
 func checkIfUserExists(userID string) bool {
 	user := getdb.GetUserInfo(userID)
-	fmt.Println(user)
 	return user != nil
 }
 
@@ -26,7 +25,6 @@ func LoginOrSignupUser(res http.ResponseWriter, req *http.Request) {
 	userData := string(body)
 	var dataJson map[string]string
 	json.Unmarshal(([]byte(userData)), &dataJson)
-	fmt.Println(dataJson["email"])
 
 	userExistAlready := checkIfUserExists(dataJson["email"])
 	//if user does not exist save the id to db
@@ -82,8 +80,6 @@ func CheckLogin(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 	actualDataUser := userData[0]
-	fmt.Println(putJson)
-	fmt.Println(userData)
 	if putJson["password"] != actualDataUser["Password"] {
 		res.WriteHeader(201)
 		return
@@ -108,7 +104,6 @@ func OrderDone_or_OrderClaim(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 	//order is not complete so order is being claimed
-	fmt.Println(postJson)
 	savedb.ClaimOrder(res, postJson["OrderId"], postJson["Worker"])
 }
 
@@ -121,5 +116,6 @@ func ChangePassword(res http.ResponseWriter, req *http.Request) {
 	postData := string(body)
 	var postJson map[string]string
 	json.Unmarshal(([]byte(postData)), &postJson)
+	fmt.Println(postJson)
 	savedb.UpdatePassword(res, postJson["newPassword"], postJson["User"])
 }
