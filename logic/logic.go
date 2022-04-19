@@ -90,3 +90,36 @@ func CheckLogin(res http.ResponseWriter, req *http.Request) {
 	}
 	res.WriteHeader(http.StatusOK)
 }
+
+//gets post request from earn and ithere delets the order when it is fuffiled or claims the order if not claimed
+func OrderDone_or_OrderClaim(res http.ResponseWriter, req *http.Request) {
+	body, err := ioutil.ReadAll(req.Body)
+	if err != nil {
+		fmt.Println(err)
+	}
+	postData := string(body)
+	var postJson map[string]string
+	json.Unmarshal(([]byte(postData)), &postJson)
+	orderIDMAP := make(map[string]string)
+	orderIDMAP["orderID"] = postJson["OrderId"]
+
+	if postJson["Completed"] == "true" { // if order was marked for completion
+		savedb.DeleteOrder(res, postJson["OrderId"])
+		return
+	}
+	//order is not complete so order is being claimed
+	fmt.Println(postJson)
+	savedb.ClaimOrder(res, postJson["OrderId"], postJson["Worker"])
+}
+
+//checks i password ok and saves it
+func ChangePassword(res http.ResponseWriter, req *http.Request) {
+	body, err := ioutil.ReadAll(req.Body)
+	if err != nil {
+		fmt.Println(err)
+	}
+	postData := string(body)
+	var postJson map[string]string
+	json.Unmarshal(([]byte(postData)), &postJson)
+	savedb.UpdatePassword(res, postJson["newPassword"], postJson["User"])
+}

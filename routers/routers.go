@@ -68,6 +68,10 @@ func DeliveryRouter(res http.ResponseWriter, req *http.Request) {
 			logic.LoginOrSignupUser(res, req)
 		case "/delivery/order":
 			logic.SaveOrder(res, req)
+		case "/delivery/earn":
+			logic.OrderDone_or_OrderClaim(res, req)
+		case "/delivery/settings":
+			logic.ChangePassword(res, req)
 		}
 	} else if req.Method == "PUT" {
 		switch req.URL.Path {

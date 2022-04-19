@@ -59,9 +59,10 @@ function displayCorrectUserData(event: MouseEvent) {
     function populateStatValues() {
         const valueDiv: HTMLDivElement = document.createElement("div");
         valueDiv.id = "valueDiv";
-        results.forEach((statvalue: string) => {
+        results.forEach((statvalue: string,index) => {
             const tempPStatValue: HTMLParagraphElement = document.createElement("p")
             tempPStatValue.innerHTML = statvalue;
+            tempPStatValue.id = ids[index]
             valueDiv.appendChild(tempPStatValue);
         });
         left.appendChild(valueDiv);
@@ -74,6 +75,8 @@ function displayCorrectUserData(event: MouseEvent) {
     (event.target as HTMLDivElement).style.color = "var(--depauwYellow--)";
     let stats: string[] = [];
     let results: string[] = [];
+    let ids = []
+    let email = ""
     //depending on what button was pressed populate with spesific 
     switch ((event.target as HTMLParagraphElement).id) {
         case options[0]:
@@ -84,8 +87,15 @@ function displayCorrectUserData(event: MouseEvent) {
                 "Orders Completed",
                 "Orders Made"
             ]
+            ids = [
+                "AvailableBallance",
+                "TotalEarned",
+                "OrdersCompleted",
+                "OrdersMade"
+            ]
+
             populateStatLables();
-            const email = localStorage.getItem("DeliveryLogIn")
+            email = localStorage.getItem("DeliveryLogIn")
             results = [
                 "$00.00",
                 "$00.00",
@@ -105,17 +115,35 @@ function displayCorrectUserData(event: MouseEvent) {
                 </select>
                 <button>Whithdraw</button>
             `
-            axios.put("https://www.polyakov.tech/delivery/settings",email).then(res=>{
+            //population with info
+            axios.put("./settings",email).then(res=>{
                 console.log(res)
                 if(res.status == 201){alert(`no user data for ${localStorage.getItem("DeliveryLogIn")}`);return}
+                let data = res.data[0]
+                console.log(data)
+                let tempP = document.getElementById(ids[0])
+                tempP.innerHTML = `$${data["Balance"]}`
+                tempP = document.getElementById(ids[1])
+                tempP.innerHTML = `$${data["TotalBalance"]}`
+                tempP = document.getElementById(ids[2])
+                tempP.innerHTML = `${data["OrdersCompleted"]}`
+                tempP = document.getElementById(ids[3])
+                tempP.innerHTML = `${data["OrdersStarted"]}`
             })
+
             break
         case options[1]:
             stats = [
                 "DePauw Email Connected",
                 "Username",
-                "Show Passoword",
+                "Show Passoword(hover)",
                 "Due to you graduating and no longer being a student at DePauw account scheduled for deletion on : AUG 0000"
+            ]
+            ids = [
+                "email",
+                "username",
+                "password",
+                "notif"
             ]
             populateStatLables();
             
@@ -129,12 +157,41 @@ function displayCorrectUserData(event: MouseEvent) {
             left.querySelector("#statsDiv p:last-child").id = "countdownP";
             //finish building the result of the option clicked with the right div
             right.innerHTML = `
-            <button>Change Password</button>
+            <button id="changepassword">Change Password</button>
             <input type="text" placeholder="NewPassword">
             `
-            axios.put("https://www.polyakov.tech/delivery/settings",email).then(res=>{
+            //make request
+            email = localStorage.getItem("DeliveryLogIn")
+            axios.put("./settings",email).then(res=>{
                 console.log(res)
                 if(res.status == 201){alert(`no user data for ${localStorage.getItem("DeliveryLogIn")}`);return}
+                let data = res.data[0]
+                console.log(data)
+                let tempP = document.getElementById(ids[0])
+                tempP.innerHTML = `$${data["DeliveryID"]}`
+                tempP = document.getElementById(ids[1])
+                tempP.innerHTML = `$${data["DeliveryID"]}`
+                tempP = document.getElementById(ids[2])
+                tempP.style.color = "var(--depauwYellow--)"
+                tempP.addEventListener("mouseenter",(e:any)=>{
+                    e.target.innerHTML = data["Password"]
+                })
+                tempP.addEventListener("mouseout",(e:any)=>{
+                    e.target.innerHTML = "**********"
+                })
+                tempP = document.getElementById("changepassword")
+                tempP.addEventListener("click",(e:any)=>{
+                    const newPassword = e.target.value = data["Password"]
+                    const dataTosend = {
+                        "newPassword" :newPassword,
+                        "User": localStorage.getItem("DeliveryID")
+                    }
+                    axios.post("./settings",dataTosend).then(res=>{
+                        console.log(res)
+                        let temp = document.getElementById(ids[2]);
+                        (temp as any).value = newPassword
+                    })
+                })
             })
             break
         case options[2]:

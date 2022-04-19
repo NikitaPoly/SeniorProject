@@ -99,30 +99,61 @@ import {WebGLRenderer} from "three";
                     <p>Items requested : ${thisData["foods"]}
                     <p>Order Date : ${thisData["date"]}</p>
                     <p>${thisData["Deliverer"]?"started by : " + thisData["Deliverer"]:" "}</p>
-                    <button id="b-${thisData["MYid"]}">Claim</button>
+                    <button class="claim">Claim</button>
             </div>
             ` 
             overlay.innerHTML += element
-            let currentBTN = document.getElementById(`b-${thisData["MYid"]}`).addEventListener("click",()=>{
-                if(thisData["Deliverer"] != ""){
-                    alert("Already started by " + thisData["Deliverer"])
+        }
+        let currentBTNs = document.getElementsByClassName("claim")
+        for(let i = 0; i < currentBTNs.length;i++){
+            let thisData = res.data[i]
+            currentBTNs[i].addEventListener("click",(e)=>{
+                const isClaimed = thisData["Deliverer"] != "" 
+                if(isClaimed){
+                    alert("Pick a delivery that has not been claimed")
                     return
                 }
-                const dataToSend = {
-                    "Deliverer":localStorage.getItem("DeliveryLogIn"),
-                    "MYid":thisData["MYid"],
-                    "Done":false
-
+                let dataToSend ={
+                    "OrderId" : thisData["MYid"],
+                    "Worker" : localStorage.getItem("DeliveryLogIn"),
+                    "Completed" : "false"
                 }
                 axios.post("./earn",dataToSend).then(res=>{
-                    if(res.status == 202){//order claimed while submiting
-                        alert("order was claimed before you, try a different one")
-                    }else if(res.status == 200){
-                        overlay.innerHTML= "You have claimed " + thisData["userEmail"] + "'s Order"
+                   if(res.status != 200){//if order got claimed before you
+                        alert("Order unavalable")
+                        window.location.reload()
+                        return
+                   }else {//orderclaimed
+                        console.log(res.data)
+                        overlay.innerHTML = `
+                        <div id="${thisData["MYid"]}">
+                        <p>Delivery to : ${thisData["adress"]}</p>
+                        <p>Items requested : ${thisData["foods"]}
+                        <p>Order Date : ${thisData["date"]}</p>
+                        <p>${thisData["Deliverer"]?"started by : " + thisData["Deliverer"]:" "}</p>
+                        </div>
+                        <h1>Deliver order using these instructions</h1>
+                        <button id="deliveryDone">I deliverd the order!</button>
+                        `
+                        document.getElementById("deliveryDone").addEventListener("click",()=>{
+                            const dataToSend = {
+                                "OrderId" : thisData["MYid"],
+                                "Completed" : "true",
+                                "Worker" : localStorage.getItem("DeliveryLogIn")
+                            }
+                            axios.post("./earn",dataToSend).then(res=>{
+                                overlay.innerHTML = `
+                                <p>You have been credited $2.
+                                </p>
+                                <p> Check settins tab for total</p>`
+                            })
+                        })
                     }
+
                 })
             })
         }
+            
     }
     document.getElementById("animationStartButton").addEventListener("click",()=>{
         requestAnimationFrame(doRender);

@@ -18,7 +18,8 @@
     "run-b": "go run main.go",
     "build-b": "go build -o ./bin ./main.go ",
     "buildAll" : "webpack --config ./webpack.build.js",
-    "postbuildAll":"node ./buildScript.js"
+    "postbuildAll":"node ./buildScript.js",
+    "a": "webpack --config ./webpack.build.js && node ./buildScript.js &&  npm run run-b"
   },
   "repository": {
     "type": "git",
