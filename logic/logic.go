@@ -47,6 +47,26 @@ func SaveOrder(res http.ResponseWriter, req *http.Request) {
 	var dataToSave map[string]string
 	json.Unmarshal(([]byte(orderData)), &dataToSave)
 	savedb.SaveOrder(res, orderData)
+
+	//save the new count for orders started
+
+	var postJson map[string]string
+	json.Unmarshal(([]byte(orderData)), &postJson)
+	id := postJson["userEmail"]
+
+	userDataList := getdb.GetUserInfo(id)
+	userData := userDataList[0]
+
+	var currentOrderStarted string = fmt.Sprintf("%v", userData["OrdersStarted"])
+
+	COSINT, err := strconv.Atoi(currentOrderStarted)
+	if err != nil {
+		fmt.Println(err)
+	}
+	COSINT += 1
+	str := strconv.Itoa(COSINT)
+
+	savedb.SaveOrderStartded(res, id, "OrdersStarted", str)
 }
 
 //responsible for checking the status of an order and return the correct response 201 for complete and 200 for in progress
@@ -113,6 +133,28 @@ func OrderDone_or_OrderClaim(res http.ResponseWriter, req *http.Request) {
 		var id string = fmt.Sprintf("%v", userData["DeliveryID"])
 		str := strconv.Itoa(MoneyINT)
 		savedb.SaveNewMondey(res, id, "Balance", str)
+
+		//save new user orders completed
+		var currentOrdersCompleted string = fmt.Sprintf("%v", userData["OrdersCompleted"])
+
+		COCINT, err := strconv.Atoi(currentOrdersCompleted)
+		if err != nil {
+			fmt.Println(err)
+		}
+		COCINT += 1
+		str = strconv.Itoa(COCINT)
+		savedb.SaveNewOrderCompleted(res, id, "OrdersCompleted", str)
+
+		//save total earned
+
+		var currentTotalEarned string = fmt.Sprintf("%v", userData["TotalBalance"])
+		CTE, err := strconv.Atoi(currentTotalEarned)
+		if err != nil {
+			fmt.Println(err)
+		}
+		CTE += 2
+		str = strconv.Itoa(CTE)
+		savedb.SaveNewTotalEarned(res, id, "TotalBalance", str)
 		return
 	}
 	//order is not complete so order is being claimed

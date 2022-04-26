@@ -53,17 +53,24 @@ import {WebGLRenderer} from "three";
         let data = res.data[0]
         console.log(data)
         const actualData = [
-            "Balance",
             "TotalBalance",
             "OrdersCompleted",
             "OrdersStarted"
         ]
+        //set the first one again
+        const statstable :any = document.getElementById("statsTable")
+        const firstLI :any = statstable.querySelector("li:first-child")
+        const stat :any = firstLI.querySelector("p#result")
+        stat.innerHTML = `$${data["Balance"]}`
+
         for (let i = 0; i < statsArr.length; i++) {
             const liContainer: HTMLLIElement = (statsTable.querySelector("li").cloneNode(true) as HTMLLIElement);
             const stat: HTMLParagraphElement = liContainer.querySelector("p#stat");
             stat.innerHTML = statsArr[i]
             const value = liContainer.querySelector("p#result")
+            console.log(`actualdata[actualData[i]]: ${data[actualData[i]]} actualData : ${actualData[i]}`)
             value.innerHTML =  data[actualData[i]]
+            if (i ==0 ){value.innerHTML = "$" + value.innerHTML}
             statsTable.appendChild(liContainer)
         }
     })

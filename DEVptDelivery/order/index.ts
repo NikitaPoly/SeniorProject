@@ -62,38 +62,57 @@ let MyCube:any = ""
 <ul>
     <li>
         <p id="info1">Total of Goods</p>
-        <p>$00.00</p>
+        <p id="totalofgoods">$00.00</p>
     </li>
     <li>
         <p id="info2">Delivery Fee</p>
-        <p>$00.00</p>
+        <p>$02.00</p>
     </li>
     <li>
         <p id="info3">Total</p>
-        <p>$00.00</p>
+        <p id="totalC">$00.00</p>
     </li>
 </ul>
 <button id="orderBtn">Order</button>
 `
 let foodDisplays :any = []
+const costs = {
+    "Burger" :5,
+    "PBSandwich" : 4,
+    "Sandwich": 3,
+    "Pepsi" : 1,
+    "DPepsi" : 1,
+    "Mtdew" : 1,
+    "Gatorade": 1,
+    "BagelBites":3 ,
+    "TotinoPizza":3,
+    "FitKitchen":3,
+    "TGIFWings":5,
+    "RedBaron":5,
+    "Milk" : 2,
+    "IcePin": 2,
+    "IceSandwich" :2,
+    "IceCone": 2,
+    "Tea" :2
+}
 foodDisplays = [
     `
     <h1>Choose Items</h1>
     <form id="orderForm">
-    <input type="checkbox" id="Burger" name="Burger" value="Burger">
+    <input type="checkbox" id="Burger" name="Burger" value="Burger" >
     <label for="Burger">$5 - Burger</label><br>
     <input type="checkbox" id="PBSandwich" name="PBSandwich" value="PBSandwich">
-    <label for="PBSandwich">$5 - Penutbutter Sandwich</label><br>
+    <label for="PBSandwich">$4 - Penutbutter Sandwich</label><br>
     <input type="checkbox" id="Sandwich" name="Sandwich" value="Sandwich">
-    <label for="Sandwich">$5 - Sandwich (varies based on day of week)</label><br>
+    <label for="Sandwich">$3 - Sandwich (varies based on day of week)</label><br>
     <input type="checkbox" id="Pepsi" name="Pepsi" value="Pepsi">
-    <label for="Pepsi">$5 - Pepsi</label><br>
+    <label for="Pepsi">$1 - Pepsi</label><br>
     <input type="checkbox" id="DPepsi" name="DPepsi" value="DPepsi">
-    <label for="DPepsi">$5 - Diet Pepsi</label><br>
+    <label for="DPepsi">$1 - Diet Pepsi</label><br>
     <input type="checkbox" id="Mtdew" name="Mtdew" value="Mtdew">
-    <label for="Mtdew">$5 - Mt.Dew</label><br>
+    <label for="Mtdew">$1 - Mt.Dew</label><br>
     <input type="checkbox" id="Gatorade" name="Gatorade" value="Gatorade">
-    <label for="Gatorade">$5 - Gatorade</label><br>
+    <label for="Gatorade">$1 - Gatorade</label><br>
     <select  id="colorOfG"name="Gatorade">
     <option value="red">red</option>
     <option value="blue">blue</option>
@@ -105,13 +124,13 @@ foodDisplays = [
     <label for="GatoradeColor">GatoradeColor</label><br>
 
     <input type="checkbox" id="BagelBites" name="BagelBites" value="BagelBites">
-    <label for="BagelBites">$5 - BagelBites</label><br>
+    <label for="BagelBites">$3 - BagelBites</label><br>
     
     <input type="checkbox" id="TotinoPizza" name="TotinoPizza" value="TotinoPizza">
-    <label for="TotinoPizza">$5 - TotinoPizza</label><br>
+    <label for="TotinoPizza">$3 - TotinoPizza</label><br>
 
     <input type="checkbox" id="FitKitchen" name="FitKitchen" value="FitKitchen">
-    <label for="FitKitchen">$5 - FitKitchen meal</label><br>
+    <label for="FitKitchen">$3 - FitKitchen meal</label><br>
 
     <input type="checkbox" id="TGIFWings" name="TGIFWings" value="TGIFWings">
     <label for="TGIFWings">$5 - TGIF Wings</label><br>
@@ -120,19 +139,19 @@ foodDisplays = [
     <label for="RedBaron">$5 - RedBaron Pizza</label><br>
     
     <input type="checkbox" id="Milk" name="Milk" value="Milk">
-    <label for="Milk">$5 - Milk</label><br>
+    <label for="Milk">$2 - Milk</label><br>
 
     <input type="checkbox" id="IcePint" name="IcePint" value="IcePint">
-    <label for="IcePint">$5 - ice cream pint</label><br>
+    <label for="IcePint">$2 - ice cream pint</label><br>
 
     <input type="checkbox" id="IceSandwich" name="IceSandwich" value="IceSandwich">
-    <label for="IceSandwich">$5 - Icecream Sandwich</label><br>
+    <label for="IceSandwich">$2 - Icecream Sandwich</label><br>
 
     <input type="checkbox" id="IceCone" name="IceCone" value="IceCone">
-    <label for="IceCone">$5 - Icecream Cone</label><br>
+    <label for="IceCone">$2 - Icecream Cone</label><br>
 
     <input type="checkbox" id="Tea" name="Tea" value="Tea">
-    <label for="Tea">$5 - Yachak Mate Tea</label><br>
+    <label for="Tea">$2 - Yachak Mate Tea</label><br>
     </form>
     `
 ]
@@ -169,14 +188,14 @@ function SendOrder(order:order){
                                     const currentTime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
                                     statusDisplay.innerHTML = `
                                     <div id="DeliveryStatus">
-                                        <h2 id="statush2">Status:Delivery Done</h2>
+                                        <h2 id="statush2">Status:Delivery In Progress</h2>
                                     <p id="tip">(Last update at ${currentTime})</p>
                                 </div>
                                 `
                                 MyCube.material.color.setHex(0x000000)
                                 }
                             })
-                        },60000)
+                        },10000)
                         animationOverlay.innerHTML = `
                             <div id="DeliveryStatus">
                                 <h2 id="statush2">Status: Delivery in progress</h2>
@@ -198,6 +217,7 @@ function GetFinalDetails(order:order){
     order["MYid"] = '_' + Math.random().toString(36).substr(2, 9)
     localStorage.setItem("orderID",order["MYid'"])
     order["userEmail"] = localStorage.getItem("DeliveryLogIn")
+    if(order["userEmail"] == ""){alert("log in first please");return}
     SendOrder(order)
 
 }
@@ -243,6 +263,22 @@ SelectStoreInput.onchange = (e)=>{
     switch(value){
         case "Store C-Store":
             animationOverlay.innerHTML = foodDisplays[0]
+            let form :HTMLElement  = document.getElementById("orderForm")
+form.addEventListener("change",()=>{
+    const Goods :any  = document.getElementById("totalofgoods")
+    const totalC :any = document.getElementById("totalC")
+    const allInputs2 :any = document.getElementsByTagName("input")
+    let totalCost :any = 0
+    for(let i = 0; i< allInputs2.length;i++){
+        console.log(allInputs2[i])
+        if(allInputs2[i].checked){
+            totalCost +=costs[allInputs2[i].value]
+            console.log(totalCost)
+        }
+    }
+    Goods.innerHTML = "$" + totalCost
+    totalC.innerHTML = "$" + (totalCost + 2)
+})
             MyCube.material.color.setHex(0xe30909)
             break
     }

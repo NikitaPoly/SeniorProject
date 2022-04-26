@@ -185,3 +185,15 @@ func SaveNewMondey(res http.ResponseWriter, id string, field string, new string)
 	dbupdateAction(res, "DeliveryUsers", id, field, new)
 	res.WriteHeader(200)
 }
+
+func SaveNewOrderCompleted(res http.ResponseWriter, id string, field string, new string) {
+	dbupdateAction(res, "DeliveryUsers", id, field, new)
+}
+
+func SaveNewTotalEarned(res http.ResponseWriter, id string, field string, new string) {
+	dbupdateAction(res, "DeliveryUsers", id, field, new)
+}
+
+func SaveOrderStartded(res http.ResponseWriter, id string, field string, new string) {
+	dbupdateAction(res, "DeliveryUsers", id, field, new)
+}
