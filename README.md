@@ -7,13 +7,6 @@
 <h3>Front-end</h3>
 <p>
     From previous experience developing smaller full-stack websites, I elected to build a framework for ease of the development procces. This framework included the following commands:
-    "build-p": "webpack --config ./webpack.build.js",
-    "run-f": "npx webpack serve",
-    "run-b": "go run main.go",
-    "build-b": "go build -o ./bin ./main.go ",
-    "buildAll" : "webpack --config ./webpack.build.js",
-    "postbuildAll":"node ./buildScript.js",
-    "a": "webpack --config ./webpack.build.js && node ./buildScript.js &&  npm run run-b"
     <ul>
         <li>
             <code>earn-b</code>: 
@@ -51,6 +44,13 @@
             </p>
         </li>
         <li>
+            <code>build-p</code>: 
+            Example : <code>npm run build-p</code>
+            <p>
+                This script utilizes webpack and builds all front-end pages, spesifically the production files. These files are minified and are ready for production. This script will read the typscript that the page is writen in, compile all resources needed and export a javascript file, images and an HTML file. These files could then be used for fast client side experience.  
+            </p>
+        </li>
+        <li>
             <code>earn-r</code>: 
             Example : <code>npm run earn-r</code>
             <p>
@@ -76,6 +76,28 @@
             Example : <code>npm run settings-r</code>
             <p>
                 This script will build and run only the earn front-end page. After it completes the building of the development files, it will launch a server using webpack and open an explorer tab to the /delivery/settings page on your localhost.  
+            </p>
+        </li>
+        <li>
+            <code>run-f</code>: 
+            Example : <code>npm run run-f</code>
+            <p>
+                This script utilizes webpack and builds all front-end pages, spesifically the development files. These files are not minified and are not ready for production. This script will read the typscript that the page is writen in, compile all resources needed and export a javascript file, images and an HTML file. Then it launches a server using webpack and displays all pages of the front-end.
+            </p>
+        </li>
+        <li>
+            <code>run-b</code>: 
+            Example : <code>npm run run-b</code>
+            <p>
+                This script runs the golang server on localhost:8080.
+            </p>
+        </li>
+           </li>
+        <li>
+            <code>a</code>: 
+            Example : <code>npm run a</code>
+            <p>
+                This is a script combination of multiple othere scripts mentioned above. This script builds the production code for all of the front-end, utilising webpack and a custom buildScript.js file. After the compilation is complete the go server is started and the website can be accesed through the localhost:8080/delivery/ url.
             </p>
         </li>
     </ul>
