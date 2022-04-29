@@ -15,7 +15,7 @@ import axios from "axios";
 
 import { WebGLRenderer } from "three";
 //delcare global functions 
-
+let MyCube :any = ""
 //this part of the code is responsible for creating the html and css of the page
 {
     //activate styles for the page
@@ -109,15 +109,18 @@ import { WebGLRenderer } from "three";
                         axios.put("./login",{"email":email,"password":password}).then(res=>{
                             if(res.status == 201){
                                 alert("account can not be found")
+                                MyCube.material.color.setHex(0xDC143C)
                                 return
                             }
                             localStorage.setItem("DeliveryLogIn",email)
                             alert("you have been logged in")
+                            MyCube.material.color.setHex(0x007500)
                             console.log(res)
                         })
                         return
                     }
-                    alert("Enter password an email")
+                    alert("Enter password and email")
+                    MyCube.material.color.setHex(0xDC143C)
                 })
                 requestAnimationFrame(doRenderLogin)
             } else {//sign up
@@ -145,15 +148,18 @@ import { WebGLRenderer } from "three";
                             animationOverLay.innerHTML = `
                         <h1>User created/ logged in</h1>
                         `
+                        MyCube.material.color.setHex(0x007500)
                          }).catch(err=>{
                             animationOverLay.innerHTML = `
                             <h1>Error Occured, try again</h1>
                             `
+                            MyCube.material.color.setHex(0xDC143C)
                             console.log(err)
                          })
                     }
                     else{
                         alert("not a DePauw Account  use @depauw.edu format")
+                        MyCube.material.color.setHex(0xDC143C)
                     }
                 });
                 requestAnimationFrame(doRenderSign)
@@ -168,5 +174,6 @@ import { WebGLRenderer } from "three";
         camera,
         cube
     } = myThree.default.setupScene();
+    MyCube = cube
     //render the picture
 }

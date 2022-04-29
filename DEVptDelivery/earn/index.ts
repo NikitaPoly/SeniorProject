@@ -16,6 +16,7 @@ import axios from "axios";
 
 import {WebGLRenderer} from "three";
 
+let MyCube:any = ""
 //respinsible for the html css
 {
     ///activate styles for the page
@@ -48,8 +49,8 @@ import {WebGLRenderer} from "three";
     statsTable.querySelector("p#stat").innerHTML = "Available balance";
     statsTable.querySelector("p#result").innerHTML = "00.00";
     //set the rest with this loop
-    axios.patch("./earn",localStorage.getItem("DeliveryLogIn")).then(res=>{
-        if(res.status == 201){alert(`no user data for ${localStorage.getItem("DeliveryLogIn")}`);return}
+    axios.patch("./earn",localStorage.getItem("DeliveryLogIn")).then((res)=>{
+        if(res.status == 201){alert(`no user data for ${localStorage.getItem("DeliveryLogIn")}`);MyCube.material.color.setHex(0xDC143C);return}
         let data = res.data[0]
         console.log(data)
         const actualData = [
@@ -102,11 +103,12 @@ import {WebGLRenderer} from "three";
     //get the canvas for three.js and attach its appearance to the correct button
     function checkIfThereAreOrders(res){
         const overlay:HTMLElement =  document.getElementById("animationOverlay")
-        if(res.status == 201){
+        if(res.status == 201 || localStorage.getItem("DeliveryLogIn") == ""){
             overlay.innerHTML = `
             <h2>No Orders at this time, check back soon</h2>
             <p id="tip">(Refresh in 10 mins to check if new orders are submited)</p>
             `
+            MyCube.material.color.setHex(0xDC143C)
             return
         }
         for(let i = 0; i < res.data.length;i++){
@@ -129,6 +131,7 @@ import {WebGLRenderer} from "three";
                 const isClaimed = thisData["Deliverer"] != "" 
                 if(isClaimed){
                     alert("Pick a delivery that has not been claimed")
+                    MyCube.material.color.setHex(0xDC143C)
                     return
                 }
                 let dataToSend ={
@@ -139,6 +142,7 @@ import {WebGLRenderer} from "three";
                 axios.post("./earn",dataToSend).then(res=>{
                    if(res.status != 200){//if order got claimed before you
                         alert("Order unavalable")
+                        MyCube.material.color.setHex(0xDC143C)
                         window.location.reload()
                         return
                    }else {//orderclaimed
@@ -159,6 +163,7 @@ import {WebGLRenderer} from "three";
                                 "Worker" : localStorage.getItem("DeliveryLogIn"),
                                 "Credit":"2"
                             }
+                            MyCube.material.color.setHex(0x007500)
                             console.log(dataToSend2)
                             axios.post("./earn",dataToSend2).then(res=>{
                                 overlay.innerHTML = `
@@ -195,4 +200,5 @@ import {WebGLRenderer} from "three";
         cube
     } = myThree.default.setupScene();
     //render the picture
+    MyCube = cube
 }

@@ -179,7 +179,7 @@ function SendOrder(order:order){
                                     <p id="tip">(Look outside all doors of your building)</p>
                                 </div>
                                     `
-                                    MyCube.material.color.setHex(0x71e307)
+                                    MyCube.material.color.setHex(0x007500)
                                     clearInterval(timer)
                                 }
                                 else{
@@ -192,7 +192,10 @@ function SendOrder(order:order){
                                     <p id="tip">(Last update at ${currentTime})</p>
                                 </div>
                                 `
-                                MyCube.material.color.setHex(0x000000)
+                                var randomColor = Math.floor(Math.random()*16777215).toString(16)
+                                let t = `0x${randomColor}`
+                                console.log(t)
+                                MyCube.material.color.setHex(t)
                                 }
                             })
                         },10000)
@@ -202,8 +205,8 @@ function SendOrder(order:order){
                                 <p id="tip">(Status will be update once your order has been dropped off)</p>
                             </div>
                         `
-                        
-                        }).catch(err=>{animationOverlay.innerHTML="<h2>Sorry Error Occurred,Try Again</h2>"})
+                        MyCube.material.color.setHex(0x007500)
+                        }).catch(err=>{animationOverlay.innerHTML="<h2>Sorry Error Occurred,Try Again</h2>";MyCube.material.color.setHex(0xDC143C)})
     
 }
 function GetFinalDetails(order:order){
